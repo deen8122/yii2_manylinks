@@ -11,8 +11,11 @@
     <div class="top-inform">
 	<h1>Ваша страница</h1>
 	<div class="you-links">
-	    <span>Ссылка на вашу страницу:</span> 
-	    <span>https://manylinks.ru/deen812.page</span>	
+	    <span class="name">Ссылка на вашу страницу:</span> 
+	    <span class="link">
+		<span class="domain">https://manylinks.ru/</span><span class="code"><?= $site->code ?></span>
+		<a target="_blank" href="https://manylinks.ru/<?= $site->code ?>">перейти</a>
+	    </span>	
 	</div>
 
 	<center>
@@ -63,4 +66,4 @@
     ?>
 
 </div>
-<? include 'popup.php'?>
+<? include 'popup.php' ?>

@@ -10,6 +10,7 @@ use trntv\filekit\actions\UploadAction;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use common\models\User;
 
 class ConfigController extends Controller {
 
@@ -80,6 +81,49 @@ class ConfigController extends Controller {
 	/**
 	 * @return string|\yii\web\Response
 	 */
+	public function actionSite() {
+		$model = \common\models\Site::find()->where(['id' => Yii::$app->user->identity->site_id])->one();
+		if ($model == null) {
+			$model = new \common\models\Site();
+			$model->name = Yii::$app->user->identity->email;
+			$model->code = Yii::$app->user->identity->email;
+			$model->save();
+			$user = User::findOne(['id' => Yii::$app->user->identity->id]);
+			$user->site_id = $model->id;
+			$user->save();
+		}
+
+
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
+
+			//Yii::$app->user->identity->site_id = $model->id;
+			//$locale = $model->getModel('profile')->locale;
+			Yii::$app->session->setFlash('forceUpdateLocale');
+			Yii::$app->session->setFlash('alert', [
+				'options' => ['class' => 'alert-success'],
+				'body' => Yii::t('frontend', 'Ваш аккаунт был успешно сохранён', [], $locale)
+			]);
+			return $this->refresh();
+		}
+		
+		
+		
+		return $this->render('site', ['model' => $model]);
+	}
+
+	public function actionSelectsite() {
+		$model = Yii::$app->user->identity;
+		if ($model->load($_POST) && $model->save()) {
+			Yii::$app->session->setFlash('alert', [
+				'options' => ['class' => 'alert-success'],
+				'body' => "Ваш профиль был успешно сохранён"
+			]);
+			return $this->refresh();
+		}
+		
+		//return $this->render('sites', ['model' => $model]);
+	}
+
 	public function actionProfile() {
 		$accountForm = new AccountForm();
 		$accountForm->setUser(Yii::$app->user->identity);
@@ -92,7 +136,7 @@ class ConfigController extends Controller {
 		]);
 
 		if ($model->load(Yii::$app->request->post()) && $model->save()) {
-			
+
 			$locale = $model->getModel('profile')->locale;
 			Yii::$app->session->setFlash('forceUpdateLocale');
 			Yii::$app->session->setFlash('alert', [
@@ -100,7 +144,7 @@ class ConfigController extends Controller {
 				'body' => Yii::t('frontend', 'Ваш аккаунт был успешно сохранён', [], $locale)
 			]);
 			return $this->refresh();
-		}else {
+		} else {
 			//l($_POST);
 		}
 		return $this->render('profile', ['model' => $model]);

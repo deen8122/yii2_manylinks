@@ -2,6 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
+use yii\helpers\ArrayHelper;
 
 /* @var $this \yii\web\View */
 /* @var $content string */
@@ -22,7 +23,7 @@ use yii\helpers\Url;
 	<script src="<?= Url::base() ?>/js/libs/jquery.min.js?ver=1"></script>
 	<title>ManyLinks.ru - admin</title>
 	<?php $this->head() ?>
-	<?php echo Html::csrfMetaTags() ?>
+<?php echo Html::csrfMetaTags() ?>
 	<link rel="shortcut icon" type="image/x-icon" href="/img/logo-32.png" /> 
 	<script>
                 var YiiData = {
@@ -54,15 +55,15 @@ use yii\helpers\Url;
 					   href="<?= Url::to(['/user/pay/']) ?>">Платная версия</a>				
 				    </li>
 				    <li class="toggleable"> 
-					<a class="menu-item <?= strpos($_SERVER['REQUEST_URI'], '/user/config/profile') !== false ? 'active' : '' ?>" 
-					   href="<?= Url::to(['/user/config/profile']) ?>">Настройки</a>				
+					<a class="menu-item <?= strpos($_SERVER['REQUEST_URI'], '/user/config/site') !== false ? 'active' : '' ?>" 
+					   href="<?= Url::to(['/user/config/site']) ?>">Настройки</a>				
 				    </li>
 
 				    <li class="toggleable dropdown ">
 					<a class="menu-item dropdown-toggle" 
 					   href="#" 
 					   style="color: #f79823;">
-					       <?= Yii::$app->user->identity->getPublicIdentity() ?>
+<?= Yii::$app->user->identity->getPublicIdentity() ?>
 					    <span class="caret"></span></a>
 					<ul class="dropdown-menu dropdown-user-menu">
 					    <li><a href="/user/page/index" tabindex="-1">Панель управления</a></li>
@@ -72,7 +73,7 @@ use yii\helpers\Url;
 					    </li>
 					</ul>
 				    </li>
-				   
+
 				</ul>
 			    </div>
 			</div>
@@ -84,11 +85,20 @@ use yii\helpers\Url;
 	</header>
 
 	<? // include 'test_header_menu.php'; ?>
-
+	    <?php if (Yii::$app->session->hasFlash('alert')): ?>
+		<div class="container">
+		    <?php
+		    echo \yii\bootstrap\Alert::widget([
+			    'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+			    'options' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
+		    ])
+		    ?>
+		</div>
+<?php endif; ?>
 
 	<div class="container">
 	    <?php echo $content ?>
-	    <? //l($_SESSION['USER']); ?>
+<? //l($_SESSION['USER']);   ?>
 	</div>
 
 
@@ -108,9 +118,9 @@ use yii\helpers\Url;
 
 	<div class="popup-bg"></div>
 	<div class="popup">
-		
+
 	</div>
-	
+
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css" />	
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/admin-page.css" />
@@ -118,7 +128,7 @@ use yii\helpers\Url;
 	<script src="<?= Url::base() ?>/js/libs/jquery-ui.js"></script>
 	<script src="<?= Url::base() ?>/js/admin-script.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
-	
+
     </body>
 </html>
 <?php $this->endPage() ?>

@@ -82,11 +82,12 @@ class SignupForm extends Model {
 		if ($this->validate()) {
 			$shouldBeActivated = $this->shouldBeActivated();
 			$user = new User();
-			$user->username = $this->username;
+			$user->username = $this->email;
 			$user->email = $this->email;
 			$user->status = $shouldBeActivated ? User::STATUS_NOT_ACTIVE : User::STATUS_ACTIVE;
 			$user->setPassword($this->password);
 			if (!$user->save()) {
+				//var_dump($user->errors);
 				throw new Exception("User couldn't be  saved");
 			};
 			$user->afterSignup();

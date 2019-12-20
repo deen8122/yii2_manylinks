@@ -72,7 +72,7 @@ use yii\helpers\Url;
 				    <? else: ?>
 					       <li class="toggleable dropdown ">
 					<a class="menu-item dropdown-toggle" 
-					   href="#" 
+					   href="/user/page/index" 
 					   style="color: #f79823;">
 					       <?= Yii::$app->user->identity->getPublicIdentity() ?>
 					    <span class="caret"></span></a>

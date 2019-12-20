@@ -39,11 +39,11 @@ class PageController extends Controller {
 	 * @return string|\yii\web\Response
 	 */
 	public function actionIndex() {
-		$site = \common\models\Site::find()->where(['id' => Yii::$app->user->identity->site_id])->asArray()->one();
+		$site = \common\models\Site::find()->where(['id' => Yii::$app->user->identity->site_id])->one();
+		//l($site);
 		$siteBlock = \common\models\SiteBlock::find()->orderBy(['sort' => SORT_ASC])->where(['site_id' => Yii::$app->user->identity->site_id])->all();
 		//l($siteBlock);
 		return $this->render('index', [
-				'user' => $user,
 				'site' => $site,
 				'siteBlock' => $siteBlock,
 		]);

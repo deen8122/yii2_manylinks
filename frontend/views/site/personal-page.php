@@ -15,11 +15,15 @@ $this->title = $model->name;
 
     <? endforeach ?>
 </div>
-<div class="footer">
 
-    <center>
-	разработка Deen&Team
-    </center>
+<div class="footer">
+    <line></line>
+    <a class="logo" href="/" target="_blank">
+	<img src="/img/icons/logo.svg">
+	<span>ManyLinks.ru</span>
+    </a>
 </div>
+
 <?
+$this->registerCssFile("/upload/deen812/" . $model->code . '.css');
 //l$model->blocks)?>

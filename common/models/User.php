@@ -4,6 +4,7 @@ namespace common\models;
 
 use common\commands\AddToTimelineCommand;
 use common\models\query\UserQuery;
+use common\models\Site;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -147,7 +148,7 @@ class User extends ActiveRecord implements IdentityInterface {
 	 */
 	public function rules() {
 		return [
-			[['site_id'], 'required'],
+		//	[['site_id'], 'required'],
 			[['username', 'email'], 'unique'],
 			['status', 'default', 'value' => self::STATUS_NOT_ACTIVE],
 			['status', 'in', 'range' => array_keys(self::statuses())],
@@ -246,6 +247,15 @@ class User extends ActiveRecord implements IdentityInterface {
 		// Default role
 		$auth = Yii::$app->authManager;
 		$auth->assign($auth->getRole(User::ROLE_USER), $this->getId());
+		
+		//Создаем сайт!
+		/*
+		$site = new Site();
+		$site->name = $this->email;
+		$site->code = $this->id;
+		$site->save();
+		 * 
+		 */
 	}
 
 	/**
@@ -283,48 +293,7 @@ class User extends ActiveRecord implements IdentityInterface {
 		return $this->userProfile->lastname;
 	}
 
-	public function getNewMessages($taskID = 0, $useWrap = true) {
-		if ($taskID > 0) {
-			$col = TaskMessage::find()
-				->andWhere(['is_new' => 1])
-				->andWhere(['message_to' => Yii::$app->user->identity->id])
-				->andWhere(['task_id' => $taskID])
-				->groupBy(['user_id'])
-				->count();
-		} else {
-			$col = TaskMessage::find()
-				->andWhere(['is_new' => 1])
-				->andWhere(['message_to' => Yii::$app->user->identity->id])
-				//->groupBy(['task_id'])
-				->count();
-		}
-
-		if(!$useWrap){
-			return $col;
-		}
-		return '<span  ' . ($col == 0 ? 'style="display:none"' : '') . ' class="message-count new-message">' . $col . '</span>';
-	}
-
-	public function getAllNewMessages() {
-
-		$arr = TaskMessage::find()
-				->andWhere(['is_new' => 1])
-				->andWhere(['message_to' => Yii::$app->user->identity->id])
-				->groupBy(['task_id'])
-				->asArray()->all();
-
-		$arr3 = [];
-		foreach ($arr as $arr2) {
-			//Если текущий пользовтель является владельцем задания
-			// 
-			if ($arr2['user_owner_id'] == Yii::$app->user->identity->id) {
-				$arr3['my_task_responses'][$arr2['task_id']] = $arr2;
-			} else {
-				$arr3['my_responses'][$arr2['task_id']] = $arr2;
-			}
-		}
-		return $arr3;
-	}
+	
 
 	public static function setConfig($key = "def", $arr = []) {
 		$config = json_decode(Yii::$app->user->identity->userProfile->config, true);

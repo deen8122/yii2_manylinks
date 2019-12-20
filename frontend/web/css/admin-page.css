@@ -77,3 +77,7 @@
 
 .block-iamge-bg {    background-size: cover;}
 .circled {border-radius: 100%}
+.you-links {}
+.you-links span.name {}
+.you-links span.link {font-weight: bold;}
+.you-links a {font-weight: normal; text-decoration: underline;color:blue;}
