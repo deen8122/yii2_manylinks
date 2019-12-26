@@ -30,6 +30,9 @@ class SiteBlockValue extends \yii\db\ActiveRecord {
 	}
 
 	public static function getIconByUrl($link) {
+
+		if (strpos($link, 'blogspot.com') !== false)
+			return 'blogspot';
 		$uri = strtolower(trim($link));
 		$uri = preg_replace('%^(http:\/\/)*(https:\/\/)*(www.)*%usi', '', $uri);
 		$uri = preg_replace('%\/.*$%usi', '', $uri);

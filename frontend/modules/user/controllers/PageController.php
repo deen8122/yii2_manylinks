@@ -5,6 +5,7 @@ namespace frontend\modules\user\controllers;
 use Yii;
 use yii\filters\AccessControl;
 use yii\web\Controller;
+use common\models\Site;
 use common\models\SiteBlock;
 use common\models\SiteBlockValue;
 use yii\web\Response;
@@ -39,10 +40,11 @@ class PageController extends Controller {
 	 * @return string|\yii\web\Response
 	 */
 	public function actionIndex() {
-		$site = \common\models\Site::find()->where(['id' => Yii::$app->user->identity->site_id])->one();
-		//l($site);
-		$siteBlock = \common\models\SiteBlock::find()->orderBy(['sort' => SORT_ASC])->where(['site_id' => Yii::$app->user->identity->site_id])->all();
-		//l($siteBlock);
+		$site = Site::find()->where(['id' => Yii::$app->user->identity->site_id])->one();
+		if($site == null){
+			$site = Site::createDefaultItems();
+		}
+		$siteBlock = SiteBlock::find()->orderBy(['sort' => SORT_ASC])->where(['site_id' => Yii::$app->user->identity->site_id])->all();
 		return $this->render('index', [
 				'site' => $site,
 				'siteBlock' => $siteBlock,
@@ -150,6 +152,7 @@ class PageController extends Controller {
 		}
 	}
 
+	
 	protected function findModel($id) {
 		if (($model = Task::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id])) !== null) {
 			return $model;
@@ -159,4 +162,7 @@ class PageController extends Controller {
 		//  throw new NotFoundHttpException('The requested page does not exist.');
 	}
 
-}
+
+	
+	
+		}

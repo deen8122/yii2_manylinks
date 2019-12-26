@@ -58,6 +58,7 @@ class SiteController extends Controller {
 	/*
 	 * Публичная страница пользователя
 	 */
+
 	public function actionPage($slug) {
 		$this->layout = 'personal-page'; //your layout name
 		//$model = Site::find()->where(['slug' => $slug, 'status' => Site::STATUS_PUBLISHED])->one();
@@ -66,10 +67,9 @@ class SiteController extends Controller {
 			throw new NotFoundHttpException(Yii::t('frontend', 'Страница не найдена'));
 		}
 		//return $this->renderPartial('@app/views/personal-page/index',['model' => $model]);
-		return $this->render('personal-page',['model' => $model]);
+		return $this->render('personal-page', ['model' => $model]);
 	}
-	
-	
+
 	public function beforeAction($action) {
 		$this->layout = 'site'; //your layout name
 		return parent::beforeAction($action);
@@ -105,7 +105,11 @@ class SiteController extends Controller {
 		return $this->render('help');
 	}
 
-	
+	public function actionPrivacy_policy() {
+
+
+		return $this->render('privacy_policy');
+	}
 
 	/**
 	 * @return string|Response

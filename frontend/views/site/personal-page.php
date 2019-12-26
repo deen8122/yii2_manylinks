@@ -9,7 +9,7 @@ $this->title = $model->name;
 
     <? foreach ($model->blocks as $block): ?>
 	    <? // l($block);?>
-	    <div>
+	    <div class="block block-<?=$block->type?>">
 		<? include 'type/block-' . $block->type . '.php' ?>	
 	    </div>
 
@@ -23,7 +23,9 @@ $this->title = $model->name;
 	<span>ManyLinks.ru</span>
     </a>
 </div>
-
+<style>
+	<?=$model->style?>
+</style>
 <?
-$this->registerCssFile("/upload/deen812/" . $model->code . '.css');
+$this->registerCssFile("/upload/" . $model->code . '/style.css');
 //l$model->blocks)?>

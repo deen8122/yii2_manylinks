@@ -63,7 +63,7 @@ use yii\helpers\ArrayHelper;
 					<a class="menu-item dropdown-toggle" 
 					   href="#" 
 					   style="color: #f79823;">
-<?= Yii::$app->user->identity->getPublicIdentity() ?>
+                                                    <?= Yii::$app->user->identity->getPublicIdentity() ?>
 					    <span class="caret"></span></a>
 					<ul class="dropdown-menu dropdown-user-menu">
 					    <li><a href="/user/page/index" tabindex="-1">Панель управления</a></li>
@@ -124,6 +124,7 @@ use yii\helpers\ArrayHelper;
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css" />	
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/admin-page.css" />
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
 	<script src="<?= Url::base() ?>/js/libs/textarea-elastic.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/jquery-ui.js"></script>
 	<script src="<?= Url::base() ?>/js/admin-script.js"></script>

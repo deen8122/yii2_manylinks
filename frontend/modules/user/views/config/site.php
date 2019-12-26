@@ -18,11 +18,11 @@ $this->title = Yii::t('frontend', 'Настройка публичной стр�
     <?php $form = ActiveForm::begin(); ?>
 
     <h2><?php echo Yii::t('frontend', 'Настройка публичной страницы') ?></h2>
-    
-    
-    
-    
-    
+
+
+
+
+
     <div class="row">
 	<div class="col-md-8">
 	    <div class="row">
@@ -33,11 +33,11 @@ $this->title = Yii::t('frontend', 'Настройка публичной стр�
 		    <?php echo $form->field($model, 'description')->textInput(['maxlength' => 255]) ?>
 		</div>
 		<div class="col-md-12">
-		 <?php echo $form->field($model, 'code')->textInput(['maxlength' => 255]) ?>
+		    <?php echo $form->field($model, 'code')->textInput(['maxlength' => 255]) ?>
 		</div>
 	    </div>
 
-	
+
 
 
 
@@ -47,7 +47,7 @@ $this->title = Yii::t('frontend', 'Настройка публичной стр�
 
 
 	</div>
-	
+
     </div>
 
 
@@ -59,26 +59,32 @@ $this->title = Yii::t('frontend', 'Настройка публичной стр�
 
     <?
     $user = Yii::$app->user->identity;
-    foreach ($user->sites as $site){
-	$arSites[$site->id] = $site->name;
-}
+    $arSites = [];
+    if (is_array($user->sites)) {
+	    foreach ($user->sites as $site) {
+		    $arSites[$site->id] = $site->name;
+	    }
+	    if (count($arSites) > 0) {
 //l($arSites);
-?>
+		    ?>
 
-<div class="user-profile-form">
+		    <div class="user-profile-form">
 
-    <?php $form = ActiveForm::begin(['action' => ['/user/config/selectsite']]) ?>
+			<?php $form = ActiveForm::begin(['action' => ['/user/config/selectsite']]) ?>
 
-    <?php  echo $form->field($user, 'site_id')->dropDownlist($arSites) ?>
+			<?php echo $form->field($user, 'site_id')->dropDownlist($arSites) ?>
 
 
 
-    <?php //echo $form->field($model, 'site_id')->textInput(['maxlength' => 255]) ?>
-    <div class="form-group">
-	<?php echo Html::submitButton(Yii::t('backend', 'Редактировать'), ['class' => 'btn btn-primary']) ?>
-    </div>
+			<?php //echo $form->field($model, 'site_id')->textInput(['maxlength' => 255]) ?>
+			<div class="form-group">
+			    <?php echo Html::submitButton(Yii::t('backend', 'Редактировать'), ['class' => 'btn btn-primary']) ?>
+			</div>
 
-    <?php ActiveForm::end() ?>
+			<?php ActiveForm::end() ?>
 
-</div>
+		    </div>
+	    <? }
+    }
+    ?>
 </div>

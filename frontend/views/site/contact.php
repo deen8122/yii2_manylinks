@@ -10,7 +10,7 @@ use yii\captcha\Captcha;
 $this->title = 'Контакты';
 $this->params['breadcrumbs'][] = $this->title;
 ?>
-<div class="site-contact">
+<div class="site-contact content-inner">
     <h1><?php echo Html::encode($this->title) ?></h1>
 
     <div class="row">
@@ -18,7 +18,7 @@ $this->params['breadcrumbs'][] = $this->title;
             <?php $form = ActiveForm::begin(['id' => 'contact-form']); ?>
                 <?php echo $form->field($model, 'name') ?>
                 <?php echo $form->field($model, 'email') ?>
-                <?php echo $form->field($model, 'subject') ?>
+                <?php //echo $form->field($model, 'subject') ?>
                 <?php echo $form->field($model, 'body')->textArea(['rows' => 6]) ?>
                 <?php echo $form->field($model, 'verifyCode')->widget(Captcha::class, [
                     'template' => '<div class="row"><div class="col-lg-3">{image}</div><div class="col-lg-6">{input}</div></div>',

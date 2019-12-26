@@ -44,7 +44,7 @@ $config = [
 				if (env('APP_MAINTENANCE') === '1') {
 					return true;
 				}
-				return $app->keyStorage->get('frontend.maintenance') === 'enabled';
+				return false ; //$app->keyStorage->get('frontend.maintenance') === 'enabled';
 			}
 		],
 		'request' => [

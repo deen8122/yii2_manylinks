@@ -2,7 +2,11 @@
 @import "//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900";
 html{font-size:100%}
 body{-webkit-transition:opacity .4s;-moz-transition:opacity .4s;-ms-transition:opacity .4s;-o-transition:opacity .4s;transition:opacity .4s;font-size:16px;opacity:1;text-shadow:none!important;padding:0;margin:0}
-body,input,select,textarea,button,.ui-btn{font-size:1em;line-height:1.3;font-family:sans-serif;color:#222;font-family:RobotoDraft,Roboto,"Helvetica Neue",sans-serif;font-weight:400}
+
+body,input,select,textarea,button,.ui-btn{font-size:1em;line-height:1.3;font-family:sans-serif;color:#222;
+       font-family:RobotoDraft,Roboto,"Helvetica Neue",sans-serif;
+           font-size: 14px;
+       font-weight:400}
 .mobile-conent{max-width:560px;margin:auto;overflow:hidden}
 .clear{clear:both}
 body{background:#fff}
@@ -10,7 +14,7 @@ body{background:#fff}
 .block-header .r-block{margin-left:150px}
 .photo-ava{display:block;border-radius:50%;width:100px;height:100px;float:left;border:4px solid #e9e8ef;overflow:hidden}
 .photo-ava img{width:100px;height:100px}
-.block{border-radius:5px;margin:5px;background:#fff;padding:10px}
+.block{border-radius:5px;margin:5px;padding:10px}
 .block h2{font-size:18px;text-align:center;font-weight:700}
 .block-pad{padding:15px}
 .block-pad-full{padding:10px 0}
@@ -19,17 +23,18 @@ body{background:#fff}
 .icon-vk{background-image:url(../img/icons/social/vk.svg)}
 .icon-ok{background-image:url(../img/icons/social/ok.svg)}
 .icon-inst{background-image:url(../img/icons/social/inst.svg)}
-.icon-fb{background-image:url(../img/icons/social/fb.svg)}
+.icon-fb,.icon-facebook{background-image:url(../img/icons/social/fb.svg)}
 .icon-telegram{background-image:url(../img/icons/social/telegram.svg)}
 .icon-youtube{background-image:url(../img/icons/social/youtube.svg)}
 .icon-skype{background-image:url(../img/icons/social/skype.svg)}
 .icon-github{background-image:url(../img/icons/social/github.svg)}
 .icon-wa{background-image:url(../img/icons/social/wa.svg)}
+.icon-blogspot{background-image:url(../img/icons/social/blogspot.svg)}
 .ul-icon-list a{text-decoration:none;color:#222;display:flex;align-items:center;width:100%;clear:both;border:1px solid #ccc;min-height:36px;margin:8px auto;max-width:304px;border-radius:7px;padding:6px}
 .ul-icon-list a span{margin-left:10px}
 
 
-.rounded {border-radius: 50%;} 
+
 
 .footer {}
 .footer line {
@@ -47,3 +52,5 @@ body{background:#fff}
     color: #0097A7;
     position: absolute;
     margin-top: 4px;}
+
+.mobile-conent .block {padding:10px;}

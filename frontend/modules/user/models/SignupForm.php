@@ -110,6 +110,7 @@ class SignupForm extends Model {
 		return null;
 	}
 
+	
 	/**
 	 * @return bool
 	 */

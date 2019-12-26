@@ -7,8 +7,14 @@ use common\models\SiteBlockValue;
 
 class SiteBlock extends \yii\db\ActiveRecord {
 
+	const TYPE_SIMPLE_TEXT = 1;
+	const TYPE_LINKS = 2;
+	const TYPE_HTML_TEXT = 3;
+	const TYPE_HEADER_PHOTO = 4;
+	
 	const STATUS_ACTIVE = 1;
 	const STATUS_DEACTIVE = 2;
+	
 
 	/**
 	 * {@inheritdoc}

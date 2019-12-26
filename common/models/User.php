@@ -5,6 +5,8 @@ namespace common\models;
 use common\commands\AddToTimelineCommand;
 use common\models\query\UserQuery;
 use common\models\Site;
+use common\models\SiteBlock;
+use common\models\SiteBlockValue;
 use Yii;
 use yii\behaviors\AttributeBehavior;
 use yii\behaviors\TimestampBehavior;
@@ -124,8 +126,8 @@ class User extends ActiveRecord implements IdentityInterface {
 					ActiveRecord::EVENT_BEFORE_INSERT => 'access_token'
 				],
 				'value' => function () {
-				return Yii::$app->getSecurity()->generateRandomString(40);
-			}
+					return Yii::$app->getSecurity()->generateRandomString(40);
+				}
 			]
 		];
 	}
@@ -148,7 +150,7 @@ class User extends ActiveRecord implements IdentityInterface {
 	 */
 	public function rules() {
 		return [
-		//	[['site_id'], 'required'],
+			[['site_id'], 'integer'],
 			[['username', 'email'], 'unique'],
 			['status', 'default', 'value' => self::STATUS_NOT_ACTIVE],
 			['status', 'in', 'range' => array_keys(self::statuses())],
@@ -247,16 +249,9 @@ class User extends ActiveRecord implements IdentityInterface {
 		// Default role
 		$auth = Yii::$app->authManager;
 		$auth->assign($auth->getRole(User::ROLE_USER), $this->getId());
-		
-		//Создаем сайт!
-		/*
-		$site = new Site();
-		$site->name = $this->email;
-		$site->code = $this->id;
-		$site->save();
-		 * 
-		 */
 	}
+
+	
 
 	/**
 	 * @return string
@@ -273,7 +268,7 @@ class User extends ActiveRecord implements IdentityInterface {
 
 	public function getSite() {
 		//return $this->site_id;
-		 return $this->hasOne(Site::class, ['id' => 'site_id']);
+		return $this->hasOne(Site::class, ['id' => 'site_id']);
 	}
 
 	public function getSites() {
@@ -292,8 +287,6 @@ class User extends ActiveRecord implements IdentityInterface {
 	public function getLastname() {
 		return $this->userProfile->lastname;
 	}
-
-	
 
 	public static function setConfig($key = "def", $arr = []) {
 		$config = json_decode(Yii::$app->user->identity->userProfile->config, true);

@@ -20,6 +20,8 @@ use yii\helpers\Url;
 	<script src="<?= Url::base() ?>/js/jquery.min.js?ver=1"></script>
 	<title>ManyLinks.ru - <?php echo Html::encode($this->title) ?></title>
 	<link rel="stylesheet" href="<?= Url::base() ?>/css/personal-page.css?ver=1"/> 
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
+
 	<?php $this->head() ?>
 	<link rel="shortcut icon" type="image/x-icon" href="/img/logo-32.png" /> 
 	

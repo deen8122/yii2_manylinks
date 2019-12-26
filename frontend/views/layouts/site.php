@@ -2,7 +2,7 @@
 
 use yii\helpers\Html;
 use yii\helpers\Url;
-
+use yii\helpers\ArrayHelper;
 /* @var $this \yii\web\View */
 /* @var $content string */
 
@@ -38,12 +38,19 @@ use yii\helpers\Url;
 		    <div class="row-flex">
 			<div class="col-md-3">
 			    <a class="logo" href="<?= Url::to(['/site/index']) ?>">
+				<? /*
 				<img src="/img/icons/logo.svg">
 				<span>ManyLinks.ru</span>
+				 * <img style="width: 32px" src="/img/logo100.png">
+				 */
+				?>
+				
+				<img src="/img/icons/logo.svg">
+				<span class="logo-text"><span>Many</span><span>Links</span>.ru</span>
 			    </a>
 			</div>
 			<div class="col-md-9">    
-			
+
 			    <div class="navgition-menu d-flex align-items-center justify-content-center">
 				<ul class="mb-0">
 				    <li class="toggleable"> 
@@ -58,7 +65,7 @@ use yii\helpers\Url;
 					   href="<?= Url::to(['/help']) ?>">Помощь</a>				
 				    </li>
 				    <li class="toggleable"> 
-					<a class="menu-item <?= strpos($_SERVER['REQUEST_URI'], '/contacts')  !== false ? 'active' : '' ?>" 
+					<a class="menu-item <?= strpos($_SERVER['REQUEST_URI'], '/contacts') !== false ? 'active' : '' ?>" 
 					   href="<?= Url::to(['/contacts']) ?>">Контакты</a>				
 				    </li>
 
@@ -70,20 +77,20 @@ use yii\helpers\Url;
 						<a style="color: #f79823;" class="menu-item" href="<?= Url::to(['/user/sign-in/login']) ?>">Вход</a>				
 					    </li>
 				    <? else: ?>
-					       <li class="toggleable dropdown ">
-					<a class="menu-item dropdown-toggle" 
-					   href="/user/page/index" 
-					   style="color: #f79823;">
-					       <?= Yii::$app->user->identity->getPublicIdentity() ?>
-					    <span class="caret"></span></a>
-					<ul class="dropdown-menu dropdown-user-menu">
-					    <li><a href="/user/page/index" tabindex="-1">Панель управления</a></li>
-					    <li><a href="/user/config/profile" tabindex="-1">Настройки</a></li>
-					    <li style="margin-top:15px;border-top:1px solid #ccc">
-						<a href="/user/sign-in/logout" data-method="post" tabindex="-1">Выход</a>
+					    <li class="toggleable dropdown ">
+						<a class="menu-item dropdown-toggle" 
+						   href="/user/page/index" 
+						   style="color: #f79823;">
+						       <?= Yii::$app->user->identity->getPublicIdentity() ?>
+						    <span class="caret"></span></a>
+						<ul class="dropdown-menu dropdown-user-menu">
+						    <li><a href="/user/page/index" tabindex="-1">Панель управления</a></li>
+						    <li><a href="/user/config/profile" tabindex="-1">Настройки</a></li>
+						    <li style="margin-top:15px;border-top:1px solid #ccc">
+							<a href="/user/sign-in/logout" data-method="post" tabindex="-1">Выход</a>
+						    </li>
+						</ul>
 					    </li>
-					</ul>
-				    </li>
 				    <? endif ?>
 
 				</ul>
@@ -100,6 +107,16 @@ use yii\helpers\Url;
 
 
 	<div class="container">
+	    <?php if (Yii::$app->session->hasFlash('alert')): ?>
+		    <div class="flash">
+			<?php
+			echo \yii\bootstrap\Alert::widget([
+				'body' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'body'),
+				'options' => ArrayHelper::getValue(Yii::$app->session->getFlash('alert'), 'options'),
+			])
+			?>
+		    </div>
+	    <?php endif; ?>
 	    <?php echo $content ?>
 	    <? //l($_SESSION['USER']); ?>
 	</div>
@@ -122,7 +139,7 @@ use yii\helpers\Url;
 	<div class="popup-bgx"></div>
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css" />
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css?ver=2" />
     </body>
 </html>
 <?php $this->endPage() ?>

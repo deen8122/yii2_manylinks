@@ -113,15 +113,14 @@ class ConfigController extends Controller {
 
 	public function actionSelectsite() {
 		$model = Yii::$app->user->identity;
-		if ($model->load($_POST) && $model->save()) {
+		if ($model->load(Yii::$app->request->post()) && $model->save()) {
 			Yii::$app->session->setFlash('alert', [
 				'options' => ['class' => 'alert-success'],
-				'body' => "Ваш профиль был успешно сохранён"
-			]);
-			return $this->refresh();
+				'body' => "Данные сохранены"
+			]);			
 		}
+		return $this->redirect(['/user/config/site']);
 		
-		//return $this->render('sites', ['model' => $model]);
 	}
 
 	public function actionProfile() {
