@@ -19,7 +19,7 @@ use yii\helpers\ArrayHelper;
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="true">
-	<script src="<?= Url::base() ?>/js/jquery.min.js?ver=1"></script>
+	<script src="<?= Url::base() ?>/js/libs/jquery.min.js?ver=1"></script>
 	<title>ManyLinks.ru - <?php echo Html::encode($this->title) ?></title>
 	<?php $this->head() ?>
 	<?php echo Html::csrfMetaTags() ?>
@@ -137,7 +137,7 @@ use yii\helpers\ArrayHelper;
 
 
 	<div class="popup-bgx"></div>
-	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+	<link xhref="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css?ver=2" />
     </body>

@@ -40,7 +40,7 @@ use yii\helpers\ArrayHelper;
 			<div class="col-md-3">
 			    <a class="logo" href="<?= Url::to(['/site/index']) ?>">
 				<img src="/img/icons/logo.svg">
-				<span>ManyLinks.ru</span>
+				<span class="logo-text"><span>Many</span><span>Links</span>.ru</span>
 			    </a>
 			</div>
 			<div class="col-md-9">

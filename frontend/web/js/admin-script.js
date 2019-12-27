@@ -68,10 +68,16 @@ function init() {
      */
     $('.save-btn').on('click', function () {
         var id = $(this).data('id');
+        var type = $(this).data('type');
+        if(type===3){
+            UpdateBlockContent(id);
+        }
         var $form = $('#block-' + id).find('form');
         var data = $form.serialize();
         var _csrf = $('[name="_csrf"]').val();
         data += '&id=' + id + '&_csrf=' + _csrf;
+        var $btn = $(this)
+         $btn.html('- - - ');
         $.ajax({
             type: "POST",
             format: "JSON",
@@ -79,17 +85,27 @@ function init() {
             data: data, // serializes the form's elements.
             success: function (data) {
                 console.log(data);
+                 $btn.html('Сохранить');
+                 $btn.removeClass('active')
             }
         });
     });
 //
-    var h = $('.text-field').height();
-    //  $('.text-field').hide();
-    // console.log(h);
+
     jQuery('textarea').autoResize();
     $('textarea').keyup(); //.css('height', h + 'px');
+    $('textarea,input').keyup(function(){
+        $(this).closest('form').find('.save-btn').addClass('active');
+    });
+    $('.adm-block-inner').hide();
 
 
+}
+
+function UpdateBlockContent(id){
+    var $block = $('#block-'+id);
+    var text =  $block.find('textarea').val();
+    $block.find('.block-draw').html(text);
 }
 function sbvRemove(id, sb_id) {
     var _csrf = $('[name="_csrf"]').val();
@@ -187,6 +203,25 @@ $(function () {
     $(".sortable").disableSelection();
 });
 
+
+function blockToggle(id) {
+ var $innerBlock = $('#block-'+id).find('.adm-block-inner');
+ var $btn = $('#block-'+id).find('.toggle-btn');
+ if($innerBlock.hasClass('opened')){
+     $innerBlock.hide();
+     $innerBlock.removeClass('opened');
+     $btn.removeClass('icon-minus');
+     $btn.addClass('icon-plus');
+ }else {
+     $innerBlock.show();
+     $innerBlock.addClass('opened') 
+      $btn.removeClass('icon-plus');
+     $btn.addClass('icon-minus');
+    // jQuery('textarea').autoResize();
+   // jQuery('textarea').autoResize();
+   // $('textarea').keyup(); //.css('height', h + 'px');
+ }
+}
 
 function blockRemove(id, isConfirm) {
     if (isConfirm === undefined) {

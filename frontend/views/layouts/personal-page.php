@@ -17,7 +17,11 @@ use yii\helpers\Url;
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="true">
+	<? /*
 	<script src="<?= Url::base() ?>/js/jquery.min.js?ver=1"></script>
+	 * 
+	 */
+	?>
 	<title>ManyLinks.ru - <?php echo Html::encode($this->title) ?></title>
 	<link rel="stylesheet" href="<?= Url::base() ?>/css/personal-page.css?ver=1"/> 
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />

@@ -2,6 +2,6 @@
 </textarea>
 
 
-<div >
+<div class="block-draw">
     <?=$obj->text ?>	
 </div>

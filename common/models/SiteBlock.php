@@ -15,12 +15,20 @@ class SiteBlock extends \yii\db\ActiveRecord {
 	const STATUS_ACTIVE = 1;
 	const STATUS_DEACTIVE = 2;
 	
-
+        
 	/**
 	 * {@inheritdoc}
 	 */
 	public static function tableName() {
 		return 'site_block';
+	}
+	public static function getBlockNames(){
+		return [
+			self::TYPE_SIMPLE_TEXT => "text",
+			self::TYPE_LINKS => "links",
+			self::TYPE_HTML_TEXT => "html",
+			self::TYPE_HEADER_PHOTO => "header",
+		];
 	}
 
 	public static function statuses() {

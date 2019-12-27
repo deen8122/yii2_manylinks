@@ -1,4 +1,5 @@
 <?php
+use common\models\SiteBlock;
 //$this->registerCssFile('/css/admin-page.css');
 //$this->registerCssFile('/css/main.css');
 /* @var $this yii\web\View */
@@ -8,13 +9,14 @@
 //$this->params['breadcrumbs'][] = $this->title;
 ?>
 <div class="task-index">
+    <br>
     <div class="top-inform">
-	<h1>Ваша страница</h1>
 	<div class="you-links">
 	    <span class="name">Ссылка на вашу страницу:</span> 
 	    <span class="link">
-		<span class="domain">https://manylinks.ru/</span><span class="code"><?= $site->code ?></span>
-		<a target="_blank" href="https://manylinks.ru/<?= $site->code ?>">перейти</a>
+		<a target="_blank" href="https://manylinks.ru/<?= $site->code ?>">
+		    <span class="domain">https://manylinks.ru/</span><span class="code"><?= $site->code ?></span>
+		</a>
 	    </span>	
 	</div>
 
@@ -26,6 +28,10 @@
 
 
     <div class="adm-blocks-list sortable" >
+	<?
+	$namesArr = SiteBlock::getBlockNames();
+	
+	?>
 	<? foreach ($siteBlock as $obj):
 		?>
 		<div class="adm-block adm-block-<?= $obj->type ?>" id="block-<?= $obj->id ?>" data-id="<?= $obj->id ?>" data-sort="<?= $obj->sort ?>">
@@ -35,10 +41,16 @@
 				<i class="icon icon-move"></i>
 			    </div>
 			    <div class="midle">
+				<a onclick="blockToggle(<?= $obj->id ?>)">
+				    <i class="icon toggle-btn icon-plus"></i>
+				</a>
+				<a><?=$namesArr[$obj->type]?></a>
+
 
 			    </div>
 
 			    <div class="menu toggleable dropdown"> 
+
 				<i class="icon icon-menu dropdown-toggle"></i>
 
 				<ul class="dropdown-menu dropdown-user-menu">
@@ -49,9 +61,10 @@
 			    </div>
 			</div>		    
 			<div class="adm-block-inner">
-			    <? include '_type_' . $obj->type . '.php'; ?> 
+			    <? include '_type_' . $obj->type . '.php'; ?>
+			    <button type="button" class="save-btn" data-id="<?= $obj->id ?>" data-type="<?= $obj->type ?>">сохранить</button>
 			</div>
-			<button type="button" class="save-btn" data-id="<?= $obj->id ?>">сохранить</button>
+			
 		    </form>
 		</div>
 
