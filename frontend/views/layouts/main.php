@@ -23,7 +23,7 @@ use yii\helpers\ArrayHelper;
 	<script src="<?= Url::base() ?>/js/libs/jquery.min.js?ver=1"></script>
 	<title>ManyLinks.ru - admin</title>
 	<?php $this->head() ?>
-<?php echo Html::csrfMetaTags() ?>
+	<?php echo Html::csrfMetaTags() ?>
 	<link rel="shortcut icon" type="image/x-icon" href="/img/logo-32.png" /> 
 	<script>
                 var YiiData = {
@@ -52,7 +52,7 @@ use yii\helpers\ArrayHelper;
 				    </li>
 				    <li class="toggleable">
 					<a class="menu-item <?= strpos($_SERVER['REQUEST_URI'], '/user/pay') !== false ? 'active' : '' ?>" 
-					   href="<?= Url::to(['/user/pay/']) ?>">Платная версия</a>				
+					   href="<?= Url::to(['/user/pay/']) ?>">Версия приложения</a>				
 				    </li>
 				    <li class="toggleable"> 
 					<a class="menu-item <?= strpos($_SERVER['REQUEST_URI'], '/user/config/site') !== false ? 'active' : '' ?>" 
@@ -63,7 +63,7 @@ use yii\helpers\ArrayHelper;
 					<a class="menu-item dropdown-toggle" 
 					   href="#" 
 					   style="color: #f79823;">
-                                                    <?= Yii::$app->user->identity->getPublicIdentity() ?>
+					       <?= Yii::$app->user->identity->getPublicIdentity() ?>
 					    <span class="caret"></span></a>
 					<ul class="dropdown-menu dropdown-user-menu">
 					    <li><a href="/user/page/index" tabindex="-1">Панель управления</a></li>
@@ -85,7 +85,7 @@ use yii\helpers\ArrayHelper;
 	</header>
 
 	<? // include 'test_header_menu.php'; ?>
-	    <?php if (Yii::$app->session->hasFlash('alert')): ?>
+	<?php if (Yii::$app->session->hasFlash('alert')): ?>
 		<div class="container">
 		    <?php
 		    echo \yii\bootstrap\Alert::widget([
@@ -94,11 +94,12 @@ use yii\helpers\ArrayHelper;
 		    ])
 		    ?>
 		</div>
-<?php endif; ?>
+	<?php endif; ?>
 
+	<? //l(Yii::$app->user->can('user')); ?>
 	<div class="container">
 	    <?php echo $content ?>
-<? //l($_SESSION['USER']);   ?>
+	    <? //l($_SESSION['USER']);   ?>
 	</div>
 
 

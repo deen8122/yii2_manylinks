@@ -8,7 +8,7 @@ $config = [
 	'modules' => [
 		'user' => [
 			'class' => frontend\modules\user\Module::class,
-			'shouldBeActivated' => false,
+			'shouldBeActivated' => true,
 			'enableLoginByPass' => false,
 		],
 	],

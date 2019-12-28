@@ -19,6 +19,11 @@ use common\models\SiteBlockValue;
  */
 class Site extends \yii\db\ActiveRecord {
 
+	//Редакции приложения
+	const SITE_VERSION_FREE = 0;
+	const SITE_VERSION_EXTEND = 1;
+	const SITE_VERSION_PRO = 2;
+	
 	/**
 	 * {@inheritdoc}
 	 */
@@ -26,6 +31,17 @@ class Site extends \yii\db\ActiveRecord {
 		return 'site';
 	}
 
+	public static function getVesrionNames(){
+		return [
+			self::SITE_VERSION_FREE => "бесплтаная версия",
+			self::SITE_VERSION_EXTEND => "расширенная версия",
+			self::SITE_VERSION_PRO => "полная версия",
+		];
+	}
+	public function getVersionName(){
+		$arr = Site::getVesrionNames();
+		return $arr[$this->version];
+	}
 	/**
 	 * {@inheritdoc}
 	 */
@@ -33,10 +49,10 @@ class Site extends \yii\db\ActiveRecord {
 		return [
 			[['name', 'code'], 'required'],
 			[['description', 'data'], 'string'],
-			[['active', 'deleted'], 'integer'],
+			[['active', 'deleted' , 'version'], 'integer'],
 			[['name', 'logo', 'code'], 'string', 'max' => 255],
 			[['active'], 'default', 'value' => 1],
-			[['deleted'], 'default', 'value' => 0],
+			[['deleted', 'version'], 'default', 'value' => 0],
 			[['code'], 'unique'],
 		];
 	}

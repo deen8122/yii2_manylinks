@@ -32,7 +32,12 @@ function addNewBLock(type) {
     doRequest('/user/page/createblock', {type: type}, function (json) {
         console.log('--->')
         console.log(json);
-        window.location="";
+        if (json.code === "error") {
+               alert(json.message)
+        } else {
+
+            window.location = "";
+        }
     });
 }
 
@@ -47,13 +52,13 @@ function init() {
     $('.add-btn-link').on('click', function () {
         var sortN = 0;
         var sort = $(this).closest('.block').find('.sbv-ul-icon-list').find('.sort').last();
-        
+
         if (sort.val() != undefined) {
-             sortN = sort.val();
+            sortN = sort.val();
             sortN++;
         }
         console.log(sortN);
-        
+
         var form =
                 '<div  class="sbv-item" data-id="0">\n\
                      <input  type="hidden" class="sort" name="SBV[sort][]" value="' + sortN + '">\n\
@@ -69,7 +74,7 @@ function init() {
     $('.save-btn').on('click', function () {
         var id = $(this).data('id');
         var type = $(this).data('type');
-        if(type===3){
+        if (type === 3) {
             UpdateBlockContent(id);
         }
         var $form = $('#block-' + id).find('form');
@@ -77,7 +82,7 @@ function init() {
         var _csrf = $('[name="_csrf"]').val();
         data += '&id=' + id + '&_csrf=' + _csrf;
         var $btn = $(this)
-         $btn.html('- - - ');
+        $btn.html('- - - ');
         $.ajax({
             type: "POST",
             format: "JSON",
@@ -85,8 +90,8 @@ function init() {
             data: data, // serializes the form's elements.
             success: function (data) {
                 console.log(data);
-                 $btn.html('Сохранить');
-                 $btn.removeClass('active')
+                $btn.html('Сохранить');
+                $btn.removeClass('active')
             }
         });
     });
@@ -94,7 +99,7 @@ function init() {
 
     jQuery('textarea').autoResize();
     $('textarea').keyup(); //.css('height', h + 'px');
-    $('textarea,input').keyup(function(){
+    $('textarea,input').keyup(function () {
         $(this).closest('form').find('.save-btn').addClass('active');
     });
     $('.adm-block-inner').hide();
@@ -102,9 +107,9 @@ function init() {
 
 }
 
-function UpdateBlockContent(id){
-    var $block = $('#block-'+id);
-    var text =  $block.find('textarea').val();
+function UpdateBlockContent(id) {
+    var $block = $('#block-' + id);
+    var text = $block.find('textarea').val();
     $block.find('.block-draw').html(text);
 }
 function sbvRemove(id, sb_id) {
@@ -205,22 +210,22 @@ $(function () {
 
 
 function blockToggle(id) {
- var $innerBlock = $('#block-'+id).find('.adm-block-inner');
- var $btn = $('#block-'+id).find('.toggle-btn');
- if($innerBlock.hasClass('opened')){
-     $innerBlock.hide();
-     $innerBlock.removeClass('opened');
-     $btn.removeClass('icon-minus');
-     $btn.addClass('icon-plus');
- }else {
-     $innerBlock.show();
-     $innerBlock.addClass('opened') 
-      $btn.removeClass('icon-plus');
-     $btn.addClass('icon-minus');
-    // jQuery('textarea').autoResize();
-   // jQuery('textarea').autoResize();
-   // $('textarea').keyup(); //.css('height', h + 'px');
- }
+    var $innerBlock = $('#block-' + id).find('.adm-block-inner');
+    var $btn = $('#block-' + id).find('.toggle-btn');
+    if ($innerBlock.hasClass('opened')) {
+        $innerBlock.hide();
+        $innerBlock.removeClass('opened');
+        $btn.removeClass('icon-minus');
+        $btn.addClass('icon-plus');
+    } else {
+        $innerBlock.show();
+        $innerBlock.addClass('opened')
+        $btn.removeClass('icon-plus');
+        $btn.addClass('icon-minus');
+        // jQuery('textarea').autoResize();
+        // jQuery('textarea').autoResize();
+        // $('textarea').keyup(); //.css('height', h + 'px');
+    }
 }
 
 function blockRemove(id, isConfirm) {

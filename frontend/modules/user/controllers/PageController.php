@@ -126,9 +126,14 @@ class PageController extends Controller {
 		$sb = new SiteBlock();
 		$sb->site_id =  Yii::$app->user->identity->site_id;
 		$sb->type = (int)$_POST['type'];
-		$sb->save();
-		return $this->renderJSON(['code' => "ok","id" => $sb->id]);
+		if($sb->save()){
+			return $this->renderJSON(['code' => "ok","id" => $sb->id]);
+		}else {
+			return $this->renderJSON(['code' => "error","message" =>implode(",",$sb->errors['model'])]);
+		}
+		
 	}
+
 
 	//createblock
 	public function actionSbvdelete() {

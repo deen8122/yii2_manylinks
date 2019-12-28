@@ -299,5 +299,14 @@ class User extends ActiveRecord implements IdentityInterface {
 	public static function getConfig() {
 		return json_decode(Yii::$app->user->identity->userProfile->config, true);
 	}
+	
+	
+	public  function checkAppVersion(){
+		/*
+		 * 1 . смотрим платная версия или бесплтаная.
+		 * 2 . если бесплатная то какая редкация
+		 */
+	}
+	
 
 }

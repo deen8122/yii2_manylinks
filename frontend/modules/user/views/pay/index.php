@@ -3,17 +3,20 @@
  * @var $this \yii\web\View
  * @var $model \common\models\Page
  */
-$this->title = "Оплата";
+$this->title = "Версия приложения";
 ?>
 <div class="content">
     <h1><?php echo $this->title ?></h1>
-    <p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-	magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-	Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-	Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
 
-    <p>  Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-	magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo consequat. 
-	Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur. 
-	Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est laborum.</p>
+    <div style="margin:20px;">
+	Версия: <span style="font-weight: bold; color:green;"><?=Yii::$app->user->identity->site->versionName?> </span>
+    </div>
+    <p> 
+    
+	Для  смены версии приложения напишите на нашу почту deen812@mail.ru
+    
+    </p>
+    <p>
+	Версии приложения можете посмотреть по этой ссылке: <a href="/price">цены и версии</a>
+    </p>
 </div>
