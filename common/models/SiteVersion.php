@@ -6,9 +6,11 @@ use Yii;
 use yii\base\Model;
 use common\models\Site;
 use common\models\SiteBlock;
+
 /*
  * Клас для работы с версиями приложения
  */
+
 class SiteVersion extends Model {
 
 	public static function check($type, &$errorText) {
@@ -23,6 +25,14 @@ class SiteVersion extends Model {
 			 * Разрешается только три обьекта SiteBlock
 			 */
 			$count = SiteBlock::find()->where(['site_id' => Yii::$app->user->identity->site_id])->count();
+			//если выбрана добавить блок TYPE_HEADER_PHOTO и этот блок уже ранее добавлен.
+			if ($type == SiteBlock::TYPE_HEADER_PHOTO) {
+				$count = SiteBlock::find()->where(['site_id' => Yii::$app->user->identity->site_id, 'type' => SiteBlock::TYPE_HEADER_PHOTO])->count();
+				if ($count > 0) {
+					$errorText = 'Этот блок уже добавлен!';
+					return false;
+				}
+			}
 			//l($count);
 			if ($count >= 3) {
 				$errorText = 'Версия вашего продукта не позволяет добавлять более трех блоков';
@@ -31,7 +41,7 @@ class SiteVersion extends Model {
 			//разрешены только три блока
 			if ($type == SiteBlock::TYPE_HEADER_PHOTO || $type == SiteBlock::TYPE_SIMPLE_TEXT || $type == SiteBlock::TYPE_LINKS) {
 				return true;
-			} else{
+			} else {
 				$errorText = 'Версия вашего продукта  позволяет добавлять блоки: текстовый, ссылки, шапка';
 				return false;
 			}

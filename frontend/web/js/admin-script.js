@@ -91,7 +91,8 @@ function init() {
             success: function (data) {
                 console.log(data);
                 $btn.html('Сохранить');
-                $btn.removeClass('active')
+                $btn.removeClass('active');
+                document.getElementById('iframe').contentWindow.location.reload(true);
             }
         });
     });
@@ -103,6 +104,7 @@ function init() {
         $(this).closest('form').find('.save-btn').addClass('active');
     });
     $('.adm-block-inner').hide();
+  //  $('.adm-block-inner').first().show();
 
 
 }

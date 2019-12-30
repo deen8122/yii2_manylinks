@@ -1,0 +1,19 @@
+Array
+(
+    [width] => 528
+    [height] => 329
+    [x1] => 176.13636363636
+    [y1] => 76.704545454545
+    [x2] => 302.54400000000004
+    [y2] => 267.168
+    [w] => 681
+    [h] => 681
+    [DATA] => Array
+        (
+            [file] => /upload/default/sobaken.jpg
+            [name] => t123@mail.ru
+        )
+
+    [type] => 4
+    [_csrf] => hCY1sKafIQxDvo6I5Vx9dy73kHybrnJOw2n5AZRRL7bdF3jcz_lJQHqLxLuVFTcgA63jE8rtJxmyIYhExihegg==
+)

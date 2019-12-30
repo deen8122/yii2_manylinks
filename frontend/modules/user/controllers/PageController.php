@@ -9,6 +9,8 @@ use common\models\Site;
 use common\models\SiteBlock;
 use common\models\SiteBlockValue;
 use yii\web\Response;
+use yii\imagine\Image;
+use Imagine\Image\Box;
 
 class PageController extends Controller {
 
@@ -40,8 +42,14 @@ class PageController extends Controller {
 	 * @return string|\yii\web\Response
 	 */
 	public function actionIndex() {
+
+		$filePath = $_SERVER['DOCUMENT_ROOT'] . "/upload/18/1.jpg";
+		//l($filePath);
+		//Image::thumbnail($filePath, 300,300)->save($filePath, ['quality' => 100]);
+
+
 		$site = Site::find()->where(['id' => Yii::$app->user->identity->site_id])->one();
-		if($site == null){
+		if ($site == null) {
 			$site = Site::createDefaultItems();
 		}
 		$siteBlock = SiteBlock::find()->orderBy(['sort' => SORT_ASC])->where(['site_id' => Yii::$app->user->identity->site_id])->all();
@@ -79,8 +87,16 @@ class PageController extends Controller {
 				$SBV->save();
 			}
 		}
-		$model->text = $post['text'];
-		$model->data = $post['data'];
+		$data = [];
+		if (isset($post['DATA'])) {
+			foreach ($post['DATA'] as $name => $value) {
+				$data[$name] = $value;
+			}
+		}
+		if (isset($post['text'])) {
+			$model->text = $post['text'];
+		}
+		$model->data = $data;
 		$model->save();
 		return $this->renderJSON(['code' => "ok"]);
 	}
@@ -118,22 +134,117 @@ class PageController extends Controller {
 		return true;
 	}
 
+	public function actionUpload() {
+		//l($_REQUEST);
+		$uploadDir = "upload/" . Yii::$app->user->identity->site_id . '/';
+		$filePath = '';
+		log2file("_REQUEST1", $_REQUEST);
+		if (!file_exists($uploadDir)) {
+			mkdir($uploadDir, 0777, true);
+		}
+		//===================================
+		$iWidth = $iHeight = 200; // desired image result dimensions
+		$iJpgQuality = 100;
+
+		if ($_FILES) {
+
+			// if no errors and size less than 250kb
+			if (!$_FILES['file']['error'] && $_FILES['file']['size'] < 25000 * 1024) {
+				if (is_uploaded_file($_FILES['file']['tmp_name'])) {
+					// new unique filename
+					$sTempFileName = 'upload/cache/' . md5(time() . rand());
+
+					// move uploaded file into cache folder
+					//move_uploaded_file($_FILES['file']['tmp_name'], $sTempFileName);
+					move_uploaded_file($_FILES['file']['tmp_name'], $uploadDir . $_FILES['file']['name']);
+					$sTempFileName = $uploadDir . $_FILES['file']['name'];
+					// change file permission to 644
+					@chmod($sTempFileName, 0644);
+
+					if (file_exists($sTempFileName) && filesize($sTempFileName) > 0) {
+						list($w_i, $h_i) = getimagesize($sTempFileName);
+						$scale_w = $_REQUEST['width'] / $w_i;
+						//$scale_h = 200 / $h_i;
+						if ($w_i > 200) {
+							$_REQUEST['x1'] /= $scale_w;
+							$_REQUEST['y1'] /= $scale_w;
+							$_REQUEST['w'] /= $scale_w;
+							$_REQUEST['h'] /= $scale_w;
+						}
+						log2file("_REQUEST2", $_REQUEST);
+						//l($_REQUEST);
+						$aSize = getimagesize($sTempFileName); // try to obtain image info
+						if (!$aSize) {
+							@unlink($sTempFileName);
+							return;
+						}
+						// check for image type
+						switch ($aSize[2]) {
+							case IMAGETYPE_JPEG:
+								$sExt = '.jpg';
+								$vImg = @imagecreatefromjpeg($sTempFileName);
+								break;
+
+							case IMAGETYPE_PNG:
+								$sExt = '.png';
+								$vImg = @imagecreatefrompng($sTempFileName);
+								break;
+							default:
+								@unlink($sTempFileName);
+								return;
+						}
+
+						// create a new true color image
+						$vDstImg = @imagecreatetruecolor($iWidth, $iHeight);
+						// copy and resize part of an image with resampling
+						imagecopyresampled(
+							$vDstImg, $vImg, 0, 0, (int) $_REQUEST['x1'], (int) $_REQUEST['y1'], $iWidth, $iHeight, (int) $_REQUEST['w'], (int) $_REQUEST['h']
+						);
+						// define a result image filename
+						$sResultFileName = $uploadDir . "block-4-img" . $sExt;
+						// output image to file
+						imagejpeg($vDstImg, $sResultFileName, $iJpgQuality);
+						@unlink($sTempFileName);
+					}
+				} else {
+					l('--------------------->ERROR 2');
+				}
+			} else {
+				l('--------------------->ERROR 1');
+			}
+		}
+		//===================================
+
+
+
+
+		/*
+		  if (0 < $_FILES['file']['error']) {
+		  echo 'Error: ' . $_FILES['file']['error'] . '<br>';
+		  } else {
+		  move_uploaded_file($_FILES['file']['tmp_name'], $uploadDir . $_FILES['file']['name']);
+		  $filePath = $_SERVER['DOCUMENT_ROOT'] . $uploadDir . $_FILES['file']['name'];
+		  }
+		  //$this->pictureFile->saveAs('../files/upload/' . $this->pictureFile->baseName . '.' . $this->pictureFile->extension);
+
+		 */
+		return $this->renderJSON(['code' => 'ok', "file" => $sResultFileName]);
+	}
+
 	/**
 	 * Создаем новый блок!
 	 * @return $id
 	 */
 	public function actionCreateblock() {
 		$sb = new SiteBlock();
-		$sb->site_id =  Yii::$app->user->identity->site_id;
-		$sb->type = (int)$_POST['type'];
-		if($sb->save()){
-			return $this->renderJSON(['code' => "ok","id" => $sb->id]);
-		}else {
-			return $this->renderJSON(['code' => "error","message" =>implode(",",$sb->errors['model'])]);
+		$sb->site_id = Yii::$app->user->identity->site_id;
+		$sb->type = (int) $_POST['type'];
+		if ($sb->save()) {
+			return $this->renderJSON(['code' => "ok", "id" => $sb->id]);
+		} else {
+			return $this->renderJSON(['code' => "error", "message" => implode(",", $sb->errors['model'])]);
 		}
-		
 	}
-
 
 	//createblock
 	public function actionSbvdelete() {
@@ -157,7 +268,6 @@ class PageController extends Controller {
 		}
 	}
 
-	
 	protected function findModel($id) {
 		if (($model = Task::findOne(['id' => $id, 'user_id' => Yii::$app->user->identity->id])) !== null) {
 			return $model;
@@ -167,7 +277,4 @@ class PageController extends Controller {
 		//  throw new NotFoundHttpException('The requested page does not exist.');
 	}
 
-
-	
-	
-		}
+}

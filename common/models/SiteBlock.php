@@ -1,7 +1,7 @@
 <?php
 
 namespace common\models;
-
+use Yii;
 use common\behaviors\JsonBehavior;
 use common\models\SiteBlockValue;
 use common\models\SiteVersion;
@@ -38,7 +38,7 @@ class SiteBlock extends \yii\db\ActiveRecord {
 		];
 	}
 
-	public function behaviors() {
+	public function behaviorsx() {
 		return [
 			[
 				'class' => JsonBehavior::class,
@@ -66,8 +66,18 @@ class SiteBlock extends \yii\db\ActiveRecord {
 		return $this->hasMany(SiteBlockValue::class, ['site_block_id' => 'id'])->orderBy(['sort' => SORT_ASC]);
 	}
 
+	public function afterFind() {
+		$this->data =json_decode($this->data,true);
+		return true;
+	}
+
 	public function beforeSave($insert) {
 		if ($insert) {
+			$this->setDefaultData();
+		}
+		$this->data = json_encode($this->data);
+		if ($insert) {
+			
 			//проверяем текущую версию приложения
 			$errorText = '';
 			if (SiteVersion::check($this->type, $errorText)) {
@@ -79,6 +89,14 @@ class SiteBlock extends \yii\db\ActiveRecord {
 			return false;
 		} else
 			return parent::beforeSave($insert);
+	}
+	private function setDefaultData(){
+		if($this->type == SiteBlock::TYPE_HEADER_PHOTO){
+			$this->data = [
+				"name"=>Yii::$app->user->identity->email,
+				"file"=>"/upload/default/sobaken.jpg",
+			];
+		}
 	}
 
 }

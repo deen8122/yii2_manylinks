@@ -111,7 +111,6 @@ class Site extends \yii\db\ActiveRecord {
 		$siteBlocks->site_id = $site->id;
 		$siteBlocks->sort = 0;
 		$siteBlocks->type = SiteBlock::TYPE_HEADER_PHOTO;
-		$siteBlocks->text = '<div class="block-4-header"> <img src="/upload/default/sobaken.jpg" class="rounded ava"> </div>';
 		$siteBlocks->save();
 
 		//Тестовый блок
@@ -119,12 +118,7 @@ class Site extends \yii\db\ActiveRecord {
 		$siteBlocks->site_id = $site->id;
 		$siteBlocks->sort = 1;
 		$siteBlocks->type = SiteBlock::TYPE_SIMPLE_TEXT;
-		$siteBlocks->text = ' Привет! Меня зовут Собакериен Гавгав Петрович. Я люблю кушать  и играть.  Меня вдохновляют убегающие кошки и калоши хозяина.
-Мои любимые фильмы:
- - Собачье сердце
- - Хатико
- - Все псы попадают в рай
-На этом все, Гав-гав вам  и всего наиСобачего.';
+		$siteBlocks->text = '';
 		$siteBlocks->save();
 
 		$siteBlocks = new SiteBlock();

@@ -43,7 +43,7 @@ class SignInController extends \yii\web\Controller {
 
 	public function beforeAction($action) {
 		//$this->layout = 'site'; //your layout name
-		 $this->layout = '@app/views/layouts/site';
+		$this->layout = '@app/views/layouts/site';
 		return parent::beforeAction($action);
 	}
 
@@ -102,16 +102,19 @@ class SignInController extends \yii\web\Controller {
 		}
 		if ($model->load(Yii::$app->request->post()) && $model->login()) {
 			//l($_REQUEST);
-			if ($_POST['need_responce']) {
-				Yii::$app->response->format = Response::FORMAT_JSON;
-				return json_encode(['code' => 1]);
-			}
+			/*
+			  if ($_POST['need_responce']) {
+			  Yii::$app->response->format = Response::FORMAT_JSON;
+			  return json_encode(['code' => 1]);
+			  }
+			 * 
+			 */
 			if (isset($_REQUEST['back'])) {
 
 				return Yii::$app->getResponse()->redirect($_GET['back']);
 			}
-
-			return $this->goBack();
+			return Yii::$app->getResponse()->redirect('user/page');
+			//return $this->goBack();
 		}
 
 		return $this->render('login', [
@@ -175,7 +178,8 @@ class SignInController extends \yii\web\Controller {
 				} else {
 					Yii::$app->getUser()->login($user);
 				}
-				return $this->goHome();
+				return Yii::$app->getResponse()->redirect('/user/page');
+				//return $this->goHome();
 			}
 		}
 

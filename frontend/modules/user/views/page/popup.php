@@ -22,6 +22,12 @@
 	    </a>
 	    
 	</div>
+	<div>
+	     <a onclick="addNewBLock(4)">
+		Блок-шапка (фотография и текст)
+	    </a>
+	    
+	</div>
     </div>
 
 </div>

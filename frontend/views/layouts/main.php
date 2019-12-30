@@ -20,7 +20,7 @@ use yii\helpers\ArrayHelper;
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="true">
-	<script src="<?= Url::base() ?>/js/libs/jquery.min.js?ver=1"></script>
+	<script src="<?= Url::base() ?>/js/libs/jquery.min2.js?ver=1"></script>
 	<title>ManyLinks.ru - admin</title>
 	<?php $this->head() ?>
 	<?php echo Html::csrfMetaTags() ?>
@@ -126,8 +126,12 @@ use yii\helpers\ArrayHelper;
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css" />	
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/admin-page.css" />
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
+	 <link href="<?= Url::base() ?>/css/libs/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
+	 
 	<script src="<?= Url::base() ?>/js/libs/textarea-elastic.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/jquery-ui.js"></script>
+	<script src="<?= Url::base() ?>/js/libs/jquery.Jcrop.min.js" async onload="console.log('->Jcrop init')"></script>
+	<script src="<?= Url::base() ?>/js/admin/image.js"></script>
 	<script src="<?= Url::base() ?>/js/admin-script.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
 

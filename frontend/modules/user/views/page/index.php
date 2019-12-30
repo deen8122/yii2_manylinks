@@ -1,5 +1,7 @@
 <?php
+
 use common\models\SiteBlock;
+
 //$this->registerCssFile('/css/admin-page.css');
 //$this->registerCssFile('/css/main.css');
 /* @var $this yii\web\View */
@@ -14,8 +16,8 @@ use common\models\SiteBlock;
 	<div class="you-links">
 	    <span class="name">Ссылка на вашу страницу:</span> 
 	    <span class="link">
-		<a target="_blank" href="https://manylinks.ru/<?= $site->code ?>">
-		    <span class="domain">https://manylinks.ru/</span><span class="code"><?= $site->code ?></span>
+		<a target="_blank" href="<?= env('FRONTEND_HOST_INFO') ?><?= $site->code ?>">
+		    <span class="domain"><?= env('FRONTEND_HOST_INFO') ?></span><span class="code"><?= $site->code ?></span>
 		</a>
 	    </span>	
 	</div>
@@ -30,7 +32,6 @@ use common\models\SiteBlock;
     <div class="adm-blocks-list sortable" >
 	<?
 	$namesArr = SiteBlock::getBlockNames();
-	
 	?>
 	<? foreach ($siteBlock as $obj):
 		?>
@@ -44,7 +45,7 @@ use common\models\SiteBlock;
 				<a onclick="blockToggle(<?= $obj->id ?>)">
 				    <i class="icon toggle-btn icon-plus"></i>
 				</a>
-				<a><?=$namesArr[$obj->type]?></a>
+				<a><?= $namesArr[$obj->type] ?></a>
 
 
 			    </div>
@@ -62,9 +63,10 @@ use common\models\SiteBlock;
 			</div>		    
 			<div class="adm-block-inner">
 			    <? include '_type_' . $obj->type . '.php'; ?>
+			    <input  type="hidden" class="sort" name="type" value="<?= $obj->type ?>">
 			    <button type="button" class="save-btn" data-id="<?= $obj->id ?>" data-type="<?= $obj->type ?>">сохранить</button>
 			</div>
-			
+
 		    </form>
 		</div>
 
@@ -80,3 +82,4 @@ use common\models\SiteBlock;
 
 </div>
 <? include 'popup.php' ?>
+<iframe id="iframe" class="iframe-phone" src="<?= env('FRONTEND_HOST_INFO') ?><?= $site->code ?>"  style="width: 330px; height: 600px;"></iframe>
