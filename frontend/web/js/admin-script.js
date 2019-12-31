@@ -33,7 +33,7 @@ function addNewBLock(type) {
         console.log('--->')
         console.log(json);
         if (json.code === "error") {
-               alert(json.message)
+            alert(json.message)
         } else {
 
             window.location = "";
@@ -103,8 +103,8 @@ function init() {
     $('textarea,input').keyup(function () {
         $(this).closest('form').find('.save-btn').addClass('active');
     });
-    $('.adm-block-inner').hide();
-  //  $('.adm-block-inner').first().show();
+    //  $('.adm-block-inner').hide();
+    //  $('.adm-block-inner').first().show();
 
 
 }
@@ -114,21 +114,23 @@ function UpdateBlockContent(id) {
     var text = $block.find('textarea').val();
     $block.find('.block-draw').html(text);
 }
-function sbvRemove(id, sb_id) {
-    var _csrf = $('[name="_csrf"]').val();
-    var data = 'sb_id=' + sb_id + '&id=' + id + '&_csrf=' + _csrf;
-    $.ajax({
-        type: "POST",
-        url: '/user/page/sbvdelete',
-        data: data, // serializes the form's elements.
-        success: function (data) {
-            console.log(data)
-            console.log('removed - ' + id);
-        }
-    });
-    $('.sbv-item-' + id).fadeOut(500);
-}
 
+/*
+ function sbvRemove(id, sb_id) {
+ var _csrf = $('[name="_csrf"]').val();
+ var data = 'sb_id=' + sb_id + '&id=' + id + '&_csrf=' + _csrf;
+ $.ajax({
+ type: "POST",
+ url: '/user/page/sbvdelete',
+ data: data, // serializes the form's elements.
+ success: function (data) {
+ console.log(data)
+ console.log('removed - ' + id);
+ }
+ });
+ $('.sbv-item-' + id).fadeOut(500);
+ }
+ */
 function sbvRemove(id, sb_id) {
     var _csrf = $('[name="_csrf"]').val();
     var data = 'sb_id=' + sb_id + '&id=' + id + '&_csrf=' + _csrf;
@@ -232,10 +234,16 @@ function blockToggle(id) {
 
 function blockRemove(id, isConfirm) {
     if (isConfirm === undefined) {
-        // alert('Точно удалить?');
-    }
-    doRequest('/user/page/blockremove', {id: id}, function (data) {
-        console.log(data)
-        $('#block-' + id).fadeOut(300);
-    });
+        var x = confirm("Подвтердите ваше намерение, пожалуйста.");
+        if (x){
+            //return true;
+        }
+        else
+            return false;
+    
+}
+doRequest('/user/page/blockremove', {id: id}, function (data) {
+    console.log(data)
+    $('#block-' + id).fadeOut(300);
+});
 }

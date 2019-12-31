@@ -37,13 +37,20 @@ use yii\helpers\ArrayHelper;
 	    <nav class="navbar navbar-expand-lg navigation d-flex align-items-center ">
 		<div class="container">
 		    <div class="row-flex">
-			<div class="col-md-3">
+				<div class="col-md-4 col-xs-12">
 			    <a class="logo" href="<?= Url::to(['/site/index']) ?>">
+				<? /*
+				<img src="/img/icons/logo.svg">
+				<span>ManyLinks.ru</span>
+				 * <img style="width: 32px" src="/img/logo100.png">
+				 */
+				?>
+				
 				<img src="/img/icons/logo.svg">
 				<span class="logo-text"><span>Many</span><span>Links</span>.ru</span>
 			    </a>
 			</div>
-			<div class="col-md-9">
+				<div class="col-md-8 col-xs-12"> 
 			    <div class="navgition-menu d-flex align-items-center justify-content-center">
 				<ul class="mb-0">
 				    <li class="toggleable"> 
@@ -124,7 +131,7 @@ use yii\helpers\ArrayHelper;
 
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css" />	
-	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/admin-page.css" />
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/admin-page.css?ver=3" />
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
 	 <link href="<?= Url::base() ?>/css/libs/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 	 

@@ -1,19 +1,19 @@
 Array
 (
     [width] => 528
-    [height] => 329
-    [x1] => 62
-    [y1] => 27
-    [x2] => 302.54400000000004
-    [y2] => 267.168
-    [w] => 239.71200000000002
-    [h] => 239.71200000000002
+    [height] => 396
+    [x1] => 176
+    [y1] => 19
+    [x2] => 387.024
+    [y2] => 229.15200000000002
+    [w] => 210.144
+    [h] => 210.144
     [DATA] => Array
         (
-            [file] => /upload/default/sobaken.jpg
-            [name] => t123@mail.ru
+            [file] => 
+            [name] => 
         )
 
     [type] => 4
-    [_csrf] => hCY1sKafIQxDvo6I5Vx9dy73kHybrnJOw2n5AZRRL7bdF3jcz_lJQHqLxLuVFTcgA63jE8rtJxmyIYhExihegg==
+    [_csrf] => RvZOTYBwI7BwB2saCl1sjMv2oE6uI4Ol5Y4kFVDO_B0wvigOuUdVxwRPEy5QKBy0lKfnOZxU7fbVzBR2IKi_bw==
 )

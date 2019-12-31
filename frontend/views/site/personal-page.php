@@ -26,8 +26,8 @@ $this->title = $model->name;
 <style>
 	<?=$model->style?>
 </style>
+
 <?
-if(file_exists("/upload/" . $model->id . '/style.css')){
-$this->registerCssFile("/upload/" . $model->id . '/style.css');
-}
+   $this->registerCssFile("/upload/" . $model->id . '/style.css');
+
 //l$model->blocks)?>

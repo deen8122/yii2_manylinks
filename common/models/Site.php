@@ -68,7 +68,7 @@ class Site extends \yii\db\ActiveRecord {
 			'description' => 'Описание организации',
 			'active' => 'Active',
 			'deleted' => 'Deleted',
-			'logo' => 'Logo',
+			'style' => 'Стили проекта',
 		];
 	}
 

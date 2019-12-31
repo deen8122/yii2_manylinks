@@ -41,7 +41,7 @@
 .adm-block-config .menu{margin-left:auto;width:50px}
 .adm-block-config .menu .icon{height:23px;float:none;margin:3px auto}
 .adm-block-config .menu .dropdown-user-menu{margin-top:-9px;margin-left:-107px}
-.adm-block-config .midle{width:454px;height:30px;display:flex}
+.adm-block-config .midle{    width: 50%;height:30px;display:flex}
 .adm-block-config .midle .icon{height:23px;float:none;margin:3px auto}
 .adm-block-config .midle a{display:block;height:30px;margin-left:10px;vertical-align:middle;line-height:30px;text-decoration:none}
 .adm-block-inner{padding:10px}

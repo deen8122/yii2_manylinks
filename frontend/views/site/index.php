@@ -93,7 +93,7 @@ $this->title = Yii::t('frontend', 'Ссылки для вашего профил
 	</div>
 	<div class="row" style="text-align: center;margin-top: 50px;">
 	    <br><br>
-	    <a class="btn btn-red" href="/user/sign-in/signup">Перейти к регистрации</a>
+	    <a class="btn btn-red" href="/user/page">Перейти к регистрации</a>
 	</div>
     </div>	
 </div>

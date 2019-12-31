@@ -9,17 +9,9 @@ use common\models\Site;
 use common\models\SiteBlock;
 use common\models\SiteBlockValue;
 use yii\web\Response;
-use yii\imagine\Image;
-use Imagine\Image\Box;
 
 class PageController extends Controller {
 
-	/**
-	 * @return array
-	 */
-	public function actions() {
-		
-	}
 
 	/**
 	 * @return array
@@ -138,7 +130,7 @@ class PageController extends Controller {
 		//l($_REQUEST);
 		$uploadDir = "upload/" . Yii::$app->user->identity->site_id . '/';
 		$filePath = '';
-		log2file("_REQUEST1", $_REQUEST);
+		//log2file("_REQUEST1", $_REQUEST);
 		if (!file_exists($uploadDir)) {
 			mkdir($uploadDir, 0777, true);
 		}
@@ -171,7 +163,7 @@ class PageController extends Controller {
 							$_REQUEST['w'] /= $scale_w;
 							$_REQUEST['h'] /= $scale_w;
 						}
-						log2file("_REQUEST2", $_REQUEST);
+						//log2file("_REQUEST2", $_REQUEST);
 						//l($_REQUEST);
 						$aSize = getimagesize($sTempFileName); // try to obtain image info
 						if (!$aSize) {

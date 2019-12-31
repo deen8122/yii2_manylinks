@@ -82,4 +82,8 @@ use common\models\SiteBlock;
 
 </div>
 <? include 'popup.php' ?>
+<? /*
 <iframe id="iframe" class="iframe-phone" src="<?= env('FRONTEND_HOST_INFO') ?><?= $site->code ?>"  style="width: 330px; height: 600px;"></iframe>
+ * 
+ */
+?>

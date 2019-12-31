@@ -36,7 +36,7 @@ use yii\helpers\ArrayHelper;
 	    <nav class="navbar navbar-expand-lg navigation d-flex align-items-center ">
 		<div class="container">
 		    <div class="row-flex">
-			<div class="col-md-3">
+			<div class="col-md-4 col-xs-12">
 			    <a class="logo" href="<?= Url::to(['/site/index']) ?>">
 				<? /*
 				<img src="/img/icons/logo.svg">
@@ -49,7 +49,7 @@ use yii\helpers\ArrayHelper;
 				<span class="logo-text"><span>Many</span><span>Links</span>.ru</span>
 			    </a>
 			</div>
-			<div class="col-md-9">    
+			<div class="col-md-8 col-xs-12">    
 
 			    <div class="navgition-menu d-flex align-items-center justify-content-center">
 				<ul class="mb-0">
@@ -139,7 +139,7 @@ use yii\helpers\ArrayHelper;
 	<div class="popup-bgx"></div>
 	<link xhref="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css?ver=2" />
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css?ver=3" />
     </body>
 </html>
 <?php $this->endPage() ?>

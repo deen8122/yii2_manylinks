@@ -113,7 +113,7 @@ class SignInController extends \yii\web\Controller {
 
 				return Yii::$app->getResponse()->redirect($_GET['back']);
 			}
-			return Yii::$app->getResponse()->redirect('user/page');
+			return Yii::$app->getResponse()->redirect('/user/page');
 			//return $this->goBack();
 		}
 

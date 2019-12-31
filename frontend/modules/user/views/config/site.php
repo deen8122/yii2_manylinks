@@ -11,7 +11,7 @@ use kartik\date\DatePicker;
 
 $this->title = Yii::t('frontend', 'Настройка публичной страницы')
 ?>
-
+<br/>
 <div class="user-profile-form">
 
 
@@ -22,17 +22,24 @@ $this->title = Yii::t('frontend', 'Настройка публичной стр�
 
 
 
-
+<br/>
     <div class="row">
-	<div class="col-md-8">
+	<div class="col-md-12">
 	    <div class="row">
 		<div class="col-md-12">
+		    <?php echo $form->field($model, 'style')->textArea() ?>
+		</div>
+		
+		<div class="col-md-4">
 		    <?php echo $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 		</div>
-		<div class="col-md-12">
-		    <?php echo $form->field($model, 'description')->textInput(['maxlength' => 255]) ?>
+		<? /*
+		<div class="col-md-4">
+		    <?php //echo $form->field($model, 'description')->textInput(['maxlength' => 255]) ?>
 		</div>
-		<div class="col-md-12">
+		 * 
+		 */?>
+		<div class="col-md-4">
 		    <?php echo $form->field($model, 'code')->textInput(['maxlength' => 255]) ?>
 		</div>
 	    </div>
@@ -53,10 +60,10 @@ $this->title = Yii::t('frontend', 'Настройка публичной стр�
 
 
     <div class="form-group">
-	<?php echo Html::submitButton(Yii::t('frontend', 'Редактировать'), ['class' => 'btn btn-primary']) ?>
+	<?php echo Html::submitButton(Yii::t('frontend', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
     </div>
     <?php ActiveForm::end(); ?>
-
+<br/><br/><br/>
     <?
     $user = Yii::$app->user->identity;
     $arSites = [];
@@ -78,7 +85,7 @@ $this->title = Yii::t('frontend', 'Настройка публичной стр�
 
 			<?php //echo $form->field($model, 'site_id')->textInput(['maxlength' => 255]) ?>
 			<div class="form-group">
-			    <?php echo Html::submitButton(Yii::t('backend', 'Редактировать'), ['class' => 'btn btn-primary']) ?>
+			    <?php echo Html::submitButton(Yii::t('backend', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
 			</div>
 
 			<?php ActiveForm::end() ?>
