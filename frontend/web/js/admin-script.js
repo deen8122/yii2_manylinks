@@ -49,6 +49,8 @@ function init() {
         $('#add-block-form').css('top', offset.top + 'px');
         $('.popup-bg').fadeIn(100);
     });
+
+
     $('.add-btn-link').on('click', function () {
         var sortN = 0;
         var sort = $(this).closest('.block').find('.sbv-ul-icon-list').find('.sort').last();
@@ -59,13 +61,20 @@ function init() {
         }
         console.log(sortN);
 
-        var form =
-                '<div  class="sbv-item" data-id="0">\n\
-                     <input  type="hidden" class="sort" name="SBV[sort][]" value="' + sortN + '">\n\
-                     <input type="text" class="focusout" name="SBV[name][]">\n\
-                    <input type="text" class="focusout"  name="SBV[value][]">\n\
-                 </div>';
-        $(this).closest('.block').find('.sbv-ul-icon-list').append(form);
+        //получаем шаблон
+        var $item = $(this).closest('.block').find('.sbv-ul-icon-list').find('.sbv-item').last().clone();
+        $item.find('input').val("");
+        $item.find('.sort').val(sortN);
+        $(this).closest('form').find('.save-btn').addClass('active');
+        $(this).closest('.block').find('.sbv-ul-icon-list').append($item);
+        doRequest('/user/page/sbvcreate', {block_id: $(this).data("block_id"), sort: sortN}, function (json) {
+            console.log(json);
+            var id = json.id;
+            $item.data("id", id);
+            $item.find('.name').attr("name", "SBV[name][" + id + "]");
+            $item.find('.value').attr("name", "SBV[value][" + id + "]");
+            $item.find('.sort').attr("name", "SBV[sort][" + id + "]");
+        });
     });
 
     /*
@@ -92,7 +101,7 @@ function init() {
                 console.log(data);
                 $btn.html('Сохранить');
                 $btn.removeClass('active');
-                document.getElementById('iframe').contentWindow.location.reload(true);
+                //document.getElementById('iframe').contentWindow.location.reload(true);
             }
         });
     });
@@ -235,15 +244,14 @@ function blockToggle(id) {
 function blockRemove(id, isConfirm) {
     if (isConfirm === undefined) {
         var x = confirm("Подвтердите ваше намерение, пожалуйста.");
-        if (x){
+        if (x) {
             //return true;
-        }
-        else
+        } else
             return false;
-    
-}
-doRequest('/user/page/blockremove', {id: id}, function (data) {
-    console.log(data)
-    $('#block-' + id).fadeOut(300);
-});
+
+    }
+    doRequest('/user/page/blockremove', {id: id}, function (data) {
+        console.log(data)
+        $('#block-' + id).fadeOut(300);
+    });
 }

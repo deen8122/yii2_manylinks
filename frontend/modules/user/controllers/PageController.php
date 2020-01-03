@@ -12,7 +12,6 @@ use yii\web\Response;
 
 class PageController extends Controller {
 
-
 	/**
 	 * @return array
 	 */
@@ -235,6 +234,22 @@ class PageController extends Controller {
 			return $this->renderJSON(['code' => "ok", "id" => $sb->id]);
 		} else {
 			return $this->renderJSON(['code' => "error", "message" => implode(",", $sb->errors['model'])]);
+		}
+	}
+
+	/**
+	 * Создаем новый блок!
+	 * @return $id
+	 */
+	public function actionSbvcreate() {
+		$SBV = new SiteBlockValue();
+		//$sb->site_id = Yii::$app->user->identity->site_id;
+		$SBV->site_block_id = $_POST['block_id'];
+		$SBV->sort = $_POST['sort'];
+		if ($SBV->save()) {
+			return $this->renderJSON(['code' => "ok", "id" => $SBV->id]);
+		} else {
+			return $this->renderJSON(['code' => "error", "message" => implode(",", $SBV->errors['model'])]);
 		}
 	}
 

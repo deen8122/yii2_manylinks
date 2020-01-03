@@ -37,5 +37,5 @@
 	?>
 
     </div>
-    <a class="add-btn-link">Добавить ссылку</a>
+    <a class="add-btn-link" data-block_id="<?= $obj->id ?>">Добавить ссылку</a>
 </div>

@@ -43,7 +43,7 @@ use common\models\SiteBlock;
 			    </div>
 			    <div class="midle">
 				<a onclick="blockToggle(<?= $obj->id ?>)">
-				    <i class="icon toggle-btn icon-plus"></i>
+				    <i class=" icon toggle-btn icon-plus"></i>
 				</a>
 				<a><?= $namesArr[$obj->type] ?></a>
 
@@ -61,7 +61,7 @@ use common\models\SiteBlock;
 
 			    </div>
 			</div>		    
-			<div class="adm-block-inner">
+			<div class="adm-block-inner opened">
 			    <? include '_type_' . $obj->type . '.php'; ?>
 			    <input  type="hidden" class="sort" name="type" value="<?= $obj->type ?>">
 			    <button type="button" class="save-btn" data-id="<?= $obj->id ?>" data-type="<?= $obj->type ?>">сохранить</button>

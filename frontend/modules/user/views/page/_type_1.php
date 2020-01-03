@@ -1,4 +1,4 @@
-<textarea  id="text_area-<?=$obj->id?>"  name="text" data="elastic" xonkeyup="textarea_resize(event, 2, 2);"><?= trim($obj->text) ?>
+<textarea  id="text_area-<?=$obj->id?>"  placeholder="Текст..." name="text" data="elastic" xonkeyup="textarea_resize(event, 2, 2);"><?= trim($obj->text) ?>
 </textarea>
 
 

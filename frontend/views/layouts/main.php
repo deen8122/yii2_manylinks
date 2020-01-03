@@ -37,20 +37,20 @@ use yii\helpers\ArrayHelper;
 	    <nav class="navbar navbar-expand-lg navigation d-flex align-items-center ">
 		<div class="container">
 		    <div class="row-flex">
-				<div class="col-md-4 col-xs-12">
+			<div class="col-md-4 col-xs-12">
 			    <a class="logo" href="<?= Url::to(['/site/index']) ?>">
 				<? /*
-				<img src="/img/icons/logo.svg">
-				<span>ManyLinks.ru</span>
+				  <img src="/img/icons/logo.svg">
+				  <span>ManyLinks.ru</span>
 				 * <img style="width: 32px" src="/img/logo100.png">
 				 */
 				?>
-				
+
 				<img src="/img/icons/logo.svg">
 				<span class="logo-text"><span>Many</span><span>Links</span>.ru</span>
 			    </a>
 			</div>
-				<div class="col-md-8 col-xs-12"> 
+			<div class="col-md-8 col-xs-12"> 
 			    <div class="navgition-menu d-flex align-items-center justify-content-center">
 				<ul class="mb-0">
 				    <li class="toggleable"> 
@@ -115,9 +115,21 @@ use yii\helpers\ArrayHelper;
 	    <div class="container">
 		<div class="footer-line"></div>
 		<div class="row">	
-		    <div class="col-md-12">		
+		    <div class="col-md-4">		
 			<a href="/privacy_policy">Политика обработки персональный данных</a>
+
+		    </div>
+		    <div class="col-md-4">
 			<center>2019 - <?= date('Y') ?></center>
+		    </div>
+		    <div col-md-4>
+
+			<!-- Yandex.Metrika informer -->
+			<a href="https://metrika.yandex.ru/stat/?id=56896387&amp;from=informer"
+			   target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/56896387/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
+							    style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="56896387" data-lang="ru" /></a>
+			<!-- /Yandex.Metrika informer -->
+
 		    </div>
 		</div>
 	    </div>
@@ -133,14 +145,36 @@ use yii\helpers\ArrayHelper;
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css" />	
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/admin-page.css?ver=3" />
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
-	 <link href="<?= Url::base() ?>/css/libs/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
-	 
+	<link href="<?= Url::base() ?>/css/libs/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
+
 	<script src="<?= Url::base() ?>/js/libs/textarea-elastic.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/jquery-ui.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/jquery.Jcrop.min.js" async onload="console.log('->Jcrop init')"></script>
 	<script src="<?= Url::base() ?>/js/admin/image.js"></script>
 	<script src="<?= Url::base() ?>/js/admin-script.js"></script>
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
+
+
+	<!-- Yandex.Metrika counter -->
+	<script type="text/javascript" >
+                (function (m, e, t, r, i, k, a) {
+                    m[i] = m[i] || function () {
+                        (m[i].a = m[i].a || []).push(arguments)
+                    };
+                    m[i].l = 1 * new Date();
+                    k = e.createElement(t), a = e.getElementsByTagName(t)[0], k.async = 1, k.src = r, a.parentNode.insertBefore(k, a)
+                })
+                        (window, document, "script", "https://mc.yandex.ru/metrika/tag.js", "ym");
+
+                ym(56896387, "init", {
+                    clickmap: true,
+                    trackLinks: true,
+                    accurateTrackBounce: true,
+                    webvisor: true
+                });
+	</script>
+	<noscript><div><img src="https://mc.yandex.ru/watch/56896387" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
+	<!-- /Yandex.Metrika counter -->
 
     </body>
 </html>

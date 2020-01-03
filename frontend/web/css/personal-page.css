@@ -1,7 +1,7 @@
 @import "//fonts.googleapis.com/css?family=RobotoDraft:300,400,500,700,400italic";
 @import "//fonts.googleapis.com/css?family=Roboto:400,300,500,400italic,700,900";
 html{font-size:100%}
-body{-webkit-transition:opacity .4s;-moz-transition:opacity .4s;-ms-transition:opacity .4s;-o-transition:opacity .4s;transition:opacity .4s;font-size:16px;opacity:1;text-shadow:none!important;padding:0;margin:0}
+body{    background-position: center;-webkit-transition:opacity .4s;-moz-transition:opacity .4s;-ms-transition:opacity .4s;-o-transition:opacity .4s;transition:opacity .4s;font-size:16px;opacity:1;text-shadow:none!important;padding:0;margin:0}
 
 body,input,select,textarea,button,.ui-btn{font-size:1em;line-height:1.3;font-family:sans-serif;color:#222;
        font-family:RobotoDraft,Roboto,"Helvetica Neue",sans-serif;
@@ -9,7 +9,7 @@ body,input,select,textarea,button,.ui-btn{font-size:1em;line-height:1.3;font-fam
        font-weight:400}
 .mobile-conent{max-width:560px;margin:auto;overflow:hidden}
 .clear{clear:both}
-body{background:#fff}
+
 .block-header{}
 .block-header .r-block{margin-left:150px}
 .photo-ava{display:block;border-radius:50%;width:100px;height:100px;float:left;border:4px solid #e9e8ef;overflow:hidden}

@@ -35,9 +35,9 @@
     <center>
 	<br/>
 	<input type="file" name="image_file" id="image_file" onchange="fileSelectHandler()" />
-	<img id="preview" style="max-width: 100%" />
+	<img id="preview" style="max-width: 100%;margin-top: 20px;" />
     </center>
-    <button style="display:none" type="button" class="btn btn-save-upload-4" onclick="YiiData.image.upload(<?= $obj->id ?>)" >Обрезать и загрузить</button>
+    <button style="display:none" type="button" class="btn btn-save-upload-4" onclick="YiiData.image.upload(<?= $obj->id ?>,this)" >Обрезать и загрузить</button>
 </div>
 
 <input type="text" style="display:none" name="DATA[file]" id="data_file" value="<?= $obj->data["file"] ?>" placeholde="Ссылка на фото"> 

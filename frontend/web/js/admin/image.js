@@ -12,7 +12,11 @@ function CImage() {
     this.uploadAction = "/user/page/upload";
 
 }
-CImage.prototype.upload = function (id) {
+CImage.prototype.upload = function (id, _thisBtn) {
+    var $btn = $(_thisBtn);
+    var textBtn = $btn.text();
+    console.log(textBtn);
+    $btn.text(".......");
     var $form = $('#block-' + id).find('form');
     var data = $form.serialize();
     var file_data = $('#image_file').prop('files')[0];
@@ -32,17 +36,18 @@ CImage.prototype.upload = function (id) {
         data: form_data,
         type: 'post',
         success: function (data) {
-          // console.log(data);
+            // console.log(data);
+            $btn.text(textBtn);
             var data2 = JSON.parse(data);
-            
             console.log(data2);
             var data3 = JSON.parse(data2);
             console.log(data3);
-            console.log(data2.code);
+            console.log("++++++++++++");
             if (data3.code === "ok") {
-                console.log(data);
-                $form.find(".result").find("img").addClass("xxx").attr("src", "/" + data3.file);
-                $('#data_file').val("/" + data3.file);
+                var file = "/" + data3.file;
+                 console.log(file);
+                $form.find(".result").find("img").addClass("xxx").attr("src",file);
+                $('#data_file').val(file);
                 $form.find("input").keyup();
             }
         }
@@ -103,7 +108,7 @@ function fileSelectHandler() {
     var rFilter = /^(image\/jpeg|image\/png)$/i;
     if (!rFilter.test(oFile.type)) {
         $('.error').html('Please select a valid image file (jpg and png are allowed)').show();
-         return;
+        return;
     }
 
     // check for file size
@@ -124,19 +129,19 @@ function fileSelectHandler() {
         oImage.onload = function () { // onload event handler
 
             // display step 2
-             $('.step-1').fadeOut();
-             $('.step-2').fadeIn();
+            $('.step-1').fadeOut();
+            $('.step-2').fadeIn();
 
             // display some basic image info
             var sResultFileSize = bytesToSize(oFile.size);
             $('#filesize').text(sResultFileSize);
             $('#filetype').text(oFile.type);
             $('#filedim').text(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
-           
-            
-             console.log($(this).width());
-               $('#width').val($(this).width());
-               $('#height').val($(this).height());
+
+
+            console.log($(this).width());
+            $('#width').val($(this).width());
+            $('#height').val($(this).height());
             // Create variables (in this scope) to hold the Jcrop API and image size
             var jcrop_api, boundx, boundy;
 
