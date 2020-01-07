@@ -74,6 +74,9 @@ class PageController extends Controller {
 				$SBV->site_block_id = $model->id;
 				$SBV->name = $name;
 				$SBV->sort = $sort;
+				if(is_array($value)){
+					$value = json_encode($value);
+				}
 				$SBV->value = $value;
 				$SBV->save();
 			}
@@ -272,6 +275,23 @@ class PageController extends Controller {
 			$siteBlock = SiteBlock::findOne(['id' => $_POST['id'], 'site_id' => Yii::$app->user->identity->site_id]);
 			$siteBlock->delete();
 			return json_encode(["code" => "ok", "id" => $_POST['id']]);
+		}
+	}
+
+	/*
+	 * Удаление SiteBlock
+	 */
+
+	public function actionBlockactivate() {
+		$post = Yii::$app->request->post();
+		if ($post['id'] > 0) {
+			if ($post['type'] == "SiteBlockValue") {
+				$siteBlock = SiteBlockValue::findOne(['id' => $post['id']]);
+			} else {
+				$siteBlock = SiteBlock::findOne(['id' => $post['id'], 'site_id' => Yii::$app->user->identity->site_id]);
+			}
+			$siteBlock->setActive($post['status'] > 0 ? true : false);
+			return json_encode(["code" => "ok", "id" => $post['id'], 'status' => $siteBlock->status]);
 		}
 	}
 

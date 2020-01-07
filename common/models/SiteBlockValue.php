@@ -4,6 +4,9 @@ namespace common\models;
 
 class SiteBlockValue extends \yii\db\ActiveRecord {
 
+	const STATUS_ACTIVE = 1;
+	const STATUS_DEACTIVE = 2;
+
 	/**
 	 * {@inheritdoc}
 	 */
@@ -18,7 +21,8 @@ class SiteBlockValue extends \yii\db\ActiveRecord {
 		return [
 			[['site_block_id'], 'required'],
 			[['value', 'name'], 'string'],
-			[['sort'], 'integer'],
+			[['sort', 'status'], 'integer'],
+			[['status'], 'default', 'value' => SiteBlockValue::STATUS_ACTIVE],
 		];
 	}
 
@@ -38,6 +42,16 @@ class SiteBlockValue extends \yii\db\ActiveRecord {
 		$uri = preg_replace('%\/.*$%usi', '', $uri);
 		$arr = explode('.', $uri);
 		return $arr[0];
+	}
+
+	public function setActive($bool) {
+
+		if ($bool) {
+			$this->status = SiteBlockValue::STATUS_ACTIVE;
+		} else {
+			$this->status = SiteBlockValue::STATUS_DEACTIVE;
+		}
+		$this->save();
 	}
 
 }

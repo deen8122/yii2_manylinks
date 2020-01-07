@@ -30,7 +30,7 @@ body,input,select,textarea,button,.ui-btn{font-size:1em;line-height:1.3;font-fam
 .icon-github{background-image:url(../img/icons/social/github.svg)}
 .icon-wa{background-image:url(../img/icons/social/wa.svg)}
 .icon-blogspot{background-image:url(../img/icons/social/blogspot.svg)}
-.ul-icon-list a{text-decoration:none;color:#222;display:flex;align-items:center;width:100%;clear:both;border:1px solid #ccc;min-height:36px;margin:8px auto;max-width:304px;border-radius:7px;padding:6px}
+.ul-icon-list a{text-decoration:none;color:#222;display:flex;align-items:center;xwidth:100%;clear:both;border:1px solid #ccc;min-height:36px;margin:8px auto;max-width:304px;border-radius:7px;padding:6px}
 .ul-icon-list a span{margin-left:10px}
 
 
@@ -54,3 +54,11 @@ body,input,select,textarea,button,.ui-btn{font-size:1em;line-height:1.3;font-fam
     margin-top: 4px;}
 
 .mobile-conent .block {padding:10px;}
+
+.owl-carousel-type-5 {
+    
+}
+.owl-carousel-type-5 .item {
+        text-align: center;
+}
+.owl-carousel-type-5 .item img {}

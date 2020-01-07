@@ -17,8 +17,10 @@ use yii\helpers\Url;
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="true">
+	<script src="<?= Url::base() ?>/js/libs/jquery.min.js?ver=1"></script>
+	
 	<? /*
-	<script src="<?= Url::base() ?>/js/jquery.min.js?ver=1"></script>
+	
 	 * 
 	 */
 	?>
@@ -27,6 +29,7 @@ use yii\helpers\Url;
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
 
 	<?php $this->head() ?>
+	 <?php echo Html::csrfMetaTags() ?>
 	<link rel="shortcut icon" type="image/x-icon" href="/img/logo-32.png" /> 
 	
     </head>

@@ -1,33 +1,33 @@
 <div class="popup" id="add-block-form">
+    <a class="btn-close-popup" onclick="popup_close()">
+	<img src="/img/icons/close.svg">
+    </a>
 
     <div class="header-p">
 	Выберите тип блока    
     </div>
     <div class="content-p">
-
-	<div>
+	<div class="add-new-blocks-cont">
 	    <a onclick="addNewBLock(1)">
 		Текстовый блок
 	    </a> 
-	</div>
-	<div>
+
 	    <a onclick="addNewBLock(2)">
-		 Блок со списоком ссылок
+		Блок со списоком ссылок
 	    </a> 
-	     
-	</div>
-	<div>
-	     <a onclick="addNewBLock(3)">
-		 Блок с форматируемым текстом  
+
+	    <a onclick="addNewBLock(3)">
+		Блок с форматируемым текстом  
 	    </a>
-	    
-	</div>
-	<div>
-	     <a onclick="addNewBLock(4)">
+
+
+	    <a onclick="addNewBLock(4)">
 		Блок-шапка (фотография и текст)
 	    </a>
-	    
-	</div>
-    </div>
+	    <a onclick="addNewBLock(5)">
+		Слайдер
+	    </a>
 
-</div>
+	</div>
+
+    </div>

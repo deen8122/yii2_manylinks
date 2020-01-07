@@ -10,6 +10,7 @@
 //l($obj->values);
     if (is_array($block->values)) {
 	    foreach ($block->values as $obj2) {
+		      if ($obj2->status != \common\models\SiteBlockValue::STATUS_ACTIVE) continue; 
 		    if (strlen($obj2->name) > 2 && strlen($obj2->value) > 8) {
 			    ?>
 			   

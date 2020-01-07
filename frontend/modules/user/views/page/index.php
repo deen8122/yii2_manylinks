@@ -35,7 +35,7 @@ use common\models\SiteBlock;
 	?>
 	<? foreach ($siteBlock as $obj):
 		?>
-		<div class="adm-block adm-block-<?= $obj->type ?>" id="block-<?= $obj->id ?>" data-id="<?= $obj->id ?>" data-sort="<?= $obj->sort ?>">
+		<div class="adm-block adm-block-<?= $obj->type ?> <?=($obj->status!=SiteBlock::STATUS_ACTIVE?'deactive':'active')?>" id="block-<?= $obj->id ?>" data-id="<?= $obj->id ?>" data-sort="<?= $obj->sort ?>">
 		    <form class="block-form">
 			<div class="adm-block-config">
 			    <div class="mover ">
@@ -55,7 +55,7 @@ use common\models\SiteBlock;
 				<i class="icon icon-menu dropdown-toggle"></i>
 
 				<ul class="dropdown-menu dropdown-user-menu">
-				    <li><a onclick="blockRemove(<?= $obj->id ?>)">акти\деакт</a></li>
+				    <li><a onclick="blockActivate(<?= $obj->id ?>)">акти\деакт</a></li>
 				    <li><a onclick="blockRemove(<?= $obj->id ?>)">удалить</a></li>
 				</ul>
 

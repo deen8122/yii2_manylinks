@@ -8,7 +8,7 @@
 	if (is_array($obj->values)) {
 		foreach ($obj->values as $obj2) {
 			?>
-			<div class="sbv-item sbv-item-<?= $obj2->id ?>" data-id="<?= $obj2->id ?>">
+			<div id="sbv-<?= $obj2->id ?>" class="sbv-item sbv-item-<?= $obj2->id ?> <?= ($obj2->status != 1 ? 'deactive' : 'active') ?>" data-id="<?= $obj2->id ?>">
 
 			    <div class="mover ">
 				<i class="icon icon-move"></i>
@@ -24,7 +24,7 @@
 				<i class="icon icon-menu dropdown-toggle"></i>
 
 				<ul class="dropdown-menu dropdown-user-menu">
-				    <li><a onclick="blockRemove(<?= $obj->id ?>)">акти\деакт</a></li>
+				    <li><a onclick="blockActivate(<?= $obj2->id ?>, 'SiteBlockValue')">акти\деакт</a></li>
 				    <li><a onclick="sbvRemove(<?= $obj2->id ?>,<?= $obj->id ?>)" class="icon-ui icon-delete">удалить</a></li>
 				</ul>
 

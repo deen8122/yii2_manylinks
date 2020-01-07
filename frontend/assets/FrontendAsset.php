@@ -33,7 +33,7 @@ class FrontendAsset extends AssetBundle
      * @var array
      */
     public $css = [
-        'css/style2.css'
+      //  'css/style2.css'
     ];
     /**
      * @var array

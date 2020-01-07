@@ -1,3 +1,4 @@
+a:hover {cursor: pointer}
 .top-inform{max-width:560px;margin:auto;margin-bottom:40px}
 .adm-blocks-list{max-width:560px;margin:auto}
 .adm-blocks-list .adm-block{min-height:50px;border:1px solid #ccc;margin:5px;border-radius:8px;background:#fff;overflow:hidden}
@@ -9,6 +10,8 @@
 .adm-blocks-list .adm-block-3 .adm-block-config{background:#bbdefb}
 .adm-blocks-list .adm-block-4{border:1px solid #ffcdd2}
 .adm-blocks-list .adm-block-4 .adm-block-config{background:#ffcdd2}
+.adm-blocks-list .adm-block-5{border:1px solid #f8bbd0}
+.adm-blocks-list .adm-block-5 .adm-block-config{background:#f8bbd0}
 .adm-blocks-list a {cursor: pointer}
 .adm-block-4 .info {}
 .adm-block-4 .info label{}
@@ -74,3 +77,10 @@
 .save-btn{width:100%;background:#ccc;color:#fff;border:none;border-radius:5px;max-width:320px;margin:10px auto;display:block}
 .save-btn.active{background:#8BC34A}
 .adm-block-3 textarea{background:#FFFDE7}
+.deactive {opacity: 0.5;}
+.btn-close-popup {position: absolute;
+    right: 3px;
+    top: 0px;}
+.btn-close-popup  img {width:16px;}
+.btn-close-popup:hover {cursor: pointer; opacity: 0.6}
+.add-new-blocks-cont a {display: block; margin: 5px;}

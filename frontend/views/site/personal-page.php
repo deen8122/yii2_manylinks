@@ -8,8 +8,8 @@ $this->title = $model->name;
 <div class="mobile-conent">
 
     <? foreach ($model->blocks as $block): ?>
-	    <? // l($block);?>
-	    <div class="block block-<?=$block->type?>">
+	    <? if ($block->status != \common\models\SiteBlock::STATUS_ACTIVE) continue; ?>
+	    <div id="block-<?= $block->id ?>" class="block block-<?= $block->type ?> ">
 		<? include 'type/block-' . $block->type . '.php' ?>	
 	    </div>
 
@@ -23,11 +23,12 @@ $this->title = $model->name;
 	<span>ManyLinks.ru</span>
     </a>
 </div>
-<style>
-	<?=$model->style?>
-</style>
+
+<? if (strlen($model->style) > 5) echo '<style>' . $model->style . '</style>'; ?>
 
 <?
-   $this->registerCssFile("/upload/" . $model->id . '/style.css');
+if (file_exists(\Yii::getAlias('@webroot') . "/upload/" . $model->id . '/style.css')) {
+	$this->registerCssFile("/upload/" . $model->id . '/style.css');
+}
 
 //l$model->blocks)?>

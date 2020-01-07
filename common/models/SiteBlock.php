@@ -12,6 +12,7 @@ class SiteBlock extends \yii\db\ActiveRecord {
 	const TYPE_LINKS = 2;
 	const TYPE_HTML_TEXT = 3;
 	const TYPE_HEADER_PHOTO = 4;
+	const TYPE_HEADER_SLIDER = 5;
 	const STATUS_ACTIVE = 1;
 	const STATUS_DEACTIVE = 2;
 
@@ -28,6 +29,7 @@ class SiteBlock extends \yii\db\ActiveRecord {
 			self::TYPE_LINKS => "links",
 			self::TYPE_HTML_TEXT => "html",
 			self::TYPE_HEADER_PHOTO => "header",
+			self::TYPE_HEADER_SLIDER => "slider",
 		];
 	}
 
@@ -59,6 +61,7 @@ class SiteBlock extends \yii\db\ActiveRecord {
 			[['name'], 'string', 'max' => 300],
 			[['sort'], 'default', 'value' => -1],
 			[['name'], 'default', 'value' => "title..."],
+			[['status'], 'default', 'value' => SiteBlock::STATUS_ACTIVE],
 		];
 	}
 
@@ -89,6 +92,15 @@ class SiteBlock extends \yii\db\ActiveRecord {
 			return false;
 		} else
 			return parent::beforeSave($insert);
+	}
+	public function setActive($bool){
+		
+		if($bool){
+			$this->status = SiteBlock::STATUS_ACTIVE;
+		}else {
+			$this->status = SiteBlock::STATUS_DEACTIVE;
+		}
+		$this->save();
 	}
 	private function setDefaultData(){
 		if($this->type == SiteBlock::TYPE_HEADER_PHOTO){

@@ -41,12 +41,22 @@ function addNewBLock(type) {
     });
 }
 
+var $openedPopup = null;
+function popup_close(){
+    if($openedPopup!=null){
+        $openedPopup.fadeOut(100);
+        $('.popup-bg').fadeOut(100);
+        $openedPopup = null;
+    }
+    
+}
 function init() {
     $('.add-btn').on('click', function () {
-        $('#add-block-form').fadeIn(100);
+        $openedPopup = $('#add-block-form');
+        $openedPopup.fadeIn(100);
         var offset = $(this).offset();
         console.log(offset);
-        $('#add-block-form').css('top', offset.top + 'px');
+        $openedPopup.css('top', offset.top + 'px');
         $('.popup-bg').fadeIn(100);
     });
 
@@ -114,7 +124,13 @@ function init() {
     });
     //  $('.adm-block-inner').hide();
     //  $('.adm-block-inner').first().show();
-
+     $('.adm-block').each(function(){
+         if($(this).hasClass('deactive')){
+             console.log("-------------->");
+            // $(this).find('.toggle-btn').click();
+            blockToggle($(this).data('id'));
+         }
+     });
 
 }
 
@@ -223,6 +239,8 @@ $(function () {
 
 
 function blockToggle(id) {
+     console.log('blockToggle');
+    console.log(id);
     var $innerBlock = $('#block-' + id).find('.adm-block-inner');
     var $btn = $('#block-' + id).find('.toggle-btn');
     if ($innerBlock.hasClass('opened')) {
@@ -253,5 +271,35 @@ function blockRemove(id, isConfirm) {
     doRequest('/user/page/blockremove', {id: id}, function (data) {
         console.log(data)
         $('#block-' + id).fadeOut(300);
+    });
+}
+
+function blockActivate(id, type) {
+    var $obj = $('#block-' + id);
+    if (type === "SiteBlockValue") {
+        $obj = $('#sbv-' + id);
+    }
+
+    if (type === undefined) {
+        type = "SiteBlock";
+    }
+    var param = 0;
+    if (!$obj.hasClass("active")) {
+        param = 1;
+    }
+    console.log(param);
+    console.log(type);
+    doRequest('/user/page/blockactivate', {id: id, status: param, type: type}, function (data) {
+        console.log(data);
+
+
+        if (data.status == 1) {
+            $obj.addClass("active");
+            $obj.removeClass("deactive");
+        } else {
+            $obj.addClass("deactive");
+            $obj.removeClass("active");
+        }
+
     });
 }

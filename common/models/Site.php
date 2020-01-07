@@ -48,7 +48,7 @@ class Site extends \yii\db\ActiveRecord {
 	public function rules() {
 		return [
 			[['name', 'code'], 'required'],
-			[['description', 'data'], 'string'],
+			[['description', 'data','style'], 'string'],
 			[['active', 'deleted' , 'version'], 'integer'],
 			[['name', 'logo', 'code'], 'string', 'max' => 255],
 			[['active'], 'default', 'value' => 1],
@@ -64,8 +64,8 @@ class Site extends \yii\db\ActiveRecord {
 		return [
 			'id' => 'ID',
 			'code' => 'Название ссылки вашей страницы',
-			'name' => 'Название организации',
-			'description' => 'Описание организации',
+			'name' => 'Название страницы',
+			'description' => 'Описание страницы',
 			'active' => 'Active',
 			'deleted' => 'Deleted',
 			'style' => 'Стили проекта',
