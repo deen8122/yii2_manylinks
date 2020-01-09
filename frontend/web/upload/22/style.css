@@ -1,0 +1,32 @@
+.logo-img {   
+    animation: pulse 4s infinite;
+    text-shadow: 2px -4px 0 rgb(79, 79, 79);
+ 
+}
+
+
+@-webkit-keyframes pulse {
+  0% {
+   box-shadow: 0px 0px 0 #ccc;
+  }
+  50% {
+      box-shadow: 0px 0px 20px #ccc;
+  }
+  100% {
+      box-shadow: 0px 0px 0 #ccc;
+  }
+}
+
+.phones {    text-align: center;}
+.phones div {margin-top: 10px}
+.phones div a {    color: #fff;
+    text-decoration: none;
+    border-bottom: 1px dotted;
+    font-weight: bold;}
+
+.ul-icon-list {    display: flex;}
+.ul-icon-list a {border: none;}
+.ul-icon-list i {background-color: #fff;
+   
+    border: 9px solid #fff;}
+.ul-icon-list span {display: none;}

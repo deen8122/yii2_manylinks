@@ -33,12 +33,6 @@ class PageController extends Controller {
 	 * @return string|\yii\web\Response
 	 */
 	public function actionIndex() {
-
-		$filePath = $_SERVER['DOCUMENT_ROOT'] . "/upload/18/1.jpg";
-		//l($filePath);
-		//Image::thumbnail($filePath, 300,300)->save($filePath, ['quality' => 100]);
-
-
 		$site = Site::find()->where(['id' => Yii::$app->user->identity->site_id])->one();
 		if ($site == null) {
 			$site = Site::createDefaultItems();

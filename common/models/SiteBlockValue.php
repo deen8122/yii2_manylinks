@@ -41,6 +41,9 @@ class SiteBlockValue extends \yii\db\ActiveRecord {
 		$uri = preg_replace('%^(http:\/\/)*(https:\/\/)*(www.)*%usi', '', $uri);
 		$uri = preg_replace('%\/.*$%usi', '', $uri);
 		$arr = explode('.', $uri);
+		if($arr[1]!="com"&&$arr[1]!="ru"){
+			$arr[0] = $arr[0].'-'.$arr[1];
+		}
 		return $arr[0];
 	}
 
