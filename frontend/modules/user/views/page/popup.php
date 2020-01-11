@@ -33,7 +33,7 @@
     </div>
 </div>
 
-<div class="popup" id="popup-form">
+<div class="popup" id="popup-form" style="max-width: 500px; width: 100%;margin-left: -250px;">
     <a class="btn-close-popup" onclick="popup_close()">
 	<img src="/img/icons/close.svg">
     </a>

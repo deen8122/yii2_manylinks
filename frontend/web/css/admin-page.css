@@ -121,5 +121,8 @@ a:hover {cursor: pointer}
 .bg-gradient-8 {     background-image: linear-gradient(to top, #e8198b 0%, #c7eafd 100%); }
 .bg-gradient-9 {     background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%); }
 .bg-gradient-10 {     background-image: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%); }
-.block-gradient.active {border:1px solid red}
+.block-gradient.active {border:1px solid red;box-shadow: 0px 0px 10px red;}
 
+
+.block-image {width:100px; height: 100px;background-color: #ccc; margin:5px;position: relative;    background-size: cover;    float: left;}
+.bg-image-0 {    background-image:url('/upload/bgImage/0.jpg')}

@@ -35,7 +35,7 @@ use yii\helpers\Url;
 	<link rel="shortcut icon" type="image/x-icon" href="/img/logo-32.png" /> 
 
     </head>
-    <body class="<?= $this->context->bodyClass; ?>">
+    <body class="<?= $this->context->bodyClass; ?>" style="<?= $this->context->bodyStyle; ?>">
 	<div class="container">
 <?php echo $content ?>
 	</div>

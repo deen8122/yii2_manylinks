@@ -149,6 +149,7 @@ use yii\helpers\ArrayHelper;
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
 	<link href="<?= Url::base() ?>/css/libs/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 
+	<script src="<?= Url::base() ?>/js/libs/jquery.cookie.js"  ></script>
 	<script src="<?= Url::base() ?>/js/admin/Yii.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/textarea-elastic.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/jquery-ui.js"></script>	

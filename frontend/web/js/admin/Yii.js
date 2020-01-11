@@ -9,10 +9,12 @@ Yii.prototype.addScript = function (src) {
     document.head.appendChild(script);
 }
 Yii.prototype.setParam = function (name, value) {
-    console.log("setParam");
+    console.log("-----------setParam--------------");
     console.log(name);
     console.log(value);
-    setCookie(name, JSON.stringify(value));
+   // setCookie(name, JSON.stringify(value));
+
+   $.cookie(name, JSON.stringify(value)); 
 };
 
 Yii.prototype.getParam = function (name, defaultValue) {
@@ -45,19 +47,6 @@ Yii.prototype.setConfigParam = function (name, defaultValue) {
 };
 
 
-
-function UpdateContent() {
-    console.log('UpdateContent');
-    $.ajax({
-        type: "POST",
-        url: '/site/index',
-        data: {ajax: 1}, // serializes the form's elements.
-        success: function (data) {
-//console.log(data);
-            $('#content-items').html(data)
-        }
-    });
-}
 
 // возвращает cookie с именем name, если есть, если нет, то undefined
 function getCookie(name) {

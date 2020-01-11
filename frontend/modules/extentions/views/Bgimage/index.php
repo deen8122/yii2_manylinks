@@ -7,30 +7,42 @@ $this->title = Yii::t('frontend', 'Настройки пользователя')
 ?>
 
 <div class="user-profile-form">
-
-
-
-    <button type="button" class="btn btn-primary">Primary</button>
-    <button type="button" class="btn btn-secondary">Secondary</button>
-    <button type="button" class="btn btn-success">Success</button>
-    <button type="button" class="btn btn-danger">Danger</button>
-    <button type="button" class="btn btn-warning">Warning</button>
-    <button type="button" class="btn btn-info">Info</button>
-    <button type="button" class="btn btn-light">Light</button>
-    <button type="button" class="btn btn-dark">Dark</button>
-
-    <button type="button" class="btn btn-link">Link</button>
+    <h3>Выберите фон</h3>
 </div>
 <?
-$arColors = [
-];
+l($site->dataArray);
 ?>
+
 <div style="margin:10px auto; max-width: 500px;overflow: hidden">
+    <div>Градиент</div>
     <div style="display: flex;    white-space: nowrap;">
-<? for ($i = 0; $i < 10; $i++): ?>
-		<div onclick="Config.selectBackgroundColor(this)" data-color="bg-gradient-<?= $i ?>" class="block-gradient bg-gradient-<?= $i ?>"></div>
+	<? for ($i = 0; $i < 10; $i++): ?>
+		<div onclick="Config.selectBackgroundColor(this)" 
+		     data-class="bg-gradient-<?= $i ?>" 
+		     class="block-gradient bg-gradient-<?= $i ?> <?=$site->dataArray['bgClass']=='bg-gradient-'.$i?'selected active':''?>">
+		</div>
 	<? endfor ?>
 
     </div>
 </div>
+
+
+<div style="margin:10px auto; max-width: 500px;overflow: hidden">
+    <div>Изображение</div>
+    <div style="display: block;    white-space: nowrap;">
+	<? for ($i =1; $i < 10; $i++): ?>
+		<div onclick="Config.selectBackgroundColor(this)" 
+		      data-img="<?=$i?>" 
+		      data-class="bg-image" 
+		     class="block-gradient block-image bg-image-<?= $i ?> <?=$site->dataArray['bgClass']=='bg-image-'.$i?'selected active':''?>"
+		     style="background-image:url(/img/bgImages/<?=$i?>.jpg)">
+		</div>
+	<? endfor ?>
+
+    </div>
+</div>
+<center>
+  
+    <button type="button" class="btn btn-secondary" onclick="$('.block-gradient.selected').click()" data-default="<?=$site->dataArray['bgClass']?>">Отменить</button>
+</center>
 <input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />

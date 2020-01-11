@@ -1,7 +1,8 @@
 
 $(document).ready(function () {
-  var openblocks = yii.getParam("openblocks", {});
-   console.log(openblocks);
+    var openblocks = yii.getParam("openblocks", {});
+    console.log(openblocks);
+  //  popupModule('bgimage')
     init();
 });
 
@@ -39,6 +40,7 @@ function popup_close() {
 function init() {
     //
     var debuggerActive = yii.getParam("debugger");
+    console.log("============debuggerActive==============")
     console.log(debuggerActive);
     if (debuggerActive) {
         debuggerOpen();
@@ -117,13 +119,14 @@ function init() {
     //  $('.adm-block-inner').hide();
     //  $('.adm-block-inner').first().show();
     var openblocks = yii.getParam("openblocks", {});
+     console.log(openblocks.length);
     console.log(openblocks);
     $('.adm-block').each(function () {
         var id = $(this).data('id');
-        if (openblocks["block"+id]!==1) {
+        if (openblocks["block-" + id] !== 1) {
             blockToggle(id);
         }
- 
+
     });
 
 }
@@ -144,11 +147,11 @@ function debuggerUpdate() {
 }
 function debuggerClose() {
     $('.iframe-phone').hide();
-    yii.setParam("debugger", false);
+    yii.setParam("debugger", 0);
 }
 function debuggerOpen() {
     $('.iframe-phone').show();
-    yii.setParam("debugger", true);
+    yii.setParam("debugger", 1);
 }
 
 
@@ -203,7 +206,7 @@ function updateSort() {
         data[id] = sort;
     });
     doRequest('/user/page/updatesort', {action: "bvUpdateSort", data: data}, function () {
-        
+
         debuggerUpdate();
         console.log('-xxx-->');
     });
@@ -247,21 +250,21 @@ function blockToggle(id) {
     var $innerBlock = $('#block-' + id).find('.adm-block-inner');
     var $btn = $('#block-' + id).find('.block-form').find('.toggle-btn');
     $btn.addClass("xxx");
-    
+
     if ($innerBlock.hasClass('opened')) {
         $innerBlock.hide();
         $innerBlock.removeClass('opened');
         $btn.removeClass('icon-minus');
         $btn.addClass('icon-plus');
-         openblocks["block"+id] = 0;
+        openblocks["block-" + id] = 0;
     } else {
         $innerBlock.show();
         $innerBlock.addClass('opened')
         $btn.removeClass('icon-plus');
         $btn.addClass('icon-minus');
-        openblocks["block"+id] = 1;
+        openblocks["block-" + id] = 1;
     }
-     yii.setParam("openblocks", openblocks);
+    yii.setParam("openblocks", openblocks);
 }
 
 function blockRemove(id, isConfirm) {

@@ -64,6 +64,8 @@ body,input,select,textarea,button,.ui-btn{font-size:1em;line-height:1.3;font-fam
 }
 .owl-carousel-type-5 .item img {}
 
+.bg-image {background-position: center;
+    background-size: cover;}
 
 .bg-gradient-0 {    background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);}
 .bg-gradient-1 {    background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);  }

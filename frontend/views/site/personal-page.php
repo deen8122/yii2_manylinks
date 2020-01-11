@@ -31,5 +31,5 @@ if (file_exists(\Yii::getAlias('@webroot') . "/upload/" . $model->id . '/style.c
 	$this->registerCssFile("/upload/" . $model->id . '/style.css');
 }
 
-l($model->dataArray);
+//l($model->dataArray);
 //l$model->blocks)?>
