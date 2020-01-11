@@ -108,7 +108,7 @@ class PageController extends Controller {
 	}
 
 	public function actionUpdatesort() {
-		l($_POST);
+		//l($_POST);
 		foreach ($_POST['data'] as $id => $sort) {
 			if ($_POST['action'] == "blockUpdateSort") {
 				$siteBlockValue = SiteBlock::findOne(['id' => $id]);
@@ -119,7 +119,7 @@ class PageController extends Controller {
 			$siteBlockValue->sort = $sort;
 			$siteBlockValue->save();
 		}
-		return true;
+		return $this->renderJSON(['code' => "ok"]);
 	}
 
 	public function actionUpload() {
@@ -225,7 +225,6 @@ class PageController extends Controller {
 	 */
 	public function actionCreateblock() {
 		$sb = new SiteBlock();
-		$sb->site_id = Yii::$app->user->identity->site_id;
 		$sb->type = (int) $_POST['type'];
 		if ($sb->save()) {
 			return $this->renderJSON(['code' => "ok", "id" => $sb->id]);

@@ -1,5 +1,18 @@
+.admin-header .navbar{min-height: 10px;}
+.admin-header {height: 32px;}
+.admin-header .logo img{height: 20px;}
+.admin-header  .navigation {padding: 0}
+.admin-header  .navigation .navgition-menu ul .toggleable .menu-item {font-size: 12px;}
+.admin-header .logo {
+    margin-left: 0px;
+    margin-top: 3px;
+    display: block;
+}
+.admin-header .logo .logo-text{font-size: 16px;margin-left: 8px;}
+.menu-main {}
 a:hover {cursor: pointer}
-.top-inform{max-width:560px;margin:auto;margin-bottom:40px}
+.top-inform{max-width:560px;margin:auto;margin-bottom:20px}
+.midle span.name {line-height: 30px;margin-left:10px;}
 .adm-blocks-list{max-width:560px;margin:auto}
 .adm-blocks-list .adm-block{min-height:50px;border:1px solid #ccc;margin:5px;border-radius:8px;background:#fff;overflow:hidden}
 .adm-blocks-list .adm-block-1{border:1px solid #dcedc8}
@@ -16,26 +29,36 @@ a:hover {cursor: pointer}
 .adm-block-4 .info {}
 .adm-block-4 .info label{}
 .input-text-edit {text-align: center;
-    margin-top: 14px;
-    margin-bottom: 10px;}
-.iframe-phone {position: fixed; left:0; top:0}
+                  margin-top: 14px;
+                  margin-bottom: 10px;}
+.iframe-phone {    position: fixed;
+                   overflow: hidden;
+                   display: none;
+                   left: 5px;
+                   top: 5px;
+                   background: #fff;
+                   border-radius: 13px;
+                   border: 12px solid #455A64;
+                   z-index: 101;
+                   box-shadow: 6px 3px 8px #ccc;
+}
 #iframe {
-        -ms-zoom: 0.75;
-        -moz-transform: scale(0.75);
-        -moz-transform-origin: 0 0;
-        -o-transform: scale(0.75);
-        -o-transform-origin: 0 0;
-        -webkit-transform: scale(0.75);
-        -webkit-transform-origin: 0 0;
-    }
-  .btn-save-upload-4 {    width: 200px;
-    margin: 20px auto 10px;
-    background: #8BC34A;
-    /* margin: auto; */
-    display: block;
-    color: #fff;}
-  .block-4-upload-form .error {color:red;padding: 5px;}
-    .block-4-upload-form .steps {color:green;padding: 5px;}
+    -ms-zoom: 0.9;
+    -moz-transform: scale(0.75);
+    -moz-transform-origin: 0 0;
+    -o-transform: scale(0.75);
+    -o-transform-origin: 0 0;
+    -webkit-transform: scale(0.75);
+    -webkit-transform-origin: 0 0;
+}
+.btn-save-upload-4 {    width: 200px;
+                        margin: 20px auto 10px;
+                        background: #8BC34A;
+                        /* margin: auto; */
+                        display: block;
+                        color: #fff;}
+.block-4-upload-form .error {color:red;padding: 5px;}
+.block-4-upload-form .steps {color:green;padding: 5px;}
 .adm-block textarea{width:100%;height:auto;border:none;display:block;height:100%}
 .adm-block-config{width:100%;height:30px;display:flex;align-content:space-between;flex-wrap:wrap}
 .adm-block-config .mover{width:40px}
@@ -79,8 +102,24 @@ a:hover {cursor: pointer}
 .adm-block-3 textarea{background:#FFFDE7}
 .deactive {opacity: 0.5;}
 .btn-close-popup {position: absolute;
-    right: 3px;
-    top: 0px;}
+                  right: 3px;
+                  top: 0px;}
 .btn-close-popup  img {width:16px;}
 .btn-close-popup:hover {cursor: pointer; opacity: 0.6}
 .add-new-blocks-cont a {display: block; margin: 5px;}
+
+.block-gradient {width:100px; height: 100px;background-color: #ccc; margin:5px;position: relative;}
+.bg-gradient-0 {    background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);}
+.bg-gradient-1 {    background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);  }
+.bg-gradient-2 { background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%); }
+.bg-gradient-3 {background-image: linear-gradient(to top, #3f51b1 0%, #5a55ae 13%, #7b5fac 25%, #8f6aae 38%, #a86aa4 50%, #cc6b8e 62%, #f18271 75%, #f3a469 87%, #f7c978 100%);  }
+.bg-gradient-4 {     background-image: linear-gradient(to top, #09203f 0%, #537895 100%); }
+.bg-gradient-5 { background-image: linear-gradient(to top, #007adf 0%, #00ecbc 100%); }
+
+.bg-gradient-6 {    background-image: linear-gradient(-225deg, #65379b 0%, #886aea 53%, #6457c6 100%);  }
+.bg-gradient-7 {     background-image: linear-gradient(60deg, #29323c 0%, #485563 100%); }
+.bg-gradient-8 {     background-image: linear-gradient(to top, #e8198b 0%, #c7eafd 100%); }
+.bg-gradient-9 {     background-image: linear-gradient(to top, #1e3c72 0%, #1e3c72 1%, #2a5298 100%); }
+.bg-gradient-10 {     background-image: linear-gradient(to right, #c1c161 0%, #c1c161 0%, #d4d4b1 100%); }
+.block-gradient.active {border:1px solid red}
+

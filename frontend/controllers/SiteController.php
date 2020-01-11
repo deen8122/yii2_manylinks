@@ -23,6 +23,7 @@ use yii\helpers\Url;
  */
 class SiteController extends Controller {
 
+	public $bodyClass="default";
 	/**
 	 * @return array
 	 */
@@ -61,12 +62,14 @@ class SiteController extends Controller {
 
 	public function actionPage($slug) {
 		$this->layout = 'personal-page'; //your layout name
-		//$model = Site::find()->where(['slug' => $slug, 'status' => Site::STATUS_PUBLISHED])->one();
 		$model = Site::find()->where(['code' => $slug])->one();
 		if (!$model) {
 			throw new NotFoundHttpException(Yii::t('frontend', 'Страница не найдена'));
 		}
-		//return $this->renderPartial('@app/views/personal-page/index',['model' => $model]);
+		if($model->dataArray['bgClass']){
+		 $this->bodyClass = $model->dataArray['bgClass'];
+		 
+		}		
 		return $this->render('personal-page', ['model' => $model]);
 	}
 

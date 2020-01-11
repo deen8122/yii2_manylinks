@@ -62,6 +62,18 @@ class SiteVersion extends Model {
 				return false;
 			}
 		}
+		/*
+		 * Расширенная версия.
+		 * 6 блоков доступны.
+		 * Возможно будет меняться
+		 */
+		if ($version == Site::SITE_VERSION_PRO) {
+			$count = SiteBlock::find()->where(['site_id' => Yii::$app->user->identity->site_id])->count();
+			if ($count >= 12) {
+				return false;
+			}
+		}
+		
 		//l($version);
 		return true;
 	}

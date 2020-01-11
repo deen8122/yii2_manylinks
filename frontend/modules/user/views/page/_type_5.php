@@ -29,7 +29,7 @@
 
 				<ul class="dropdown-menu dropdown-user-menu">
 				    <li><a onclick="blockActivate(<?= $obj2->id ?>, 'SiteBlockValue')">акти\деакт</a></li>
-				    <li><a onclick="sbvRemove(<?= $obj2->id ?>,<?= $obj->id ?>)" class="icon-ui icon-delete">удалить</a></li>
+				    <li><a onclick="sbvRemove(<?= $obj2->id ?>,<?= $obj->id ?>)" >удалить</a></li>
 				</ul>
 
 			    </div>

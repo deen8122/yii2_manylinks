@@ -33,7 +33,7 @@ class Site extends \yii\db\ActiveRecord {
 
 	public static function getVesrionNames(){
 		return [
-			self::SITE_VERSION_FREE => "бесплтаная версия",
+			self::SITE_VERSION_FREE => "бесплатная версия",
 			self::SITE_VERSION_EXTEND => "расширенная версия",
 			self::SITE_VERSION_PRO => "полная версия",
 		];
@@ -42,6 +42,10 @@ class Site extends \yii\db\ActiveRecord {
 		$arr = Site::getVesrionNames();
 		return $arr[$this->version];
 	}
+	public function getDataArray()
+    {
+        return json_decode($this->data,true);
+    }
 	/**
 	 * {@inheritdoc}
 	 */

@@ -1,26 +1,13 @@
-var yii = new Yii();
-function Yii() {
 
-}
 $(document).ready(function () {
+  var openblocks = yii.getParam("openblocks", {});
+   console.log(openblocks);
     init();
-
 });
 
 
 
-function UpdateContent() {
-    console.log('UpdateContent');
-    $.ajax({
-        type: "POST",
-        url: '/site/index',
-        data: {ajax: 1}, // serializes the form's elements.
-        success: function (data) {
-//console.log(data);
-            $('#content-items').html(data)
-        }
-    });
-}
+
 /*
  * Создает новый блок с типом  = type
  * @param {type} type
@@ -35,23 +22,28 @@ function addNewBLock(type) {
         if (json.code === "error") {
             alert(json.message)
         } else {
-
             window.location = "";
         }
     });
 }
 
 var $openedPopup = null;
-function popup_close(){
-    if($openedPopup!=null){
+function popup_close() {
+    if ($openedPopup != null) {
         $openedPopup.fadeOut(100);
         $('.popup-bg').fadeOut(100);
         $openedPopup = null;
     }
-    
+
 }
 function init() {
-    $('.add-btn').on('click', function () {
+    //
+    var debuggerActive = yii.getParam("debugger");
+    console.log(debuggerActive);
+    if (debuggerActive) {
+        debuggerOpen();
+    }
+    $('.add-new-block').on('click', function () {
         $openedPopup = $('#add-block-form');
         $openedPopup.fadeIn(100);
         var offset = $(this).offset();
@@ -111,7 +103,7 @@ function init() {
                 console.log(data);
                 $btn.html('Сохранить');
                 $btn.removeClass('active');
-                //document.getElementById('iframe').contentWindow.location.reload(true);
+                debuggerUpdate();
             }
         });
     });
@@ -124,15 +116,41 @@ function init() {
     });
     //  $('.adm-block-inner').hide();
     //  $('.adm-block-inner').first().show();
-     $('.adm-block').each(function(){
-         if($(this).hasClass('deactive')){
-             console.log("-------------->");
-            // $(this).find('.toggle-btn').click();
-            blockToggle($(this).data('id'));
-         }
-     });
+    var openblocks = yii.getParam("openblocks", {});
+    console.log(openblocks);
+    $('.adm-block').each(function () {
+        var id = $(this).data('id');
+        if (openblocks["block"+id]!==1) {
+            blockToggle(id);
+        }
+ 
+    });
 
 }
+
+
+
+
+
+
+
+
+function debuggerUpdate() {
+    try {
+        document.getElementById('iframe').contentWindow.location.reload(true);
+    } catch (e) {
+        console.log(e)
+    }
+}
+function debuggerClose() {
+    $('.iframe-phone').hide();
+    yii.setParam("debugger", false);
+}
+function debuggerOpen() {
+    $('.iframe-phone').show();
+    yii.setParam("debugger", true);
+}
+
 
 function UpdateBlockContent(id) {
     var $block = $('#block-' + id);
@@ -140,22 +158,6 @@ function UpdateBlockContent(id) {
     $block.find('.block-draw').html(text);
 }
 
-/*
- function sbvRemove(id, sb_id) {
- var _csrf = $('[name="_csrf"]').val();
- var data = 'sb_id=' + sb_id + '&id=' + id + '&_csrf=' + _csrf;
- $.ajax({
- type: "POST",
- url: '/user/page/sbvdelete',
- data: data, // serializes the form's elements.
- success: function (data) {
- console.log(data)
- console.log('removed - ' + id);
- }
- });
- $('.sbv-item-' + id).fadeOut(500);
- }
- */
 function sbvRemove(id, sb_id) {
     var _csrf = $('[name="_csrf"]').val();
     var data = 'sb_id=' + sb_id + '&id=' + id + '&_csrf=' + _csrf;
@@ -201,7 +203,9 @@ function updateSort() {
         data[id] = sort;
     });
     doRequest('/user/page/updatesort', {action: "bvUpdateSort", data: data}, function () {
-        console.log('--->')
+        
+        debuggerUpdate();
+        console.log('-xxx-->');
     });
 }
 $(function () {
@@ -218,7 +222,7 @@ $(function () {
                 });
                 console.log(sort)
                 doRequest('/user/page/updatesort', {action: "blockUpdateSort", data: sort}, function () {
-                    console.log('--->')
+                    debuggerUpdate();
                 });
             } else {
                 var i = 0;
@@ -239,24 +243,25 @@ $(function () {
 
 
 function blockToggle(id) {
-     console.log('blockToggle');
-    console.log(id);
+    var openblocks = yii.getParam("openblocks", {});
     var $innerBlock = $('#block-' + id).find('.adm-block-inner');
-    var $btn = $('#block-' + id).find('.toggle-btn');
+    var $btn = $('#block-' + id).find('.block-form').find('.toggle-btn');
+    $btn.addClass("xxx");
+    
     if ($innerBlock.hasClass('opened')) {
         $innerBlock.hide();
         $innerBlock.removeClass('opened');
         $btn.removeClass('icon-minus');
         $btn.addClass('icon-plus');
+         openblocks["block"+id] = 0;
     } else {
         $innerBlock.show();
         $innerBlock.addClass('opened')
         $btn.removeClass('icon-plus');
         $btn.addClass('icon-minus');
-        // jQuery('textarea').autoResize();
-        // jQuery('textarea').autoResize();
-        // $('textarea').keyup(); //.css('height', h + 'px');
+        openblocks["block"+id] = 1;
     }
+     yii.setParam("openblocks", openblocks);
 }
 
 function blockRemove(id, isConfirm) {
@@ -301,5 +306,19 @@ function blockActivate(id, type) {
             $obj.removeClass("active");
         }
 
+    });
+}
+
+
+function popupModule(nameModule) {
+    console.log('nameModule init... ')
+    $openedPopup = $('#popup-form');
+    $openedPopup.fadeIn(100);
+    $openedPopup.css('top', '100px');
+    $('.popup-bg').fadeIn(100);
+    //
+    doRequest("/extentions/" + nameModule, {}, function (data) {
+        console.log(data);
+        $openedPopup.find(".content-p").html(data.html)
     });
 }

@@ -3,7 +3,7 @@
     margin: 226px 0 117px;
     font-size: 45px;
     text-align: center;
-    animation: pulse 4s infinite;
+    animation: pulse 3s infinite;
     text-shadow: 2px -4px 0 rgb(79, 79, 79);
  
 }
@@ -14,7 +14,7 @@
    text-shadow: 0px 0px 0 #FF0000;
   }
   50% {
-      text-shadow: 0px 0px 20px #FF0000;
+      text-shadow: 1px 3px 50px #FF0000;
   }
   100% {
       text-shadow: 0px 0px 0 #FF0000;

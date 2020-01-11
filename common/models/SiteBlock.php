@@ -55,13 +55,14 @@ class SiteBlock extends \yii\db\ActiveRecord {
 	 */
 	public function rules() {
 		return [
-			[['site_id'], 'required'],
+			//[['site_id'], 'required'],
 			[['text', 'name'], 'string'],
 			[['sort', 'site_id', 'status'], 'integer'],
 			[['name'], 'string', 'max' => 300],
 			[['sort'], 'default', 'value' => -1],
 			[['name'], 'default', 'value' => "title..."],
 			[['status'], 'default', 'value' => SiteBlock::STATUS_ACTIVE],
+			[['site_id'], 'default', 'value' => Yii::$app->user->identity->site_id],
 		];
 	}
 

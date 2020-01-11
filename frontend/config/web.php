@@ -11,6 +11,9 @@ $config = [
 			'shouldBeActivated' => false,
 			'enableLoginByPass' => false,
 		],
+		'extentions' => [
+			'class' => frontend\modules\extentions\Module::class,
+		],
 	],
 	'components' => [
 			'authClientCollection' => [

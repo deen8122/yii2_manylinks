@@ -1,5 +1,7 @@
 <?php
-
+/*
+ * Административная часть
+ */
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
@@ -31,7 +33,7 @@ use yii\helpers\ArrayHelper;
                 };
 	</script>
     </head>
-    <body>
+    <body >
 
 	<header class="admin-header">
 	    <nav class="navbar navbar-expand-lg navigation d-flex align-items-center ">
@@ -88,7 +90,7 @@ use yii\helpers\ArrayHelper;
 		    </div>
 		</div>
 	    </nav>
-	    <div class="container top-line"></div>
+	    
 	</header>
 
 	<? // include 'test_header_menu.php'; ?>
@@ -123,13 +125,13 @@ use yii\helpers\ArrayHelper;
 			<center>2019 - <?= date('Y') ?></center>
 		    </div>
 		    <div col-md-4>
-
+<? if(false):?>
 			<!-- Yandex.Metrika informer -->
 			<a href="https://metrika.yandex.ru/stat/?id=56896387&amp;from=informer"
 			   target="_blank" rel="nofollow"><img src="https://informer.yandex.ru/informer/56896387/3_1_FFFFFFFF_EFEFEFFF_0_pageviews"
 							    style="width:88px; height:31px; border:0;" alt="Яндекс.Метрика" title="Яндекс.Метрика: данные за сегодня (просмотры, визиты и уникальные посетители)" class="ym-advanced-informer" data-cid="56896387" data-lang="ru" /></a>
 			<!-- /Yandex.Metrika informer -->
-
+<?endif?>
 		    </div>
 		</div>
 	    </div>
@@ -147,14 +149,18 @@ use yii\helpers\ArrayHelper;
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
 	<link href="<?= Url::base() ?>/css/libs/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 
+	<script src="<?= Url::base() ?>/js/admin/Yii.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/textarea-elastic.js"></script>
-	<script src="<?= Url::base() ?>/js/libs/jquery-ui.js"></script>
-	<script src="<?= Url::base() ?>/js/libs/jquery.Jcrop.min.js" async onload="console.log('->Jcrop init')"></script>
+	<script src="<?= Url::base() ?>/js/libs/jquery-ui.js"></script>	
 	<script src="<?= Url::base() ?>/js/admin/image.js"></script>
 	<script src="<?= Url::base() ?>/js/admin-script.js"></script>
+	
+	<!-- async -->
+	<script src="<?= Url::base() ?>/js/admin/Config.js" async ></script>
+	<script src="<?= Url::base() ?>/js/libs/jquery.Jcrop.min.js" async onload="console.log('->Jcrop init')"></script>
 	<link href="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
 
-
+<? if(false):?>
 	<!-- Yandex.Metrika counter -->
 	<script type="text/javascript" >
                 (function (m, e, t, r, i, k, a) {
@@ -175,7 +181,7 @@ use yii\helpers\ArrayHelper;
 	</script>
 	<noscript><div><img src="https://mc.yandex.ru/watch/56896387" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 	<!-- /Yandex.Metrika counter -->
-
+<?endif?>
     </body>
 </html>
 <?php $this->endPage() ?>
