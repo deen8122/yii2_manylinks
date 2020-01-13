@@ -643,3 +643,30 @@ header .navigation .navgition-menu ul .toggleable .menu-item {padding:4px 0;font
 .content-inner {margin-top: 50px;}
 .content-inner h1 {margin-bottom: 40px;}
 .flash {margin:20px;}
+
+
+.auth-clients {
+    display: block;
+    margin: 0 0 1em;
+    list-style: none;
+    overflow: auto;
+}
+.auth-clients li {
+    float: left;
+    display: block;
+    margin: 0 1em 0 0;
+    text-align: center;
+}
+.auth-icon {
+    display: block;
+    width: 32px;
+    height: 32px;
+    background: url(/img/authchoice.png) no-repeat;
+    border-radius: 3px;
+    margin: 0 auto;
+}.auth-icon.facebook {
+    background-position: 0 -170px;
+}
+.auth-icon.vkontakte {
+    background-position: 0 -136px;
+}

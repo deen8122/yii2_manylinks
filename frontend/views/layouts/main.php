@@ -23,6 +23,9 @@ use yii\helpers\ArrayHelper;
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="true">
 	<script src="<?= Url::base() ?>/js/libs/jquery.min2.js?ver=1"></script>
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css" />	
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/admin-page.css?ver=3" />
 	<title>ManyLinks.ru - admin</title>
 	<?php $this->head() ?>
 	<?php echo Html::csrfMetaTags() ?>
@@ -76,7 +79,7 @@ use yii\helpers\ArrayHelper;
 					    <span class="caret"></span></a>
 					<ul class="dropdown-menu dropdown-user-menu">
 					    <li><a href="/user/page/index" tabindex="-1">Панель управления</a></li>
-					    <li><a href="/user/config/profile" tabindex="-1">Настройки</a></li>
+					    <li><a href="/user/config/profile" tabindex="-1">Настройки пользователя</a></li>
 					    <li style="margin-top:15px;border-top:1px solid #ccc">
 						<a href="/user/sign-in/logout" data-method="post" tabindex="-1">Выход</a>
 					    </li>
@@ -143,9 +146,7 @@ use yii\helpers\ArrayHelper;
 
 	</div>
 
-	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css" />	
-	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/admin-page.css?ver=3" />
+	
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
 	<link href="<?= Url::base() ?>/css/libs/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 

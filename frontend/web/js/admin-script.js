@@ -1,45 +1,13 @@
-
+var $openedPopup = null;
 $(document).ready(function () {
-    var openblocks = yii.getParam("openblocks", {});
+    var openblocks = app.getParam("openblocks", {});
     console.log(openblocks);
-  //  popupModule('bgimage')
     init();
 });
 
-
-
-
-/*
- * Создает новый блок с типом  = type
- * @param {type} type
- * @return {undefined}
- */
-function addNewBLock(type) {
-    $('.popup-bg').fadeOut(100);
-    $('#add-block-form').fadeOut(100);
-    doRequest('/user/page/createblock', {type: type}, function (json) {
-        console.log('--->')
-        console.log(json);
-        if (json.code === "error") {
-            alert(json.message)
-        } else {
-            window.location = "";
-        }
-    });
-}
-
-var $openedPopup = null;
-function popup_close() {
-    if ($openedPopup != null) {
-        $openedPopup.fadeOut(100);
-        $('.popup-bg').fadeOut(100);
-        $openedPopup = null;
-    }
-
-}
 function init() {
     //
-    var debuggerActive = yii.getParam("debugger");
+    var debuggerActive = app.getParam("debugger");
     console.log("============debuggerActive==============")
     console.log(debuggerActive);
     if (debuggerActive) {
@@ -118,12 +86,12 @@ function init() {
     });
     //  $('.adm-block-inner').hide();
     //  $('.adm-block-inner').first().show();
-    var openblocks = yii.getParam("openblocks", {});
-     console.log(openblocks.length);
+    var openblocks = app.getParam("openblocks", {});
+    console.log(openblocks.length);
     console.log(openblocks);
     $('.adm-block').each(function () {
         var id = $(this).data('id');
-        if (openblocks["block-" + id] !== 1) {
+        if (openblocks["block-" + id] !== 1&& openblocks["block-" + id] !== undefined) {
             blockToggle(id);
         }
 
@@ -133,26 +101,41 @@ function init() {
 
 
 
+/*
+ * Создает новый блок с типом  = type
+ * @param {type} type
+ * @return {undefined}
+ */
+function addNewBLock(type) {
+    $('.popup-bg').fadeOut(100);
+    $('#add-block-form').fadeOut(100);
+    doRequest('/user/page/createblock', {type: type}, function (json) {
+        if (json.code === "error") {
+            alert(json.message)
+        } else {
+            window.location = "";
+        }
+    });
+}
 
 
-
-
-
-function debuggerUpdate() {
-    try {
-        document.getElementById('iframe').contentWindow.location.reload(true);
-    } catch (e) {
-        console.log(e)
+function popup_close() {
+    if ($openedPopup != null) {
+        $openedPopup.fadeOut(100);
+        $('.popup-bg').fadeOut(100);
+        $openedPopup = null;
     }
+
 }
-function debuggerClose() {
-    $('.iframe-phone').hide();
-    yii.setParam("debugger", 0);
-}
-function debuggerOpen() {
-    $('.iframe-phone').show();
-    yii.setParam("debugger", 1);
-}
+
+
+
+
+
+
+
+
+
 
 
 function UpdateBlockContent(id) {
@@ -246,11 +229,9 @@ $(function () {
 
 
 function blockToggle(id) {
-    var openblocks = yii.getParam("openblocks", {});
+    var openblocks = app.getParam("openblocks", {});
     var $innerBlock = $('#block-' + id).find('.adm-block-inner');
     var $btn = $('#block-' + id).find('.block-form').find('.toggle-btn');
-    $btn.addClass("xxx");
-
     if ($innerBlock.hasClass('opened')) {
         $innerBlock.hide();
         $innerBlock.removeClass('opened');
@@ -264,7 +245,7 @@ function blockToggle(id) {
         $btn.addClass('icon-minus');
         openblocks["block-" + id] = 1;
     }
-    yii.setParam("openblocks", openblocks);
+    app.setParam("openblocks", openblocks);
 }
 
 function blockRemove(id, isConfirm) {
@@ -313,15 +294,3 @@ function blockActivate(id, type) {
 }
 
 
-function popupModule(nameModule) {
-    console.log('nameModule init... ')
-    $openedPopup = $('#popup-form');
-    $openedPopup.fadeIn(100);
-    $openedPopup.css('top', '100px');
-    $('.popup-bg').fadeIn(100);
-    //
-    doRequest("/extentions/" + nameModule, {}, function (data) {
-        console.log(data);
-        $openedPopup.find(".content-p").html(data.html)
-    });
-}

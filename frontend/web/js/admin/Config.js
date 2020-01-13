@@ -7,7 +7,7 @@ var Config = {
         for (var i = 0; i < elements.length; i++) {
             elements[i].classList.remove('active');
         }
-
+ console.log('selectBackgroundColor');
         console.log(img);
         _this.classList.add("active");
         console.log(c);

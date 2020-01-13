@@ -26,10 +26,11 @@ $this->title = Yii::t('frontend', 'Настройка публичной стр�
     <div class="row">
 	<div class="col-md-12">
 	    <div class="row">
+		<? /*
 		<div class="col-md-12">
 		    <?php echo $form->field($model, 'style')->textArea() ?>
 		</div>
-		
+		*/?>
 		<div class="col-md-4">
 		    <?php echo $form->field($model, 'name')->textInput(['maxlength' => 255]) ?>
 		</div>

@@ -16,14 +16,14 @@ $config = [
 		],
 	],
 	'components' => [
-			'authClientCollection' => [
+		'authClientCollection' => [
 			'class' => yii\authclient\Collection::class,
 			'clients' => [
-				'github' => [
-					'class' => yii\authclient\clients\GitHub::class,
-					'clientId' => env('GITHUB_CLIENT_ID'),
-					'clientSecret' => env('GITHUB_CLIENT_SECRET')
-				],
+				'vkontakte' => [
+					'class' =>  yii\authclient\clients\VKontakte::class,
+					'clientId' => '7279816',
+					'clientSecret' => 'mYr7V3RAQRlI75Yxy28f',
+				],				
 				'facebook' => [
 					'class' => yii\authclient\clients\Facebook::class,
 					'clientId' => env('FACEBOOK_CLIENT_ID'),
@@ -47,11 +47,11 @@ $config = [
 				if (env('APP_MAINTENANCE') === '1') {
 					return true;
 				}
-				return false ; //$app->keyStorage->get('frontend.maintenance') === 'enabled';
+				return false; //$app->keyStorage->get('frontend.maintenance') === 'enabled';
 			}
 		],
 		'request' => [
-			 'baseUrl' => '',
+			'baseUrl' => '',
 			'cookieValidationKey' => env('FRONTEND_COOKIE_VALIDATION_KEY')
 		],
 		'user' => [

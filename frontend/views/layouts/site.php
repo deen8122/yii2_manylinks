@@ -2,6 +2,7 @@
 /*
  * Публичная часть сайта
  */
+
 use yii\helpers\Html;
 use yii\helpers\Url;
 use yii\helpers\ArrayHelper;
@@ -22,10 +23,11 @@ use yii\helpers\ArrayHelper;
 	<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="true">
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css?ver=1" />
 	<script src="<?= Url::base() ?>/js/libs/jquery.min.js?ver=1"></script>
 	<title>ManyLinks.ru - <?php echo Html::encode($this->title) ?></title>
 	<?php $this->head() ?>
-	<?php echo Html::csrfMetaTags() ?>
+<?php echo Html::csrfMetaTags() ?>
 	<link rel="shortcut icon" type="image/x-icon" href="/img/logo-32.png" /> 
 	<script>
                 var YiiData = {
@@ -72,29 +74,29 @@ use yii\helpers\ArrayHelper;
 					   href="<?= Url::to(['/contacts']) ?>">Контакты</a>				
 				    </li>
 
-				    <? if (Yii::$app->user->isGuest): ?>
+<? if (Yii::$app->user->isGuest): ?>
 					    <li  class="toggleable" style="padding-right: 0"> 
 						<a  style="color: #f79823;" class="menu-item" href="<?= Url::to(['/user/sign-in/signup']) ?>">Регистрация</a> /				
 					    </li>
 					    <li  class="toggleable" style="padding-left: 0"> 
 						<a style="color: #f79823;" class="menu-item" href="<?= Url::to(['/user/sign-in/login']) ?>">Вход</a>				
 					    </li>
-				    <? else: ?>
+<? else: ?>
 					    <li class="toggleable dropdown ">
 						<a class="menu-item dropdown-toggle" 
 						   href="/user/page/index" 
 						   style="color: #f79823;">
-						       <?= Yii::$app->user->identity->getPublicIdentity() ?>
+	<?= Yii::$app->user->identity->getPublicIdentity() ?>
 						    <span class="caret"></span></a>
 						<ul class="dropdown-menu dropdown-user-menu">
 						    <li><a href="/user/page/index" tabindex="-1">Панель управления</a></li>
-						    <li><a href="/user/config/profile" tabindex="-1">Настройки</a></li>
+						    <li><a href="/user/config/profile" tabindex="-1">Настройки пользователя</a></li>
 						    <li style="margin-top:15px;border-top:1px solid #ccc">
 							<a href="/user/sign-in/logout" data-method="post" tabindex="-1">Выход</a>
 						    </li>
 						</ul>
 					    </li>
-				    <? endif ?>
+<? endif ?>
 
 				</ul>
 			    </div>
@@ -106,11 +108,11 @@ use yii\helpers\ArrayHelper;
 	    <div class="container top-line"></div>
 	</header>
 
-	<? // include 'test_header_menu.php';  ?>
+<? // include 'test_header_menu.php';   ?>
 
 
 	<div class="container">
-	    <?php if (Yii::$app->session->hasFlash('alert')): ?>
+		<?php if (Yii::$app->session->hasFlash('alert')): ?>
 		    <div class="flash">
 			<?php
 			echo \yii\bootstrap\Alert::widget([
@@ -120,8 +122,10 @@ use yii\helpers\ArrayHelper;
 			?>
 		    </div>
 	    <?php endif; ?>
+	    <?php $this->beginBody() ?>
 	    <?php echo $content ?>
-	    <? //l($_SESSION['USER']);  ?>
+	    <?php $this->endBody() ?>
+<? //l($_SESSION['USER']);   ?>
 	</div>
 
 
@@ -153,7 +157,7 @@ use yii\helpers\ArrayHelper;
 
 	<div class="popup-bgx"></div>
 	<link xhref="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
-	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
+	
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css?ver=3" />
 
 	<!-- Yandex.Metrika counter -->

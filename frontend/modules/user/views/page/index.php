@@ -10,7 +10,6 @@ use common\models\SiteBlock;
 //$this->title = 'Tasks';
 //$this->params['breadcrumbs'][] = $this->title;
 $cookies = Yii::$app->request->cookies;
-
 ?>
 <div class="task-index">
     <br>
@@ -23,10 +22,14 @@ $cookies = Yii::$app->request->cookies;
 		    <ul style="margin-top: -1px;" class="dropdown-menu dropdown-main-menu">
 			<li><a class="add-new-block">Добавить блок</a></li>
 			<li><a onclick="debuggerOpen()">Показать отладчик</a></li>
-			<li><a onclick="popupModule('bgimage')">Настройки фона </a></li>
-			<li><a onclick="popupModule('css')">Правка CSS</a></li>
-			<li><a class="">Страницы</a></li>
-			<li><a class="">Статистика</a></li>
+			<li><a onclick="app.popupModule('bgimage')">Настройки фона </a></li>
+			<li><a onclick="app.popupModule('css')">Правка CSS</a></li>
+			<? /*
+			  <li><a class="">Страницы</a></li>
+			  <li><a class="">Статистика</a></li>
+			 * 
+			 */
+			?>
 		    </ul>
 
 		</div>
@@ -107,9 +110,9 @@ $cookies = Yii::$app->request->cookies;
 </div>
 <div class="iframe-phone" style="width: 272px;height: 510px;" >
     <button class="btn" onclick="debuggerClose()">закрыть</button>
-	<iframe id="iframe"  src="<?= env('FRONTEND_HOST_INFO') ?><?= $site->code ?>"  style="width: 330px; height: 600px;border-radius: 5px;"></iframe>
+    <iframe id="iframe"  src="<?= env('FRONTEND_HOST_INFO') ?><?= $site->code ?>"  style="width: 330px; height: 600px;border-radius: 5px;"></iframe>
 </div>
-  
+
 <? include 'popup.php' ?>
 
-<?// l($_COOKIE);?>
+<? // l($_COOKIE); ?>

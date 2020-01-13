@@ -23,10 +23,7 @@ class BgimageController extends BaseController {
 
 	public function actionUpdate() {
 		$data = Yii::$app->request->post();
-		if($data['img']){
-			return parent::update(['bgClass' => $data['bgClass'],"img"=>$data['img']]);
-		}
-		return parent::update(['bgClass' => $data['bgClass']]);
+		return parent::update(['bgClass' => $data['bgClass'],"img"=>$data['img']]);
 	}
 
 }

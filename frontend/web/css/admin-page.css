@@ -10,11 +10,12 @@
 }
 .admin-header .logo .logo-text{font-size: 16px;margin-left: 8px;}
 .menu-main {}
+.dropdown-menu {z-index: 100!important;}
 a:hover {cursor: pointer}
 .top-inform{max-width:560px;margin:auto;margin-bottom:20px}
 .midle span.name {line-height: 30px;margin-left:10px;}
 .adm-blocks-list{max-width:560px;margin:auto}
-.adm-blocks-list .adm-block{min-height:50px;border:1px solid #ccc;margin:5px;border-radius:8px;background:#fff;overflow:hidden}
+.adm-blocks-list .adm-block{min-height:50px;border:1px solid #ccc;margin:5px;xborder-radius:8px;background:#fff;overflow:hidden}
 .adm-blocks-list .adm-block-1{border:1px solid #dcedc8}
 .adm-blocks-list .adm-block-1 .adm-block-config{background:#dcedc8}
 .adm-blocks-list .adm-block-2{border:1px solid #d1c4e9}
@@ -108,7 +109,7 @@ a:hover {cursor: pointer}
 .btn-close-popup:hover {cursor: pointer; opacity: 0.6}
 .add-new-blocks-cont a {display: block; margin: 5px;}
 
-.block-gradient {width:100px; height: 100px;background-color: #ccc; margin:5px;position: relative;}
+.block-gradient {width:95px; height: 100px;background-color: #ccc; margin:5px;position: relative;}
 .bg-gradient-0 {    background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);}
 .bg-gradient-1 {    background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);  }
 .bg-gradient-2 { background-image: linear-gradient(to right, #b8cbb8 0%, #b8cbb8 0%, #b465da 0%, #cf6cc9 33%, #ee609c 66%, #ee609c 100%); }
@@ -124,5 +125,11 @@ a:hover {cursor: pointer}
 .block-gradient.active {border:1px solid red;box-shadow: 0px 0px 10px red;}
 
 
-.block-image {width:100px; height: 100px;background-color: #ccc; margin:5px;position: relative;    background-size: cover;    float: left;}
-.bg-image-0 {    background-image:url('/upload/bgImage/0.jpg')}
+.block-image {width:95px; height: 100px;background-color: #ccc; margin:5px;position: relative;    background-size: cover;    float: left;}
+.horizontal-block-wrap {    height: 150px;
+    overflow: scroll;
+    position: relative;
+    overflow-x: scroll;
+    overflow-y: hidden;}
+.horizontal-block-item {    position: absolute;
+    top: 0;}

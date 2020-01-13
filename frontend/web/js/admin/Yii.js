@@ -1,23 +1,37 @@
-var yii = new Yii();
-function Yii() {
+var app = new App();
+function App() {
 
 }
-Yii.prototype.addScript = function (src) {
+
+
+App.prototype.popupModule = function (nameModule) {
+    console.log('nameModule init... ')
+    $openedPopup = $('#popup-form');
+    $openedPopup.fadeIn(100);
+    $openedPopup.css('top', '100px');
+    $('.popup-bg').fadeIn(100);
+    var $content = $openedPopup.find(".content-p");
+    $content.html('<center><img src="/img/loading.gif"></center>');
+    doRequest("/extentions/" + nameModule, {}, function (data) {
+        $content.html(data.html)
+    });
+}
+App.prototype.addScript = function (src) {
     var script = document.createElement('script');
     script.src = src;
     script.async = false; // чтобы гарантировать порядок
     document.head.appendChild(script);
 }
-Yii.prototype.setParam = function (name, value) {
+App.prototype.setParam = function (name, value) {
     console.log("-----------setParam--------------");
     console.log(name);
     console.log(value);
-   // setCookie(name, JSON.stringify(value));
+     setCookie(name, JSON.stringify(value));
 
-   $.cookie(name, JSON.stringify(value)); 
+    //$.cookie(name, JSON.stringify(value));
 };
 
-Yii.prototype.getParam = function (name, defaultValue) {
+App.prototype.getParam = function (name, defaultValue) {
     var data = getCookie(name);
     if (defaultValue === undefined) {
         defaultValue = false;
@@ -32,7 +46,7 @@ Yii.prototype.getParam = function (name, defaultValue) {
 };
 
 
-Yii.prototype.setConfigParam = function (name, defaultValue) {
+App.prototype.setConfigParam = function (name, defaultValue) {
     var data = getCookie(name);
     if (defaultValue === undefined) {
         defaultValue = false;
@@ -72,7 +86,7 @@ function setCookie(name, value, options) {
     }
 
     value = encodeURIComponent(value);
-
+     options.path="/";
     var updatedCookie = name + "=" + value;
 
     for (var propName in options) {
@@ -84,4 +98,26 @@ function setCookie(name, value, options) {
     }
 
     document.cookie = updatedCookie;
+}
+
+
+
+
+
+
+
+function debuggerUpdate() {
+    try {
+        document.getElementById('iframe').contentWindow.location.reload(true);
+    } catch (e) {
+        console.log(e)
+    }
+}
+function debuggerClose() {
+    $('.iframe-phone').hide();
+    app.setParam("debugger", 0);
+}
+function debuggerOpen() {
+    $('.iframe-phone').show();
+    app.setParam("debugger", 1);
 }
