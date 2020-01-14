@@ -23,8 +23,9 @@ use yii\helpers\Url;
  */
 class SiteController extends Controller {
 
-	public $bodyClass="default";
-	public $bodyStyle="";
+	public $bodyClass = "default";
+	public $bodyStyle = "";
+
 	/**
 	 * @return array
 	 */
@@ -67,15 +68,13 @@ class SiteController extends Controller {
 		if (!$model) {
 			throw new NotFoundHttpException(Yii::t('frontend', 'Страница не найдена'));
 		}
-		if($model->dataArray['bgClass']=='bg-image'){
-		 $this->bodyStyle = 'background-image:url(/img/bgImages/'.$model->dataArray['img'].'.jpg';
-		 
+		if ($model->dataArray['bgClass'] == 'bg-image') {
+			$this->bodyStyle = 'background-image:url(/img/bgImages/' . $model->dataArray['img'] . '.jpg';
 		}
-		if($model->dataArray['bgClass']){
-		 $this->bodyClass = $model->dataArray['bgClass'];
-		 
-		}	
-		
+		if ($model->dataArray['bgClass']) {
+			$this->bodyClass = $model->dataArray['bgClass'];
+		}
+
 		return $this->render('personal-page', ['model' => $model]);
 	}
 
@@ -143,6 +142,15 @@ class SiteController extends Controller {
 		return $this->render('contact', [
 				'model' => $model
 		]);
+	}
+
+	public function actionTest() {
+		$email = new \frontend\models\EmailSend();
+		$email->send(\frontend\models\EmailSend::TYPE_ACTIVATION, [
+			'url' => Url::to(['/user/sign-in/activation', 'token' => "xxxxx"])
+		]);
+
+		return $this->render('price');
 	}
 
 }

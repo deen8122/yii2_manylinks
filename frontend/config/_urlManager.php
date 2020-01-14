@@ -10,6 +10,7 @@ return [
 		'' => 'site/index',
 		//'<action:(rules|xxx)>' => 'page/view2',
 		'/price' => 'site/price',
+		'/test' => 'site/test',
 		'/help' => 'site/help',
 		'/contacts' => 'site/contacts',
 		'/privacy_policy' => 'site/privacy_policy',

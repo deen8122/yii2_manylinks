@@ -47,6 +47,9 @@ class SignInController extends \yii\web\Controller {
 		return parent::beforeAction($action);
 	}
 
+	public  function goHome(){
+		return Yii::$app->controller->redirect(['/user/sign-in/login']);
+	}
 	/**
 	 * @return array testtest@mail.ru
 	 */
@@ -171,7 +174,7 @@ class SignInController extends \yii\web\Controller {
 				if ($model->shouldBeActivated()) {
 					Yii::$app->getSession()->setFlash('alert', [
 						'body' => Yii::t(
-							'frontend', 'Ваш аккаунт был успешно создан. Проверьте ваш e-mail.'
+							'frontend', 'На ваш e-mail отправлено письмо для активации аккаунта'
 						),
 						'options' => ['class' => 'alert-success']
 					]);

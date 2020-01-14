@@ -35,30 +35,28 @@ class SignupForm extends Model {
 	/**
 	 * @inheritdoc
 	 */
-    public function rules()
-    {
-        return [
-		/*
-            ['username', 'filter', 'filter' => 'trim'],
-            ['username', 'required'],
-            ['username', 'unique',
-                'targetClass' => '\common\models\User',
-                'message' => Yii::t('frontend', 'Это имя пользователя уже занято.')
-            ],
-            ['username', 'string', 'min' => 2, 'max' => 255],
-*/
-            ['email', 'filter', 'filter' => 'trim'],
-            ['email', 'required'],
-            ['email', 'email'],
-            ['email', 'unique',
-                'targetClass' => '\common\models\User',
-                'message' => Yii::t('frontend', 'Этот e-mail уже занят.')
-            ],
-
-            ['password', 'required'],
-            ['password', 'string', 'min' => 6],
-        ];
-    }
+	public function rules() {
+		return [
+			/*
+			  ['username', 'filter', 'filter' => 'trim'],
+			  ['username', 'required'],
+			  ['username', 'unique',
+			  'targetClass' => '\common\models\User',
+			  'message' => Yii::t('frontend', 'Это имя пользователя уже занято.')
+			  ],
+			  ['username', 'string', 'min' => 2, 'max' => 255],
+			 */
+			['email', 'filter', 'filter' => 'trim'],
+			['email', 'required'],
+			['email', 'email'],
+			['email', 'unique',
+				'targetClass' => '\common\models\User',
+				'message' => Yii::t('frontend', 'Этот e-mail уже занят.')
+			],
+			['password', 'required'],
+			['password', 'string', 'min' => 6],
+		];
+	}
 
 	/**
 	 * @return array
@@ -95,14 +93,12 @@ class SignupForm extends Model {
 				$token = UserToken::create(
 						$user->id, UserToken::TYPE_ACTIVATION, Time::SECONDS_IN_A_DAY
 				);
-				Yii::$app->commandBus->handle(new SendEmailCommand([
-					'subject' => Yii::t('frontend', 'Письмо активации'),
-					'view' => 'activation',
-					'to' => $this->email,
-					'params' => [
-						'url' => Url::to(['/user/sign-in/activation', 'token' => $token->token], true)
-					]
-				]));
+				$email = new \frontend\models\EmailSend();
+				$email->send(\frontend\models\EmailSend::TYPE_ACTIVATION, [
+					'email_to'=>$this->email,
+					'url' => Url::to(['/user/sign-in/activation', 'token' => $token->token])
+				]);
+				
 			}
 			return $user;
 		}
@@ -110,7 +106,6 @@ class SignupForm extends Model {
 		return null;
 	}
 
-	
 	/**
 	 * @return bool
 	 */

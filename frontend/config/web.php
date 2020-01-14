@@ -8,7 +8,7 @@ $config = [
 	'modules' => [
 		'user' => [
 			'class' => frontend\modules\user\Module::class,
-			'shouldBeActivated' => false,
+			'shouldBeActivated' => true,
 			'enableLoginByPass' => false,
 		],
 		'extentions' => [
@@ -23,11 +23,6 @@ $config = [
 					'class' =>  yii\authclient\clients\VKontakte::class,
 					'clientId' => '7279816',
 					'clientSecret' => 'mYr7V3RAQRlI75Yxy28f',
-				],				
-				'facebook' => [
-					'class' => yii\authclient\clients\Facebook::class,
-					'clientId' => env('FACEBOOK_CLIENT_ID'),
-					'clientSecret' => env('FACEBOOK_CLIENT_SECRET'),
 					'scope' => 'email,public_profile',
 					'attributeNames' => [
 						'name',
@@ -35,7 +30,7 @@ $config = [
 						'first_name',
 						'last_name',
 					]
-				]
+				],						
 			]
 		],
 		'errorHandler' => [

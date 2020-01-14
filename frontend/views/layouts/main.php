@@ -79,7 +79,7 @@ use yii\helpers\ArrayHelper;
 					    <span class="caret"></span></a>
 					<ul class="dropdown-menu dropdown-user-menu">
 					    <li><a href="/user/page/index" tabindex="-1">Панель управления</a></li>
-					    <li><a href="/user/config/profile" tabindex="-1">Настройки пользователя</a></li>
+					    <li><a href="/user/config/profile" tabindex="-1">Настройки</a></li>
 					    <li style="margin-top:15px;border-top:1px solid #ccc">
 						<a href="/user/sign-in/logout" data-method="post" tabindex="-1">Выход</a>
 					    </li>
