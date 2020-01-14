@@ -58,6 +58,8 @@ class DefaultController extends Controller
      */
     public function actionIndex()
     {
+	    
+	    return Yii::$app->controller->redirect(['/user/page/index']);
         $accountForm = new AccountForm();
         $accountForm->setUser(Yii::$app->user->identity);
 
