@@ -1,0 +1,12 @@
+Array
+(
+    [file] => Array
+        (
+            [name] => dlya-chetvergovogo-nastroeniya_026.jpg
+            [type] => image/jpeg
+            [tmp_name] => D:\openserver5\OSPanel\userdata\temp\phpBBE0.tmp
+            [error] => 0
+            [size] => 217080
+        )
+
+)

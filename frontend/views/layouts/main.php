@@ -42,7 +42,7 @@ use yii\helpers\ArrayHelper;
 	    <nav class="navbar navbar-expand-lg navigation d-flex align-items-center ">
 		<div class="container">
 		    <div class="row-flex">
-			<div class="col-md-4 col-xs-12">
+			<div class="col-md-4 col-xs-2 hidden-xs">
 			    <a class="logo" href="<?= Url::to(['/site/index']) ?>">
 				<? /*
 				  <img src="/img/icons/logo.svg">
@@ -151,7 +151,7 @@ use yii\helpers\ArrayHelper;
 	<link href="<?= Url::base() ?>/css/libs/jquery.Jcrop.min.css" rel="stylesheet" type="text/css" />
 
 	<script src="<?= Url::base() ?>/js/libs/jquery.cookie.js"  ></script>
-	<script src="<?= Url::base() ?>/js/admin/Yii.js"></script>
+	<script src="<?= Url::base() ?>/js/admin/App.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/textarea-elastic.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/jquery-ui.js"></script>	
 	<script src="<?= Url::base() ?>/js/admin/image.js"></script>

@@ -13,6 +13,14 @@ use common\models\SiteBlock;
 
 class SiteVersion extends Model {
 
+	public static function getDirSizeBySiteType() {
+		return [
+			Site::SITE_VERSION_FREE => 2 * 1024 * 1024, //2 Mb Бесплатно
+			Site::SITE_VERSION_EXTEND => 10 * 1024 * 1024, //10 Mb
+			Site::SITE_VERSION_PRO => 20 * 1024 * 1024, //20 Mb
+		];
+	}
+
 	public static function check($type, &$errorText) {
 		$version = Yii::$app->user->identity->site->version;
 		/*
@@ -73,7 +81,7 @@ class SiteVersion extends Model {
 				return false;
 			}
 		}
-		
+
 		//l($version);
 		return true;
 	}

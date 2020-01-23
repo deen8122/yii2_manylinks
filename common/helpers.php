@@ -1,4 +1,5 @@
 <?php
+
 /**
  * Yii2 Shortcuts
  * @author Eugene Terentev <eugene@terentev.net>
@@ -7,13 +8,46 @@
  * it doesn't pretend to be a full list of available possibilities
  * -----
  */
+function FileSizeConvert($bytes) {
+	$bytes = floatval($bytes);
+	$arBytes = array(
+		0 => array(
+			"UNIT" => "TB",
+			"VALUE" => pow(1024, 4)
+		),
+		1 => array(
+			"UNIT" => "GB",
+			"VALUE" => pow(1024, 3)
+		),
+		2 => array(
+			"UNIT" => "MB",
+			"VALUE" => pow(1024, 2)
+		),
+		3 => array(
+			"UNIT" => "KB",
+			"VALUE" => 1024
+		),
+		4 => array(
+			"UNIT" => "B",
+			"VALUE" => 1
+		),
+	);
+
+	foreach ($arBytes as $arItem) {
+		if ($bytes >= $arItem["VALUE"]) {
+			$result = $bytes / $arItem["VALUE"];
+			$result = str_replace(".", ",", strval(round($result, 2))) . " " . $arItem["UNIT"];
+			break;
+		}
+	}
+	return $result;
+}
 
 /**
  * @return int|string
  */
-function getMyId()
-{
-    return Yii::$app->user->getId();
+function getMyId() {
+	return Yii::$app->user->getId();
 }
 
 /**
@@ -21,9 +55,8 @@ function getMyId()
  * @param array $params
  * @return string
  */
-function render($view, $params = [])
-{
-    return Yii::$app->controller->render($view, $params);
+function render($view, $params = []) {
+	return Yii::$app->controller->render($view, $params);
 }
 
 /**
@@ -31,9 +64,8 @@ function render($view, $params = [])
  * @param int $statusCode
  * @return \yii\web\Response
  */
-function redirect($url, $statusCode = 302)
-{
-    return Yii::$app->controller->redirect($url, $statusCode);
+function redirect($url, $statusCode = 302) {
+	return Yii::$app->controller->redirect($url, $statusCode);
 }
 
 /**
@@ -41,26 +73,25 @@ function redirect($url, $statusCode = 302)
  * @param mixed $default
  * @return mixed
  */
-function env($key, $default = null)
-{
+function env($key, $default = null) {
 
-    $value = getenv($key) ?? $_ENV[$key] ?? $_SERVER[$key];
+	$value = getenv($key) ?? $_ENV[$key] ?? $_SERVER[$key];
 
-    if ($value === false) {
-        return $default;
-    }
+	if ($value === false) {
+		return $default;
+	}
 
-    switch (strtolower($value)) {
-        case 'true':
-        case '(true)':
-            return true;
+	switch (strtolower($value)) {
+		case 'true':
+		case '(true)':
+			return true;
 
-        case 'false':
-        case '(false)':
-            return false;
-    }
+		case 'false':
+		case '(false)':
+			return false;
+	}
 
-    return $value;
+	return $value;
 }
 
 function l($arr) {
@@ -83,4 +114,8 @@ function log2file($name, $arr, $isUpdate = false) {
 		file_put_contents($_SERVER['DOCUMENT_ROOT'] . "/log/" . $name . ".txt", ob_get_contents());
 	}
 	ob_clean();
+}
+
+function getExtension($filename) {
+	return substr(strrchr($filename, '.'), 1);
 }

@@ -71,6 +71,9 @@ class SiteController extends Controller {
 		if ($model->dataArray['bgClass'] == 'bg-image') {
 			$this->bodyStyle = 'background-image:url(/img/bgImages/' . $model->dataArray['img'] . '.jpg';
 		}
+		if ($model->dataArray['bgClass'] == 'bg-image-src') {
+			$this->bodyStyle = 'background-image:url(' . $model->dataArray['img'] . ')';
+		}
 		if ($model->dataArray['bgClass']) {
 			$this->bodyClass = $model->dataArray['bgClass'];
 		}

@@ -133,3 +133,8 @@ a:hover {cursor: pointer}
     overflow-y: hidden;}
 .horizontal-block-item {    position: absolute;
     top: 0;}
+
+@media (max-width: 700px){
+    .admin-header {height: auto;}
+    .logo-text {display: none;}
+}

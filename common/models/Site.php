@@ -75,6 +75,7 @@ class Site extends \yii\db\ActiveRecord {
 			'active' => 'Active',
 			'deleted' => 'Deleted',
 			'style' => 'Стили проекта',
+			'dataArray' => 'Данные',
 		];
 	}
 

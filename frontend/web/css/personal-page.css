@@ -24,11 +24,11 @@ body,input,select,textarea,button,.ui-btn{font-size:1em;line-height:1.3;font-fam
 .icon-ok{background-image:url(../img/icons/social/ok.svg)}
 .icon-inst,.icon-instagram{background-image:url(../img/icons/social/inst.svg)}
 .icon-fb,.icon-facebook{background-image:url(../img/icons/social/fb.svg)}
-.icon-telegram{background-image:url(../img/icons/social/telegram.svg)}
+.icon-telegram,.icon-telegram-me{background-image:url(../img/icons/social/telegram.svg)}
 .icon-youtube{background-image:url(../img/icons/social/youtube.svg)}
 .icon-skype{background-image:url(../img/icons/social/skype.svg)}
 .icon-github{background-image:url(../img/icons/social/github.svg)}
-.icon-wa{background-image:url(../img/icons/social/wa.svg)}
+.icon-wa,.icon-wa-me{background-image:url(../img/icons/social/wa.svg)}
 .icon-blogspot{background-image:url(../img/icons/social/blogspot.svg)}
 .icon-music-apple {background-image:url(../img/icons/iTunes.svg)}
 .ul-icon-list a{text-decoration:none;color:#222;display:flex;align-items:center;xwidth:100%;clear:both;border:1px solid #ccc;min-height:36px;margin:8px auto;max-width:304px;border-radius:7px;padding:6px}
@@ -64,8 +64,9 @@ body,input,select,textarea,button,.ui-btn{font-size:1em;line-height:1.3;font-fam
 }
 .owl-carousel-type-5 .item img {}
 
-.bg-image {background-position: center;
-    background-size: cover;}
+.bg-image,.bg-image-src {background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;}
 
 .bg-gradient-0 {    background-image: linear-gradient(-60deg, #16a085 0%, #f4d03f 100%);}
 .bg-gradient-1 {    background-image: linear-gradient(45deg, #ff9a9e 0%, #fad0c4 99%, #fad0c4 100%);  }

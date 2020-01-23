@@ -5,13 +5,15 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="user-profile-form">
-    <h2>CSS</h2>
+    <h2>JS</h2>
 </div>
-
+<p>
+Вставьте сюда JS код Яндекс или Google метрики
+</p>
 <?php
-$form = ActiveForm::begin(['id' => 'form',]);
+$form = ActiveForm::begin(['id' => 'form', 'action' => '/extentions/js/update']);
 ?>
-<?php echo $form->field($model, 'style')->textArea(['style'=>"min-height:400px"]) ?>
+<?php echo $form->field($site, 'dataArray[jsCode]')->textArea(['style' => "min-height:400px"])->label("") ?>
 <div class="form-group">
     <?php echo Html::submitButton(Yii::t('frontend', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
 </div>
@@ -21,10 +23,10 @@ $form = ActiveForm::begin(['id' => 'form',]);
         $(document).ready(function () {
             $('#form').on('submit', function () {
                 var $yiiform = $(this);
-		console.log('submit');
-		var $btn = $(this).find('button');
-		var t = $btn.text();
-		$btn.text(".........");
+                console.log('submit');
+                var $btn = $(this).find('button');
+                var t = $btn.text();
+                $btn.text(".........");
                 // отправляем данные на сервер
                 $.ajax({
                     type: $yiiform.attr('method'),
@@ -33,8 +35,9 @@ $form = ActiveForm::begin(['id' => 'form',]);
                 }
                 )
                         .done(function (data) {
-				$btn.text(t);
-                             debuggerUpdate();
+                            console.log(data);
+                            $btn.text(t);
+                            debuggerUpdate();
                         })
                         .fail(function () {
                             // не удалось выполнить запрос к серверу

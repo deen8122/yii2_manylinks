@@ -12,6 +12,52 @@ function CImage() {
     this.uploadAction = "/user/page/upload";
 
 }
+
+CImage.prototype.uploadToStorage = function (formId, dataConfig) {
+    console.log('uploadToStorage----------');
+
+
+    var $form = $('#' + formId);
+    var data = $form.serialize();
+    var file_data = $('#image_file_imager').prop('files')[0];
+    console.log(file_data);
+    if (file_data === undefined)
+        return;
+    var form_data = new FormData();
+    form_data.append('file', file_data);
+    var _csrf = $('[name="_csrf"]').val();
+    form_data.append('_csrf', _csrf);
+    var url = $form.attr("action");
+    console.log(url);
+    console.log(form_data);
+
+    if (dataConfig.btn !== undefined) {
+        var $btn = $(dataConfig.btn);
+        var textBtn = $btn.text();
+        $btn.text("загружаю...");
+    }
+
+    $.ajax({
+        url: url + "?" + data,
+        //dataType: 'text',
+        cache: false,
+        format: "JSON",
+        contentType: false,
+        processData: false,
+        data: form_data,
+        type: 'post',
+        success: function (res) {
+            var res = JSON.parse(res);
+            console.log(res);
+            console.log(dataConfig.callback);
+            if (dataConfig.callback !== undefined) {
+                dataConfig.callback(res);
+            }
+            $btn.text(textBtn);
+        }
+    });
+
+}
 CImage.prototype.upload = function (id, _thisBtn) {
     var $btn = $(_thisBtn);
     var textBtn = $btn.text();
@@ -20,6 +66,9 @@ CImage.prototype.upload = function (id, _thisBtn) {
     var $form = $('#block-' + id).find('form');
     var data = $form.serialize();
     var file_data = $('#image_file').prop('files')[0];
+
+    if (file_data === undefined)
+        return;
     var form_data = new FormData();
     form_data.append('file', file_data);
     var _csrf = $('[name="_csrf"]').val();
@@ -45,8 +94,8 @@ CImage.prototype.upload = function (id, _thisBtn) {
             console.log("++++++++++++");
             if (data3.code === "ok") {
                 var file = "/" + data3.file;
-                 console.log(file);
-                $form.find(".result").find("img").addClass("xxx").attr("src",file);
+                console.log(file);
+                $form.find(".result").find("img").addClass("xxx").attr("src", file);
                 $('#data_file').val(file);
                 $form.find("input").keyup();
             }

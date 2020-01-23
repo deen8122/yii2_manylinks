@@ -7,7 +7,7 @@ $(document).ready(function () {
 
 function init() {
     //
-    var debuggerActive = app.getParam("debugger");
+    var debuggerActive = app.getParam("debuggerActive");
     console.log("============debuggerActive==============")
     console.log(debuggerActive);
     if (debuggerActive) {
@@ -31,7 +31,7 @@ function init() {
             sortN = sort.val();
             sortN++;
         }
-        console.log(sortN);
+     //   console.log(sortN);
 
         //получаем шаблон
         var $item = $(this).closest('.block').find('.sbv-ul-icon-list').find('.sbv-item').last().clone();
@@ -40,7 +40,7 @@ function init() {
         $(this).closest('form').find('.save-btn').addClass('active');
         $(this).closest('.block').find('.sbv-ul-icon-list').append($item);
         doRequest('/user/page/sbvcreate', {block_id: $(this).data("block_id"), sort: sortN}, function (json) {
-            console.log(json);
+           // console.log(json);
             var id = json.id;
             $item.data("id", id);
             $item.find('.name').attr("name", "SBV[name][" + id + "]");
@@ -87,7 +87,7 @@ function init() {
     //  $('.adm-block-inner').hide();
     //  $('.adm-block-inner').first().show();
     var openblocks = app.getParam("openblocks", {});
-    console.log(openblocks.length);
+  ////  console.log(openblocks.length);
     console.log(openblocks);
     $('.adm-block').each(function () {
         var id = $(this).data('id');

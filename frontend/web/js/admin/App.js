@@ -5,11 +5,15 @@ function App() {
 
 
 App.prototype.popupModule = function (nameModule) {
+    
     console.log('nameModule init... ')
     $openedPopup = $('#popup-form');
     $openedPopup.fadeIn(100);
     $openedPopup.css('top', '100px');
     $('.popup-bg').fadeIn(100);
+    var width = $openedPopup.width();
+     console.log('width='+width)
+      $openedPopup.css('margin-left', '-'+(width/2)+'px');
     var $content = $openedPopup.find(".content-p");
     $content.html('<center><img src="/img/loading.gif"></center>');
     doRequest("/extentions/" + nameModule, {}, function (data) {
@@ -23,9 +27,9 @@ App.prototype.addScript = function (src) {
     document.head.appendChild(script);
 }
 App.prototype.setParam = function (name, value) {
-    console.log("-----------setParam--------------");
-    console.log(name);
-    console.log(value);
+   // console.log("-----------setParam--------------");
+ //   console.log(name);
+   // console.log(value);
      setCookie(name, JSON.stringify(value));
 
     //$.cookie(name, JSON.stringify(value));
@@ -36,7 +40,7 @@ App.prototype.getParam = function (name, defaultValue) {
     if (defaultValue === undefined) {
         defaultValue = false;
     }
-    console.log(data);
+    //console.log(data);
     if (data !== undefined) {
         data = JSON.parse(data);
     } else {
@@ -115,9 +119,9 @@ function debuggerUpdate() {
 }
 function debuggerClose() {
     $('.iframe-phone').hide();
-    app.setParam("debugger", 0);
+    app.setParam("debuggerActive", 0);
 }
 function debuggerOpen() {
     $('.iframe-phone').show();
-    app.setParam("debugger", 1);
+    app.setParam("debuggerActive", 1);
 }

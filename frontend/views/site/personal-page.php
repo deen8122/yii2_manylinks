@@ -25,7 +25,7 @@ $this->title = $model->name;
 </div>
 
 <? if (strlen($model->style) > 5) echo '<style>' . $model->style . '</style>'; ?>
-
+<? if (strlen($model->dataArray['jsCode']) > 5) echo '<script>' . $model->dataArray['jsCode'] . '</script>'; ?>
 <?
 if (file_exists(\Yii::getAlias('@webroot') . "/upload/" . $model->id . '/style.css')) {
 	$this->registerCssFile("/upload/" . $model->id . '/style.css');
