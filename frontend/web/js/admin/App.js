@@ -1,22 +1,23 @@
 var app = new App();
 function App() {
-
+    var $smallLable = null;
 }
 
 
-App.prototype.popupModule = function (nameModule) {
-    
+App.prototype.popupModule = function (nameModule,configInt) {
+
+    var config = configInt||{};
     console.log('nameModule init... ')
     $openedPopup = $('#popup-form');
     $openedPopup.fadeIn(100);
     $openedPopup.css('top', '100px');
     $('.popup-bg').fadeIn(100);
     var width = $openedPopup.width();
-     console.log('width='+width)
-      $openedPopup.css('margin-left', '-'+(width/2)+'px');
+    console.log('width=' + width)
+    $openedPopup.css('margin-left', '-' + (width / 2) + 'px');
     var $content = $openedPopup.find(".content-p");
     $content.html('<center><img src="/img/loading.gif"></center>');
-    doRequest("/extentions/" + nameModule, {}, function (data) {
+    doRequest("/extentions/" + nameModule, config, function (data) {
         $content.html(data.html)
     });
 }
@@ -27,14 +28,22 @@ App.prototype.addScript = function (src) {
     document.head.appendChild(script);
 }
 App.prototype.setParam = function (name, value) {
-   // console.log("-----------setParam--------------");
- //   console.log(name);
-   // console.log(value);
-     setCookie(name, JSON.stringify(value));
+    // console.log("-----------setParam--------------");
+    //   console.log(name);
+    // console.log(value);
+    setCookie(name, JSON.stringify(value));
 
     //$.cookie(name, JSON.stringify(value));
 };
-
+App.prototype.smallLable = function (text) {
+    if (this.$smallLable === undefined) {
+        console.log("init $smallLable");
+        this.$smallLable = $('#small-label')
+    }
+    var smaller = this.$smallLable.addClass('active').html(text).fadeIn(500);
+    setTimeout(function(){smaller.removeClass('active').html(text).fadeIn(500);},3000);
+    
+}
 App.prototype.getParam = function (name, defaultValue) {
     var data = getCookie(name);
     if (defaultValue === undefined) {
@@ -90,7 +99,7 @@ function setCookie(name, value, options) {
     }
 
     value = encodeURIComponent(value);
-     options.path="/";
+    options.path = "/";
     var updatedCookie = name + "=" + value;
 
     for (var propName in options) {

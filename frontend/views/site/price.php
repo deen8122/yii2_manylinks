@@ -79,7 +79,7 @@ $this->title = "Цены";
 		    <p>Никаких ограничений.</p>
 		</div>
 		<div class="bottom-sec">
-		    1200 рублей в год
+		    600 рублей в год
 		</div>
 		<div class="end-sec">
 		    <ul>

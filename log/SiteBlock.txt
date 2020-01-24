@@ -1,0 +1,4 @@
+Array
+(
+    [viewed_style] => type-2
+)

@@ -63,7 +63,7 @@ a:hover {cursor: pointer}
 .adm-block textarea{width:100%;height:auto;border:none;display:block;height:100%}
 .adm-block-config{width:100%;height:30px;display:flex;align-content:space-between;flex-wrap:wrap}
 .adm-block-config .mover{width:40px}
-.adm-block-config .mover:hover{cursor:move;opacity:.7}
+ .mover:hover{cursor:move;opacity:.7}
 .adm-block-config .mover .icon{width:28px;height:23px;float:none;margin:3px auto}
 .adm-block-config .menu{margin-left:auto;width:50px}
 .adm-block-config .menu .icon{height:23px;float:none;margin:3px auto}

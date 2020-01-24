@@ -3,6 +3,6 @@
 
 
 <div id="text_area_div" class="text-field">
-    <?=nl2br(str_replace(' ', '&thinsp;', $obj->text)) ?>	
+    <? nl2br(str_replace(' ', '&thinsp;', $obj->text)) ?>	
 </div>
 

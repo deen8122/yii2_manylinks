@@ -5,7 +5,7 @@
  */
 ?>
 <?= $block->text ?>
-<div class="ul-icon-list">
+<div class="ul-icon-list <?=$block->data["viewed_style"]?>">
     <?
 //l($obj->values);
     if (is_array($block->values)) {

@@ -84,7 +84,10 @@ $cookies = Yii::$app->request->cookies;
 				<i class="icon icon-menu dropdown-toggle"></i>
 
 				<ul class="dropdown-menu dropdown-user-menu">
-				    <li><a onclick="blockActivate(<?= $obj->id ?>)">акти\деакт</a></li>
+				    <? if ($obj->type == SiteBlock::TYPE_LINKS): ?>
+					    <li><a onclick="blockConfig(<?= $obj->id ?>,<?= $obj->type ?>)">настройки</a></li>
+				    <? endif ?>
+				    <li><a onclick="blockActivate(<?= $obj->id ?>)">актив/деактив</a></li>
 				    <li><a onclick="blockRemove(<?= $obj->id ?>)">удалить</a></li>
 				</ul>
 

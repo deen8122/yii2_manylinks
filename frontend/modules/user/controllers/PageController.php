@@ -80,11 +80,12 @@ class PageController extends Controller {
 			foreach ($post['DATA'] as $name => $value) {
 				$data[$name] = $value;
 			}
+			$model->data = $data;
 		}
 		if (isset($post['text'])) {
 			$model->text = $post['text'];
 		}
-		$model->data = $data;
+		
 		$model->save();
 		return $this->renderJSON(['code' => "ok"]);
 	}

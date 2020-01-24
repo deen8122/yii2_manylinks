@@ -2,31 +2,39 @@
 
 use yii\helpers\Html;
 use yii\widgets\ActiveForm;
+use frontend\modules\extentions\models\SiteBlockConfig;
 ?>
 
 <div class="user-profile-form">
-    <h2>JS</h2>
+    <h3>Настройки отображения иконок</h3>
 </div>
-<p>
-    Вставьте сюда JS код Яндекс или Google метрики
-</p>
 <?php
-$form = ActiveForm::begin(['id' => 'form', 'action' => '/extentions/js/update']);
+$selected = $model->data['type'];
+
+$form = ActiveForm::begin(['id' => 'form', 'action' => '/extentions/site-block-config/update']);
 ?>
-<?php echo $form->field($site, 'dataArray[jsCode]')->textArea(['style' => "min-height:400px"])->label("") ?>
+<? $data = SiteBlockConfig::getType2Data(); ?>
+<? foreach ($data as $i => $val): ?> 
+	<label class="label-item" for="cb-<?= $i ?>">
+	    <input type="radio" name="viewed_style" value="<?= $i ?>" id="cb-<?= $i ?>" <?=$i==$selected?'checked':''?>>
+	    <Img  src="<?= $val['image'] ?>">
+	</label>
+
+<? endforeach ?>
 <div class="form-group">
+    <input type="hidden" name="id" value="<?= $model->id ?>">
     <div class="error" id="js-error"></div>
-    <?php echo Html::submitButton(Yii::t('frontend', 'Сохранить'), ['class' => 'btn btn-primary']) ?>
+    <?php echo Html::submitButton(Yii::t('frontend', 'Сохранить'), ['class' => 'btn btn-success']) ?>
 </div>
 <?php ActiveForm::end(); ?>
-<input type="hidden" name="_csrf" value="<?= Yii::$app->request->getCsrfToken() ?>" />
 <script>
         $(document).ready(function () {
             $('#form').on('submit', function () {
                 var $yiiform = $(this);
-                console.log('submit');
+                console.log('submit...');
                 var $btn = $(this).find('button');
                 var t = $btn.text();
+                console.log(t);
                 $btn.text(".........");
                 // отправляем данные на сервер
                 $.ajax({
@@ -34,12 +42,11 @@ $form = ActiveForm::begin(['id' => 'form', 'action' => '/extentions/js/update'])
                     url: $yiiform.attr('action'),
                     data: $yiiform.serializeArray()
                 }
-                )
-                        .done(function (data) {
-
+                ).done(function (data) {
                             data = JSON.parse(data);
                             console.log(data);
-                            $btn.text(t);
+                            $btn.text('Сохранить');
+                            console.log(t);
                             if (data.error !== undefined) {
                                 var t = '<div class="alert alert-danger"><ul>';
                                 for (key in data.error) {
@@ -64,3 +71,11 @@ $form = ActiveForm::begin(['id' => 'form', 'action' => '/extentions/js/update'])
             })
         })
 </script>
+<? //l($model->type); ?>
+<?// l($model->id); ?>
+<style>
+    .label-item {    border: 1px solid #ccc;
+    margin: 5px;
+    width: 100%;
+    padding: 10px;}
+ </style>

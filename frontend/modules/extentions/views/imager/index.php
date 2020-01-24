@@ -5,7 +5,7 @@ use yii\widgets\ActiveForm;
 ?>
 
 <div class="user-profile-form">
-    <h2>JS</h2>
+    <h2>Файлы проекта</h2>
 </div>
 <p>
 
@@ -14,7 +14,7 @@ use yii\widgets\ActiveForm;
     <? //l(FileSizeConvert($model->allFilesSize)) ?>
 </p>
 <div>
-    Использовано <span id="allFilesSize"><?= FileSizeConvert($model->allFilesSize) ?></span> из <?= FileSizeConvert($model->maxDirSize) ?>
+    Использовано <span id="allFilesSize"><?= FileSizeConvert($model->allFilesSize) ?></span> из <span style="color:red; font-weight: bold"><?= FileSizeConvert($model->maxDirSize) ?></span>
 </div>
 <div id="fileList" class="image-list-wrap">
 
@@ -42,13 +42,13 @@ use yii\widgets\ActiveForm;
         var files = <?= json_encode($model->files) ?>;
         var allFilesSize = <?= $model->allFilesSize ?>;
         function imagerCreateList() {
-           // console.log(allFilesSize);
-           // console.log(files);
+            // console.log(allFilesSize);
+            // console.log(files);
             var t = "";
 
             for (key in files) {
                 var obj = files[key];
-              //  console.log(obj);
+                //  console.log(obj);
                 t += '<div class="image-list-item image-list-item-' + key + '" onclick="selectedImage(\'' + key + '\')">';
                 if (obj.type === "image") {
                     t += '<img src="' + obj.fileSrc + '">';
@@ -92,8 +92,8 @@ use yii\widgets\ActiveForm;
 
         function deletefIle(i) {
             doRequest('/extentions/imager/delete', {i: i}, function (json) {
-               console.log(json);
-	       updateImagesList(json);
+                console.log(json);
+                updateImagesList(json);
             });
         }
         function selectedImage(i) {
@@ -103,6 +103,16 @@ use yii\widgets\ActiveForm;
 
             // $('.image-list-item-' + i + '').append(t);
 
+        }
+        function copyfIleSrc(i) {
+            //app.smallLable("Ссылка скопировна!");
+            alert("Ссылка на файл '" + files[i].fileSrc + "' скопировна!");
+            var copytext = document.createElement('input')
+            copytext.value = files[i].fileSrc
+            document.body.appendChild(copytext)
+            copytext.select()
+            document.execCommand('copy')
+            document.body.removeChild(copytext)
         }
 
 </script>
@@ -117,12 +127,13 @@ use yii\widgets\ActiveForm;
 		      margin: 5px;}
     .image-list-item img{ max-height: 100px; max-width: 100px;}
     .file-info {position: absolute;
-		background: #ccc;
+		background: #fafafa;
 		z-index: 1;
-		padding: 10px;
+		padding: 5px;
 		border: 1px solid #ccc;
-		font-size: 12px;top:0;
-		min-width: 150px;
+		font-size: 10px;top:0;
+		height: 100px;
+		width: 100px;
 		display:none;}
     .image-list-item:hover  .file-info {display: block}
     .image-list-item:hover  {border:2px solid red;}

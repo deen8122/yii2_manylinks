@@ -13,6 +13,7 @@ $config = [
 		],
 		'extentions' => [
 			'class' => frontend\modules\extentions\Module::class,
+			//'publishDirectory' => true
 		],
 	],
 	'components' => [

@@ -1,3 +1,8 @@
+<?
+/*
+ * Блок ссылки
+ */
+?>
 <div class="block block-pad" id="block-11">
     <textarea  id="text_area-<?= $obj->id ?>"  name="text" data="elastic" placeholder="Описание..."><?= trim($obj->text) ?></textarea>
     <div id="text_area_div" class="text-field"><?= nl2br(str_replace(' ', '&thinsp;', $obj->text)) ?></div>
