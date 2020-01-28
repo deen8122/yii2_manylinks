@@ -23,8 +23,8 @@ use yii\helpers\ArrayHelper;
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="true">
 	<script src="<?= Url::base() ?>/js/libs/jquery.min2.js?ver=1"></script>
-	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css" />
-	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css" />	
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/bootstrap.css?ver=2" />
+	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css?ver=2" />	
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/admin-page.css?ver=3" />
 	<title>ManyLinks.ru - admin</title>
 	<?php $this->head() ?>

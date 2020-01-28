@@ -14,9 +14,6 @@ function CImage() {
 }
 
 CImage.prototype.uploadToStorage = function (formId, dataConfig) {
-    console.log('uploadToStorage----------');
-
-
     var $form = $('#' + formId);
     var data = $form.serialize();
     var file_data = $('#image_file_imager').prop('files')[0];
@@ -77,7 +74,6 @@ CImage.prototype.upload = function (id, _thisBtn) {
     console.log(url)
     $.ajax({
         url: url + "?" + data,
-        dataType: 'text',
         cache: false,
         format: "JSON",
         contentType: false,
@@ -85,13 +81,22 @@ CImage.prototype.upload = function (id, _thisBtn) {
         data: form_data,
         type: 'post',
         success: function (data) {
-            // console.log(data);
             $btn.text(textBtn);
-            var data2 = JSON.parse(data);
-            console.log(data2);
-            var data3 = JSON.parse(data2);
+            var data3 = JSON.parse(data);
             console.log(data3);
-            console.log("++++++++++++");
+            if (data3.error !== undefined) {
+                var t = '<div class="alert alert-danger"><ul>';
+                for (key in data.error) {
+                    var obj = data.error[key];
+                    t += '<li>' + obj + '</li>';
+                }
+                t += '<ul></div>';
+                $('#upload-error').html(t);
+                setTimeout(function () {
+                    $('#upload-error').html("")
+                }, 5000);
+                return false;
+            }
             if (data3.code === "ok") {
                 var file = "/" + data3.file;
                 console.log(file);
@@ -144,40 +149,25 @@ function clearInfo() {
     $('.info #h').val('');
 }
 ;
-
+var jcrop_api;
 function fileSelectHandler() {
-
-    // get selected file
     var oFile = $('#image_file')[0].files[0];
-
-    // hide all errors
     $('.error').hide();
-
-    // check for image type (jpg and png are allowed)
     var rFilter = /^(image\/jpeg|image\/png)$/i;
     if (!rFilter.test(oFile.type)) {
-        $('.error').html('Please select a valid image file (jpg and png are allowed)').show();
+        $('.error').html('Можно загружать только изображения.').show();
         return;
     }
-
-    // check for file size
-    if (oFile.size > 250 * 1024) {
-        //$('.error').html('You have selected too big file, please select a one smaller image file').show();
-        //    return;
+    if (oFile.size > 5*1024 * 1024) {
+        $('.error').html('Слишком большой файл').show();
+            return;
     }
-
-    // preview element
     var oImage = document.getElementById('preview');
-
-    // prepare HTML5 FileReader
     var oReader = new FileReader();
-    oReader.onload = function (e) {
 
-        // e.target.result contains the DataURL which we can use as a source of the image
+    oReader.onload = function (e) {
         oImage.src = e.target.result;
         oImage.onload = function () { // onload event handler
-
-            // display step 2
             $('.step-1').fadeOut();
             $('.step-2').fadeIn();
 
@@ -186,20 +176,17 @@ function fileSelectHandler() {
             $('#filesize').text(sResultFileSize);
             $('#filetype').text(oFile.type);
             $('#filedim').text(oImage.naturalWidth + ' x ' + oImage.naturalHeight);
-
-
             console.log($(this).width());
             $('#width').val($(this).width());
             $('#height').val($(this).height());
             // Create variables (in this scope) to hold the Jcrop API and image size
-            var jcrop_api, boundx, boundy;
+            var  boundx, boundy;
 
-            // destroy Jcrop if it is existed
             if (typeof jcrop_api != 'undefined')
                 jcrop_api.destroy();
 
             // initialize Jcrop
-            $('#preview').Jcrop({
+           $('#preview').Jcrop({
                 minSize: [32, 32], // min crop size
                 boxWidth: 500,
                 aspectRatio: 1, // keep aspect ratio 1:1
@@ -209,7 +196,6 @@ function fileSelectHandler() {
                 onSelect: updateInfo,
                 onRelease: clearInfo
             }, function () {
-
                 // use the Jcrop API to get the real image size
                 var bounds = this.getBounds();
                 boundx = bounds[0];
@@ -220,8 +206,8 @@ function fileSelectHandler() {
             });
         };
     };
-
-    // read selected file as DataURL
     oReader.readAsDataURL(oFile);
     $('.btn-save-upload-4').show();
 }
+
+

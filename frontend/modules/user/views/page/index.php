@@ -64,7 +64,7 @@ $cookies = Yii::$app->request->cookies;
 	?>
 	<? foreach ($siteBlock as $obj):
 		?>
-		<div class="adm-block adm-block-<?= $obj->type ?> <?= ($obj->status != SiteBlock::STATUS_ACTIVE ? 'deactive' : 'active') ?>" id="block-<?= $obj->id ?>" data-id="<?= $obj->id ?>" data-sort="<?= $obj->sort ?>">
+		<div class="opened adm-block adm-block-<?= $obj->type ?> <?= ($obj->status != SiteBlock::STATUS_ACTIVE ? 'deactive' : 'active') ?>" id="block-<?= $obj->id ?>" data-id="<?= $obj->id ?>" data-sort="<?= $obj->sort ?>">
 		    <form class="block-form">
 			<div class="adm-block-config ">
 			    <div class="mover ">
@@ -79,7 +79,7 @@ $cookies = Yii::$app->request->cookies;
 
 			    </div>
 
-			    <div class="menu toggleable dropdown"> 
+			    <div class="menu toggleable dropdown menu-config"> 
 
 				<i class="icon icon-menu dropdown-toggle"></i>
 

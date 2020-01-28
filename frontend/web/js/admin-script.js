@@ -231,16 +231,19 @@ $(function () {
 function blockToggle(id) {
     var openblocks = app.getParam("openblocks", {});
     var $innerBlock = $('#block-' + id).find('.adm-block-inner');
+    var $parent = $('#block-' + id).closest('.adm-block');
     var $btn = $('#block-' + id).find('.block-form').find('.toggle-btn');
     if ($innerBlock.hasClass('opened')) {
         $innerBlock.hide();
         $innerBlock.removeClass('opened');
+         $parent.removeClass('opened');
         $btn.removeClass('icon-minus');
         $btn.addClass('icon-plus');
         openblocks["block-" + id] = 0;
     } else {
         $innerBlock.show();
         $innerBlock.addClass('opened')
+          $parent.addClass('opened')
         $btn.removeClass('icon-plus');
         $btn.addClass('icon-minus');
         openblocks["block-" + id] = 1;

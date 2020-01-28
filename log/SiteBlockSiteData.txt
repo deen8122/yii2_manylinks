@@ -1,4 +1,5 @@
 Array
 (
+    [type] => value1
     [viewed_style] => type-1
 )
