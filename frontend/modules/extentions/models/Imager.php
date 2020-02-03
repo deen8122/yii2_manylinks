@@ -21,7 +21,7 @@ class Imager extends Model {
 
 	public function __construct($config = array()) {
 		error_reporting(E_ERROR);
-		$this->uploadDir = "upload/" . Yii::$app->user->identity->site_id . '/';
+		$this->uploadDir = \Yii::getAlias('@webroot') ."/upload/" . Yii::$app->user->identity->site_id . '/';
 		$this->checkDirSize();
 		$this->files = $this->getFilesInDir();
 		if (!file_exists($this->uploadDir)) {
@@ -115,10 +115,20 @@ class Imager extends Model {
 	 * @return bool
 	 */
 	public function save() {
+	if (!file_exists($this->uploadDir)) {
+	mkdir($this->uploadDir, 0777, true);
+			$this->errors[] = "Нет папки ".$this->uploadDir;
+			return false;
+		}
 		if (!$this->isUploadedFileImage($_FILES[$this->uploadFileName]['tmp_name'])) {
 			$this->errors[] = "Можно загружать только изображения.";
 			return false;
 			
+		}
+		if ($_FILES[$this->uploadFileName]['error']){
+		
+			$this->errors[] = $_FILES[$this->uploadFileName]['error'];
+			return false;
 		}
 		if ($this->checkDirSize($_FILES[$this->uploadFileName]['size'])) {
 			if ($_FILES) {

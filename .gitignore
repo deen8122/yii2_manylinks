@@ -4,6 +4,7 @@
 # Composer
 /vendor
 composer.phar
+composer.lock
 
 # JS
 node_modules
@@ -33,3 +34,6 @@ phpunit.phar
 # Tests
 tests/codeception/*/_support/_generated/*
 /frontend/web/assets/
+
+# Project
+frontend/web/upload
