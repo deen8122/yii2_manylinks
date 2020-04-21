@@ -280,6 +280,7 @@ class SignInController extends \yii\web\Controller {
 	public function successOAuthCallback($client) {
 		// use BaseClient::normalizeUserAttributeMap to provide consistency for user attribute`s names
 		$attributes = $client->getUserAttributes();
+		//l($attributes);exit; 
 		$user = User::find()->where([
 				'oauth_client' => $client->getName(),
 				'oauth_client_user_id' => ArrayHelper::getValue($attributes, 'id')
@@ -293,6 +294,10 @@ class SignInController extends \yii\web\Controller {
 			if ($email === null) {
 				$email = ArrayHelper::getValue($attributes, ['emails', 0, 'value']);
 			}
+			if($email === null){
+			$email = ArrayHelper::getValue($attributes, ['user_id', 0, 'value']).'@nomail.net';
+			
+		}
 			$user->email = $email;
 			$user->oauth_client = $client->getName();
 			$user->oauth_client_user_id = ArrayHelper::getValue($attributes, 'id');
@@ -301,17 +306,19 @@ class SignInController extends \yii\web\Controller {
 			$user->setPassword($password);
 			if ($user->save()) {
 				$profileData = [];
-				if ($client->getName() === 'facebook') {
+				if ($client->getName() === 'vkontakte') {
 					$profileData['firstname'] = ArrayHelper::getValue($attributes, 'first_name');
 					$profileData['lastname'] = ArrayHelper::getValue($attributes, 'last_name');
 				}
 				$user->afterSignup($profileData);
+				/*
 				$sentSuccess = Yii::$app->commandBus->handle(new SendEmailCommand([
 					'view' => 'oauth_welcome',
 					'params' => ['user' => $user, 'password' => $password],
 					'subject' => Yii::t('frontend', '{app-name} | Информация о пользователе', ['app-name' => Yii::$app->name]),
 					'to' => $user->email
 				]));
+				*/
 				if ($sentSuccess) {
 					Yii::$app->session->setFlash(
 						'alert', [
