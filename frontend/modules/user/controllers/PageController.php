@@ -34,7 +34,9 @@ class PageController extends Controller {
 	 */
 	public function actionIndex() {
 		$site = Site::find()->where(['id' => Yii::$app->user->identity->site_id])->one();
+		
 		if ($site == null) {
+		//l($site);
 			$site = Site::createDefaultItems();
 		}
 		$siteBlock = SiteBlock::find()->orderBy(['sort' => SORT_ASC])->where(['site_id' => Yii::$app->user->identity->site_id])->all();
@@ -51,7 +53,7 @@ class PageController extends Controller {
 	public function actionUpdate() {
 		$post = Yii::$app->request->post();
 		if (!Yii::$app->request->isAjax) {
-			return $this->renderJSON(['code' => "error", "message" => "nAjax"]);
+			//return $this->renderJSON(['code' => "error", "message" => "nAjax"]);
 		}
 		$model = SiteBlock::findOne(['id' => $post['id'], 'site_id' => Yii::$app->user->identity->site_id]);
 		if ($model === null) {

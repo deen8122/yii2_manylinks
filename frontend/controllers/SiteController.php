@@ -153,6 +153,7 @@ class SiteController extends Controller {
 			'url' => Url::to(['/user/sign-in/activation', 'token' => "xxxxx"])
 		]);
 
+		echo mail('deen812@mail.ru','1','2');
 		return $this->render('price');
 	}
 

@@ -47,7 +47,7 @@ class SiteVersion extends Model {
 				return false;
 			}
 			//разрешены только три блока
-			if ($type == SiteBlock::TYPE_HEADER_PHOTO || $type == SiteBlock::TYPE_SIMPLE_TEXT || $type == SiteBlock::TYPE_LINKS) {
+			if ($type == SiteBlock::TYPE_HEADER_PHOTO || $type == SiteBlock::TYPE_SIMPLE_TEXT || $type == SiteBlock::TYPE_HTML_TEXT|| $type == SiteBlock::TYPE_LINKS) {
 				return true;
 			} else {
 				$errorText = 'Версия вашего продукта  позволяет добавлять блоки: текстовый, ссылки, шапка';

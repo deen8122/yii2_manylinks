@@ -98,7 +98,7 @@ CImage.prototype.upload = function (id, _thisBtn) {
                 return false;
             }
             if (data3.code === "ok") {
-                var file = "/" + data3.file;
+                var file = "" + data3.file;
                 console.log(file);
                 $form.find(".result").find("img").addClass("xxx").attr("src", file);
                 $('#data_file').val(file);

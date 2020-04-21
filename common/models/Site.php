@@ -36,7 +36,7 @@ class Site extends \yii\db\ActiveRecord {
 			self::SITE_VERSION_FREE => "бесплатная версия",
 			self::SITE_VERSION_EXTEND => "расширенная версия",
 			self::SITE_VERSION_PRO => "полная версия",
-		];
+			];
 	}
 
 	public function getVersionName() {
@@ -106,6 +106,7 @@ class Site extends \yii\db\ActiveRecord {
 	 */
 	public static function createDefaultItems() {
 		//Создаем сайт!
+		//l('createDefaultItems');
 		$site = Site::find()->where(['id' => Yii::$app->user->identity->site_id])->one();
 		if ($site == null) {
 			$site = new Site();
@@ -120,10 +121,16 @@ class Site extends \yii\db\ActiveRecord {
 		if (!$site->save()) {
 			$site->code = Yii::$app->user->identity->email.'-'.rand(999,9999);
 		}
+		
 		if ($site->save()) {
+		
 			//привязываем сайт с пользователем
 			Yii::$app->user->identity->site_id = $site->id;
-			Yii::$app->user->identity->save();
+			if(!Yii::$app->user->identity->save()){
+			l(Yii::$app->user->identity->getErrors());
+			exit;
+			throw new InvalidArgumentException('Ошибка создания приложения! ');
+			}
 			//создаем блоки по умочанию
 			$siteBlocks = new SiteBlock();
 			$siteBlocks->site_id = $site->id;

@@ -101,7 +101,7 @@ class Imager extends Model {
 			if ($file != '.' && $file != '..' && $file[strlen($file) - 1] != '~') {
 				$list[] = [
 					"fileName" => $file,
-					"fileSrc" => '/' . $this->uploadDir . $file,
+					"fileSrc" => '' . str_replace(\Yii::getAlias('@webroot'),"",$this->uploadDir) . $file,
 					'size' => filesize($this->uploadDir . '/' . $file),
 					'type' => $this->getFileTypeByName($file)
 				];
@@ -209,6 +209,8 @@ class Imager extends Model {
 						// output image to file
 						imagejpeg($vDstImg, $sResultFileName, $iJpgQuality);
 						@unlink($sTempFileName);
+							$sResultFileName =  str_replace(\Yii::getAlias('@webroot'),"",$sResultFileName);
+							//$sResultFileName[0]="";
 						return $sResultFileName;
 					}
 				} else {
