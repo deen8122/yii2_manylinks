@@ -157,6 +157,8 @@ use yii\helpers\ArrayHelper;
 
 
 	<div class="popup-bgx"></div>
+	
+	<script src="<?= Url::base() ?>/js/site.js?ver=1"></script>
 	<link xhref="https://fonts.googleapis.com/css?family=Ubuntu:300,300i,400,400i,500,500i,700,700i&display=swap&subset=cyrillic,cyrillic-ext" rel="stylesheet">
 
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/public-site.css?ver=3" />
