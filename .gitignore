@@ -36,5 +36,5 @@ tests/codeception/*/_support/_generated/*
 /frontend/web/assets/
 
 # Project
-frontend/web/upload
-frontend/web/upload/*
+/frontend/web/upload
+/frontend/web/upload/*
