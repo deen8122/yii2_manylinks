@@ -33,9 +33,9 @@ $this->params['breadcrumbs'][] = $this->title;
 	    ?>
 	</div>
 
-	<? /*
+	
 
-	  <h2><?php echo Yii::t('frontend', 'Войти с помощью') ?>:</h2>
+	  <h4><?php echo Yii::t('frontend', 'Войти с помощью') ?>:</h4>
 	  <div class="form-group">
 	  <?php
 	  echo yii\authclient\widgets\AuthChoice::widget([
@@ -44,7 +44,6 @@ $this->params['breadcrumbs'][] = $this->title;
 	  ?>
 	  </div>
 
-	 */ ?>
 	<?php ActiveForm::end(); ?>
 
     </div>
