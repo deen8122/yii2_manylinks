@@ -151,8 +151,10 @@ class User extends ActiveRecord implements IdentityInterface {
 	public function rules() {
 		return [
 			[['site_id'], 'integer'],
-			[['username', 'email'], 'unique'],
+			[['username', 'email','phone'], 'unique'],
 			['status', 'default', 'value' => self::STATUS_NOT_ACTIVE],
+			['site_id', 'default', 'value' => 0],
+				['phone', 'default', 'value' => 0],
 			['status', 'in', 'range' => array_keys(self::statuses())],
 			[['username'], 'filter', 'filter' => '\yii\helpers\Html::encode']
 		];
