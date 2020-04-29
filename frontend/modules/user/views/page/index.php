@@ -74,7 +74,8 @@ $cookies = Yii::$app->request->cookies;
 				<a onclick="blockToggle(<?= $obj->id ?>)">
 				    <i class=" icon toggle-btn icon-minus"></i>
 				</a>
-				<span class="name"><?= $namesArr[$obj->type] ?></span>
+				<span class="name block-name" onclick="siteBlock.siteBlockRename(this,<?= $obj->id ?>)" 
+				      ><?= $obj->blockname == '' ? 'Блок - ' . $obj->id . '( ' . $namesArr[$obj->type] . ')' : $obj->blockname ?></span>
 
 
 			    </div>

@@ -34,9 +34,9 @@ class PageController extends Controller {
 	 */
 	public function actionIndex() {
 		$site = Site::find()->where(['id' => Yii::$app->user->identity->site_id])->one();
-		
+
 		if ($site == null) {
-		//l($site);
+			//l($site);
 			$site = Site::createDefaultItems();
 		}
 		$siteBlock = SiteBlock::find()->orderBy(['sort' => SORT_ASC])->where(['site_id' => Yii::$app->user->identity->site_id])->all();
@@ -87,7 +87,9 @@ class PageController extends Controller {
 		if (isset($post['text'])) {
 			$model->text = $post['text'];
 		}
-
+		if (isset($post['blockname'])) {
+			$model->blockname = $post['blockname'];
+		}
 		$model->save();
 		return $this->renderJSON(['code' => "ok"]);
 	}
@@ -96,8 +98,6 @@ class PageController extends Controller {
 		Yii::$app->response->format = Response::FORMAT_JSON;
 		return json_encode($data, JSON_PRETTY_PRINT);
 	}
-
-
 
 	public function actionUpdatesort() {
 		//l($_POST);

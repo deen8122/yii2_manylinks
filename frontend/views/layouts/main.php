@@ -152,6 +152,7 @@ use yii\helpers\ArrayHelper;
 
 	<script src="<?= Url::base() ?>/js/libs/jquery.cookie.js"  ></script>
 	<script src="<?= Url::base() ?>/js/admin/App.js"></script>
+	<script src="<?= Url::base() ?>/js/admin/SiteBlock.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/textarea-elastic.js"></script>
 	<script src="<?= Url::base() ?>/js/libs/jquery-ui.js"></script>	
 	<script src="<?= Url::base() ?>/js/admin/image.js"></script>

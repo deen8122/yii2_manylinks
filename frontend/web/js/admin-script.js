@@ -22,7 +22,7 @@ function init() {
         $('.popup-bg').fadeIn(100);
     });
 
-
+    //Добавление ссылки
     $('.add-btn-link').on('click', function () {
         var sortN = 0;
         var sort = $(this).closest('.block').find('.sbv-ul-icon-list').find('.sort').last();
@@ -37,12 +37,18 @@ function init() {
         var $item = $(this).closest('.block').find('.sbv-ul-icon-list').find('.sbv-item').last().clone();
         $item.find('input').val("");
         $item.find('.sort').val(sortN);
+        $item.show();
         $(this).closest('form').find('.save-btn').addClass('active');
         $(this).closest('.block').find('.sbv-ul-icon-list').append($item);
+        var block_id =  $(this).data("block_id");
         doRequest('/user/page/sbvcreate', {block_id: $(this).data("block_id"), sort: sortN}, function (json) {
             // console.log(json);
             var id = json.id;
+            if ($item === undefined) {
+                  reloadBlock(block_id);
+            }
             $item.data("id", id);
+            $item.attr("sbv-id", id);
             $item.find('.name').attr("name", "SBV[name][" + id + "]");
             $item.find('.value').attr("name", "SBV[value][" + id + "]");
             $item.find('.sort').attr("name", "SBV[sort][" + id + "]");
@@ -100,7 +106,10 @@ function init() {
 }
 
 
-
+function reloadBlock(block_id){
+    console.log('reloadBlock >'+block_id)
+    
+}
 /*
  * Создает новый блок с типом  = type
  * @param {type} type
@@ -156,7 +165,7 @@ function sbvRemove(id, sb_id) {
             console.log('removed - ' + id);
         }
     });
-    $('.sbv-item-' + id).fadeOut(500);
+    $('.sbv-item-' + id).remove();
 }
 
 function doRequest(action, dataObj, callBack) {
@@ -236,14 +245,14 @@ function blockToggle(id) {
     if ($innerBlock.hasClass('opened')) {
         $innerBlock.hide();
         $innerBlock.removeClass('opened');
-         $parent.removeClass('opened');
+        $parent.removeClass('opened');
         $btn.removeClass('icon-minus');
         $btn.addClass('icon-plus');
         openblocks["block-" + id] = 0;
     } else {
         $innerBlock.show();
         $innerBlock.addClass('opened')
-          $parent.addClass('opened')
+        $parent.addClass('opened')
         $btn.removeClass('icon-plus');
         $btn.addClass('icon-minus');
         openblocks["block-" + id] = 1;
@@ -297,5 +306,5 @@ function blockActivate(id, type) {
 }
 //blockConfig
 function blockConfig(id, type) {
-   app.popupModule('site-block-config',{id:id,type:type});
+    app.popupModule('site-block-config', {id: id, type: type});
 }

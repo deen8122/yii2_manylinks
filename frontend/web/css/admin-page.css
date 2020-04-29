@@ -140,3 +140,8 @@ a:hover {cursor: pointer}
     .admin-header {height: auto;}
     .logo-text {display: none;}
 }
+.block-name-btns-cont {    position: absolute;}
+.block-name-btns-cont button {font-size: 12px;
+    padding: 4px;
+    /* height: 22px; */
+    line-height: normal;}

@@ -1,6 +1,7 @@
 <?php
 
 namespace common\models;
+
 use Yii;
 use common\behaviors\JsonBehavior;
 use common\models\SiteBlockValue;
@@ -56,12 +57,13 @@ class SiteBlock extends \yii\db\ActiveRecord {
 	public function rules() {
 		return [
 			//[['site_id'], 'required'],
-			[['text', 'name'], 'string'],
+			[['text', 'name', 'blockname'], 'string'],
 			[['sort', 'site_id', 'status'], 'integer'],
 			[['name'], 'string', 'max' => 300],
 			[['sort'], 'default', 'value' => -1],
 			[['name'], 'default', 'value' => "title..."],
 			[['status'], 'default', 'value' => SiteBlock::STATUS_ACTIVE],
+			[['blockname'], 'default', 'value' => ""],
 			[['site_id'], 'default', 'value' => Yii::$app->user->identity->site_id],
 		];
 	}
@@ -71,7 +73,7 @@ class SiteBlock extends \yii\db\ActiveRecord {
 	}
 
 	public function afterFind() {
-		$this->data =json_decode($this->data,true);
+		$this->data = json_decode($this->data, true);
 		return true;
 	}
 
@@ -81,7 +83,7 @@ class SiteBlock extends \yii\db\ActiveRecord {
 		}
 		$this->data = json_encode($this->data);
 		if ($insert) {
-			
+
 			//проверяем текущую версию приложения
 			$errorText = '';
 			if (SiteVersion::check($this->type, $errorText)) {
@@ -94,20 +96,22 @@ class SiteBlock extends \yii\db\ActiveRecord {
 		} else
 			return parent::beforeSave($insert);
 	}
-	public function setActive($bool){
-		
-		if($bool){
+
+	public function setActive($bool) {
+
+		if ($bool) {
 			$this->status = SiteBlock::STATUS_ACTIVE;
-		}else {
+		} else {
 			$this->status = SiteBlock::STATUS_DEACTIVE;
 		}
 		$this->save();
 	}
-	private function setDefaultData(){
-		if($this->type == SiteBlock::TYPE_HEADER_PHOTO){
+
+	private function setDefaultData() {
+		if ($this->type == SiteBlock::TYPE_HEADER_PHOTO) {
 			$this->data = [
-				"name"=>Yii::$app->user->identity->email,
-				"file"=>"/upload/default/sobaken.jpg",
+				"name" => Yii::$app->user->identity->email,
+				"file" => "/upload/default/sobaken.jpg",
 			];
 		}
 	}
