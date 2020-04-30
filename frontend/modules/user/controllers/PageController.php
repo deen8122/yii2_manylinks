@@ -55,13 +55,17 @@ class PageController extends Controller {
 		if (!Yii::$app->request->isAjax) {
 			//return $this->renderJSON(['code' => "error", "message" => "nAjax"]);
 		}
+		log2file('update', $_REQUEST);
 		$model = SiteBlock::findOne(['id' => $post['id'], 'site_id' => Yii::$app->user->identity->site_id]);
 		if ($model === null) {
 			throw new NotFoundHttpException('The requested page does not exist.');
 		}
 		if (isset($post['SBV'])) {
 			foreach ($post['SBV']['name'] as $id => $name) {
+
 				$value = $post['SBV']['value'][$id];
+				if ($name == 'template' && $value == 1)
+					continue;
 				$sort = $post['SBV']['sort'][$id];
 				$SBV = SiteBlockValue::findOne(['id' => $id, 'site_block_id' => $model->id]);
 				if ($SBV == null) {

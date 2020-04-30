@@ -26,6 +26,7 @@ $cookies = Yii::$app->request->cookies;
 			<li><a onclick="app.popupModule('css')">Правка CSS</a></li>
 			<li><a onclick="app.popupModule('js')">Правка JS</a></li>
 			<li><a onclick="app.popupModule('imager')">Картинки</a></li>
+			<li><a onclick="app.popupModule('seo')">SEO настройки</a></li>
 			<? /*
 			  <li><a class="">Страницы</a></li>
 			  <li><a class="">Статистика</a></li>

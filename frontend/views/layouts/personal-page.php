@@ -20,24 +20,19 @@ use yii\helpers\Url;
 	<meta name="apple-mobile-web-app-capable" content="yes">
 	<meta name="HandheldFriendly" content="true">
 	<script src="<?= Url::base() ?>/js/libs/jquery.min.js?ver=1"></script>
-
-	<? /*
-
-	 * 
-	 */
-	?>
-	<title>ManyLinks.ru - <?php echo Html::encode($this->title) ?></title>
+	<title><?= $this->context->seo['title'] == '' ? '' . $this->title . '' : $this->context->seo['title'] ?> | ManyLinks.ru</title>
+	<meta name="keywords" content="<?= $this->context->seo['keywords'] ?>">
+	<meta name="description" content="<?= $this->context->seo['description'] ?>">
 	<link rel="stylesheet" href="<?= Url::base() ?>/css/personal-page.css?ver=1"/> 
 	<link rel="stylesheet" type="text/css" href="<?= Url::base() ?>/css/block-style.css" />
-
-<?php $this->head() ?>
-<?php echo Html::csrfMetaTags() ?>
-	<link rel="shortcut icon" type="image/x-icon" href="/img/logo-32.png" /> 
-
+	<?php $this->head() ?>
+	<?php echo Html::csrfMetaTags() ?>
+	<link rel="shortcut icon" type="image/x-icon" href="/img/logo-32.png?ver=2" /> 
     </head>
+
     <body class="<?= $this->context->bodyClass; ?>" style="<?= $this->context->bodyStyle; ?>">
 	<div class="container">
-<?php echo $content ?>
+	    <?php echo $content ?>
 	</div>
 	<!-- Yandex.Metrika counter -->
 	<script type="text/javascript" >

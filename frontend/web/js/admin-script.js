@@ -35,22 +35,36 @@ function init() {
 
         //получаем шаблон
         var $item = $(this).closest('.block').find('.sbv-ul-icon-list').find('.sbv-item').last().clone();
+
+        if ($item.length === 0) {
+            var $item = $(this).closest('.block').find('.template').last().clone();
+        }
+        console.log($item);
         $item.find('input').val("");
         $item.find('.sort').val(sortN);
+
+        $item.attr('style', '');
         $item.show();
         $(this).closest('form').find('.save-btn').addClass('active');
         $(this).closest('.block').find('.sbv-ul-icon-list').append($item);
-        var block_id =  $(this).data("block_id");
+        var block_id = $(this).data("block_id");
         doRequest('/user/page/sbvcreate', {block_id: $(this).data("block_id"), sort: sortN}, function (json) {
             // console.log(json);
             var id = json.id;
             if ($item === undefined) {
-                  reloadBlock(block_id);
+                reloadBlock(block_id);
             }
             $item.data("id", id);
             $item.attr("sbv-id", id);
             $item.find('.name').attr("name", "SBV[name][" + id + "]");
             $item.find('.value').attr("name", "SBV[value][" + id + "]");
+            try {
+                $item.find('.link').attr("name", "SBV[value][" + id + "][link]");
+                $item.find('.text').attr("name", "SBV[value][" + id + "][text]");
+                $item.find('.text2').attr("name", "SBV[value][" + id + "][text2]");
+            } catch (e) {
+                console.log(e);
+            }
             $item.find('.sort').attr("name", "SBV[sort][" + id + "]");
         });
     });
@@ -106,9 +120,9 @@ function init() {
 }
 
 
-function reloadBlock(block_id){
-    console.log('reloadBlock >'+block_id)
-    
+function reloadBlock(block_id) {
+    console.log('reloadBlock >' + block_id)
+
 }
 /*
  * Создает новый блок с типом  = type

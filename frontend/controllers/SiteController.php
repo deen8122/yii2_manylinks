@@ -25,6 +25,7 @@ class SiteController extends Controller {
 
 	public $bodyClass = "default";
 	public $bodyStyle = "";
+	public $seo = "";
 
 	/**
 	 * @return array
@@ -77,7 +78,9 @@ class SiteController extends Controller {
 		if ($model->dataArray['bgClass']) {
 			$this->bodyClass = $model->dataArray['bgClass'];
 		}
-
+		if ($model->dataArray['seo']) {
+			$this->seo = $model->dataArray['seo'];
+		}
 		return $this->render('personal-page', ['model' => $model]);
 	}
 
@@ -153,7 +156,7 @@ class SiteController extends Controller {
 			'url' => Url::to(['/user/sign-in/activation', 'token' => "xxxxx"])
 		]);
 
-		echo mail('deen812@mail.ru','1','2');
+		echo mail('deen812@mail.ru', '1', '2');
 		return $this->render('price');
 	}
 

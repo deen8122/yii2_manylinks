@@ -72,6 +72,7 @@ class SiteBlock extends \yii\db\ActiveRecord {
 		return $this->hasMany(SiteBlockValue::class, ['site_block_id' => 'id'])->orderBy(['sort' => SORT_ASC]);
 	}
 
+	
 	public function afterFind() {
 		$this->data = json_decode($this->data, true);
 		return true;

@@ -1,0 +1,6 @@
+Array
+(
+    [id] => 75
+    [blockname] => Слайдер
+    [_csrf] => gnIWEJvVtzWetwndUX3irfO4M44O9Ub3sUI1Rxu8BFDSIyQk0JPof6r6S582S9buw44D6l-3EqbBJ30PV-9tHg==
+)

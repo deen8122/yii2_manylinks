@@ -1,11 +1,17 @@
 Array
 (
-    [_csrf] => nsTOOiXAwWUbbOPIwEqLb9W0yi7vF4p-Xh6rU887Ob3r_Zhwf7mPEEIHhviZHcwk7OOuGJtU5Q4MaMIlpWtq_w==
+    [_csrf] => wtM71R4ieesGGJ6EFgBcxk3e_soELmmGmMkabRtzylSSggnhVWQmoTJV3MZxNmiFfejOrlVsPdforFIlVyCjGg==
     [Site] => Array
         (
             [dataArray] => Array
                 (
-                    [jsCode] => 
+                    [seo] => Array
+                        (
+                            [title] => Заголовок 
+                            [keywords] => Ключевые слова
+                            [description] => Описание страницы
+                        )
+
                 )
 
         )

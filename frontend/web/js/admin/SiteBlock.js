@@ -42,7 +42,7 @@ SiteBlock.prototype.save = function (id) {
     var blockname = $obj.find('input').val();
     $obj.html(blockname);
    setTimeout(function(){ siteBlock.action.blocknameedit[id] = false;},100)
-    doRequest("page/update", {id: id, blockname: blockname}, function (data) {
+    doRequest("/user/page/update", {id: id, blockname: blockname}, function (data) {
     });
 }
 SiteBlock.prototype.cancel = function (id) {
