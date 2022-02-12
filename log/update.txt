@@ -1,6 +1,7 @@
 Array
 (
-    [id] => 75
-    [blockname] => Слайдер
-    [_csrf] => gnIWEJvVtzWetwndUX3irfO4M44O9Ub3sUI1Rxu8BFDSIyQk0JPof6r6S582S9buw44D6l-3EqbBJ30PV-9tHg==
+    [text] => <a class="test-btn" href="https://professiolog.ru/">Сайт для прохождения онлайн тестов</a>
+    [type] => 3
+    [id] => 24
+    [_csrf] => 2hAUMpBCCr64Wi8PqsunEcJC7JJ94fP6ecDnMrpPhoeKQSYG2wRV9IwXbU3N_ZNS8nTc9iyjp6sJpa969hzvyQ==
 )
